@@ -1,0 +1,72 @@
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "glamorize-b1e60", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
+b/wolfram-js-frontend/Packages/wljs-snippets/library/placeassist.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 9, 21, 11, 21, 
+      48.597528`8.439189154727975}, "Instant", "Gregorian", 2.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$26], 
+   "SelectedCell" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285"|>, 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285", 
+    "type" -> "input", "data" -> ".md\n## Placement assistant\nA dynamic tool \
+for manipulating 2D parameters with a cursor on `Graphics` canvas", 
+    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "6227ac1c-d042-4e00-84c4-c1f8b5883b1e", "type" -> "output", 
+    "data" -> "\n## Placement assistant\nA dynamic tool for manipulating 2D \
+parameters with a cursor on `Graphics` canvas", "display" -> "markdown", 
+    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a285", 
+    "type" -> "input", "data" -> "PlaceAssist[init_:{0,0}]", 
+    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285", 
+    "type" -> "input", "data" -> 
+     ".md\nSee examples section to see how to use it", 
+    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb4", "type" -> "output", 
+    "data" -> "\nSee examples section to see how to use it", 
+    "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285", 
+    "type" -> "input", "data" -> ".exports\nPlaceAssist[init_:{0,0}] := \
+With[{uid = CreateUUID[]},\n\tLeakyModule[{variable = init, text = init // \
+ToString, gizmo},\n         gizmo[var_, text_] := With[{v = var // \
+Evaluate},\n        \t{\n        \t\tPointSize[0.05], Red, \n        \
+\t\tEventHandler[\n        \t\t\tPoint[v], \n        \t\t\t{\n        \
+\t\t\t\t\"drag\"->Function[xy, var = xy; text = xy // ToString]\n        \
+\t\t\t}\n        \t\t]\n        \t}\n        ];\n        \n        \
+SetAttributes[gizmo, HoldAll];\n        \n\t\tWith[{fe = \
+CreateFrontEndObject[TextView[text // Offload], uid]},\n\n    \t\t(* private \
+*)\n    \t\tCreateFrontEndObject[With[{g = gizmo[variable, text]},\n    \
+\t\t\tOffload[Static[g]; variable]\n    \t\t], uid, \
+\"Type\"->\"Private\"];\n\n            (* public *)\n            fe\n        \
+]\n\t]\n]", "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba", "type" -> "input", 
+    "data" -> 
+     ".md\n## Example\nSelect `PlaceAssist[]` and click __Evaluate in \
+Place__", "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "9b1a2cf1-1d15-440f-9307-17432ab5f164", "type" -> "output", 
+    "data" -> 
+     "\n## Example\nSelect `PlaceAssist[]` and click __Evaluate in Place__", 
+    "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "b05f306a-068b-4823-9f85-951467c26821", "type" -> "input", 
+    "data" -> "Plot[Sin[CM6Sqrt[x]], {x,0,36}, Epilog->{Text[Style[\"Chirp \
+pulse\", FontSize->16], PlaceAssist[{10, 0.5}]]}]", 
+    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc43", "type" -> "input", 
+    "data" -> ".md\nThen, you can evaluate the cell and manipulate the \
+position of the text", "display" -> "codemirror", 
+    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "a6c724ed-4a28-4fcf-a061-8e096cf51ee7", "type" -> "output", 
+    "data" -> "\nThen, you can evaluate the cell and manipulate the position \
+of the text", "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+    "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>

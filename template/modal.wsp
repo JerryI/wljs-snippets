@@ -1,0 +1,78 @@
+<style>
+    .autocomplete {
+      /*the container must be positioned relative:*/
+      position: relative;
+      display: inline-block;
+    }
+    .autocomplete input[type=text] {
+        background-color: var(--background-menu);
+        width: 100%;
+    }
+    .autocomplete input[type=text]:focus-visible {
+        outline: none;
+    }
+    .autocomplete input {
+        border: 1px solid transparent;
+        padding: 10px;
+        font-size: small;
+    }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid var(--borders-color);
+        border-bottom: none;
+        border-top: none;
+        z-index: 1999;
+        border-radius: 4px;
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    .autocomplete-items div {
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: var(--topbar-background);
+        border-bottom: 1px solid var(--borders-color);
+        font-size:small;
+    }
+
+    .autocomplete-items div:hover {
+      /*when hovering an item:*/
+      background-color: var(--buttons-hover) !important; 
+    }
+.autocomplete-active {
+    background-color: var(--buttons-hover) !important;
+    color: var(--sidebar-text-color);
+}
+.snippets {
+    padding: 0;
+    margin: 0;
+}
+</style>
+<div class="dropdown" style="
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    /* position: absolute; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+">
+    <div class="dropdown-frame" style="overflow: visible;">
+        <div class="notion-scroller vertical" style="overflow: visible;">
+                <div class="notion-shadow" style="overflow: visible; padding:0;">
+                    <form class="snippets"  autocomplete="off">
+                                  <div class="autocomplete" style="width:40vw;">
+                                    <input id="snippet-autoinput" type="text" placeholder="Type the name...">
+                                  </div>
+                     </form>                                       
+                    </div>                  
+        </div>
+</div>
+</div>

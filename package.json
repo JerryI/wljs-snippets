@@ -1,0 +1,33 @@
+{
+  "name": "wljs-snippets",
+  "version": "0.0.1",
+  "description": "Snippets for WLJS editor",
+  "scripts": {
+    "build": "node --max-old-space-size=8192 ./node_modules/.bin/rollup --config rollup.config.mjs"
+  },
+  "defaultPackage": true,
+  "wljs-meta": {
+    "wl": "src/manager.wl",
+    "jsmodule": "src/kernel.js",
+    "priority": 9999999,
+    "menu": [
+      {
+        "label": "Snippets",
+        "accelerator": ["Cmd+p", "Ctrl+p"],
+        "internalHandler": "snippets",
+        "spawnWindow": false,
+        "type": "button"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JerryI/wljs-snippets"
+  },
+  "dependencies": {
+    "rollup": "^3.21.6"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  }
+}
