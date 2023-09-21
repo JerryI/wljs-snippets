@@ -71,7 +71,7 @@ function autocomplete(inp, arr, cbk, destory) {
               /*make the matching letters bold:*/
               b.innerHTML = arr[0][i];
               b.innerHTML += " <i>";
-              b.innerHTML += arr[1][i].substring(0, Math.min(25, arr[1][i].length));
+              b.innerHTML += arr[1][i].substring(0, Math.min(45, arr[1][i].length));
               b.innerHTML += "...</i>";
               /*insert a input field that will hold the current array item's value:*/
               b.innerHTML += "<input type='hidden' value='" + arr[0][i] + "'>";
