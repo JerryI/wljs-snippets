@@ -1,7 +1,7 @@
 # Snippets package for WLJS Frontend
 **An extension for [WLJS-Editor](https://github.com/JerryI/wljs-editor) that adds snippets (pieces of code like Wolfram Function Repository) feature**
 
-Work only with **WLJS Frontend >= 0.9.8**, check [Releases](https://github.com/JerryI/wolfram-js-frontend/releases)
+Works only with **WLJS Frontend >= 0.9.8**, check [Releases](https://github.com/JerryI/wolfram-js-frontend/releases)
 
 Use it with a hotkey combination `Win+P` or (`Cmd+P` on Mac)
 
