@@ -37,7 +37,7 @@ SnippetGet := ({#, snippets[#]["desc"]} &/@ Keys[snippets]) // Transpose
 
 JerryI`WolframJSFrontend`Extensions`Handlers["Menu"]["snippets"][assoc_Association] := Module[{template},
     Echo["requested recevied!"];
-    template = LoadPage[FileNameJoin[{root, "template", "modal.wsp"}], {RootFolder = root, list = Keys[snippets]}];
+    template = LoadPage["template/modal.wsp", {RootFolder = root, list = Keys[snippets]}, "Base"->root];
     WebSocketSend[assoc["Client"], Global`PopUpSnippetsModal[template] // DefaultSerializer];
 ]
 
