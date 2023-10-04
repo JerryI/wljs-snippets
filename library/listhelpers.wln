@@ -35,7 +35,7 @@ crossbar position", "display" -> "codemirror", "sign" -> "stepladder-5cf8b",
     "display" -> "markdown", "sign" -> "stepladder-5cf8b", 
     "props" -> <|"hidden" -> False|>|>, 
    <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a", "type" -> "input", 
-    "data" -> ".exports\nCrop[min_, max_][data_List] := Select[data, (#[[1]] \
+    "data" -> ".export\nCrop[min_, max_][data_List] := Select[data, (#[[1]] \
 >= min && #[[1]] <= max)&]\nTransformY[level_, scale_:1][data_] := {#[[1]], \
 scale #[[2]] + level} &/@ data;\nTransformX[level_, scale_:1][data_] := \
 {scale #[[1]] + level, #[[2]]} &/@ data;\nRects[pts_, size_:{1,1}] := \

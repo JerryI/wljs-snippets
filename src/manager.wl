@@ -25,7 +25,6 @@ action[".export"] = Function[{channel, data}, With[{prev = CellObj[JerryI`Wolfra
     ]
 ]]
 
-action[".exports"] = action[".export"]
 action[".oncall-export"] = action[".export"]
 
 action[".evaluate"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
@@ -241,7 +240,7 @@ snippets = (Module[{path, snippet, cells, meta, exports, ico, name, desc},
         ], {type, Keys[action]}
     ] // Flatten // DeleteMissing;
 
-    Echo[exports];
+  
 
     ico = StringDrop[First[#]["data"], 5]& @ Select[cells, StringMatchQ[#["data"], ".ico"~~___]&];
     If[!StringQ[ico], ico = "/wljs-snippets/assets/default.svg"];

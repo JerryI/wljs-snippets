@@ -34,7 +34,7 @@ crossbar position", "display" -> "codemirror", "sign" -> "syllabub-6b758",
     "display" -> "markdown", "sign" -> "syllabub-6b758", 
     "props" -> <|"hidden" -> False|>|>, 
    <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa", "type" -> "input", 
-    "data" -> ".exports\ncrossBar[handler_:Null, size_:{1000,1000}, \
+    "data" -> ".export\ncrossBar[handler_:Null, size_:{1000,1000}, \
 color_:RGBColor[0.3,0.5,0.8]] := LeakyModule[{cross, crossMove},\n\n  \
 crossMove = Function[xy, cross = xy; handler[xy]];\n  cross = {0,0}; \n  \
 With[{sX = size[[1]], sY = size[[2]]},\n   {{Opacity[0], \

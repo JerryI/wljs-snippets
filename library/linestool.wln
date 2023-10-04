@@ -34,7 +34,7 @@ take input of the crossbar position", "display" -> "codemirror",
     "display" -> "markdown", "sign" -> "temporally-a9228", 
     "props" -> <|"hidden" -> False|>|>, 
    <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a2855c7", 
-    "type" -> "input", "data" -> ".exports\nplaceLine[marker_String, \
+    "type" -> "input", "data" -> ".export\nplaceLine[marker_String, \
 initial_:{{0,0},{1,1}}] := Module[{left, right, pt1, pt2, expr},\n  left = \
 Function[xy, pt1 = xy];\n  right = Function[xy, pt2 = xy];\n  {pt1, pt2} = \
 initial;\n  expr = {Darker[Cyan], Line[{pt1 // Offload, pt2 // Offload}], \

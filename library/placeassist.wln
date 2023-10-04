@@ -33,7 +33,7 @@ take input of the crossbar position", "display" -> "codemirror",
     "display" -> "markdown", "sign" -> "glamorize-b1e60", 
     "props" -> <|"hidden" -> False|>|>, 
    <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285", 
-    "type" -> "input", "data" -> ".exports\nPlaceAssist[init_:{0,0}] := \
+    "type" -> "input", "data" -> ".export\nPlaceAssist[init_:{0,0}] := \
 With[{uid = CreateUUID[]},\n\tLeakyModule[{variable = init, text = init // \
 ToString, gizmo},\n         gizmo[var_, text_] := With[{v = var // \
 Evaluate},\n        \t{\n        \t\tPointSize[0.05], Red, \n        \
