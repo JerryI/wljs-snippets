@@ -14,7 +14,7 @@
     .autocomplete input {
         border: 1px solid transparent;
         padding: 10px;
-        font-size: small;
+        font-size: var(--font-size-small);
     }
 
     .autocomplete-items {
@@ -35,7 +35,7 @@
         cursor: pointer;
         background-color: var(--topbar-background);
         border-bottom: 1px solid var(--borders-color);
-        font-size:small;
+        font-size:var(--font-size-small);
     }
 
     .autocomplete-items div:hover {
