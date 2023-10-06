@@ -97,7 +97,7 @@ action[".evaluate-insert"] = action[".oncall-evaluate-insert"]
 
 
 action[".onselected-evaluate"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -116,7 +116,7 @@ action[".onselected-evaluate"] = Function[{channel, data},
 ]
 
 action[".onselected-evaluate-export"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -135,7 +135,7 @@ action[".onselected-evaluate-export"] = Function[{channel, data},
 ]
 
 action[".onselected-evaluate-replace"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -157,7 +157,7 @@ action[".onselected-evaluate-replace"] = Function[{channel, data},
 
 
 action[".onclipboard-evaluate"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -177,7 +177,7 @@ action[".onclipboard-evaluate"] = Function[{channel, data},
 
 
 action[".onclipboard-evaluate-export"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -195,17 +195,18 @@ action[".onclipboard-evaluate-export"] = Function[{channel, data},
     ]
 ]
 action[".onclipboard-evaluate-insert"] = Function[{channel, data},
-    With[{uid = CreateUUID[]}, 
+    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
             Echo["Snippets >> gonna insert it"];
             With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
+                Echo["Snippets >> newcell >> "<>new];
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
-                    Echo["Snippets >> evaluated >> "<>new["data"]];
-                    With[{text = new["data"]},
+                    Echo["Snippets >> evaluated >> "<>outputCell["data"]];
+                    With[{text = outputCell["data"]},
                         WebSocketSend[Global`client, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
-                        CellListRemoveAccurate[new];
+                        CellListRemoveAccurate[outputCell];
                     ];
                 ]];
             ];            
