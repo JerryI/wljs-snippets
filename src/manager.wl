@@ -37,7 +37,20 @@ action[".evaluate"] = Function[{channel, data}, With[{prev = CellObj[JerryI`Wolf
     ]
 ]]
 
+action[".evaluate-forreal"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
+    Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[channel]},
+        With[{new = CellListAddNewLast[prev["sign"], data, <|"hidden"->True|>]},
+            CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
+                Echo["Snippets >> evaluated for real"];
+                CellListRemoveAccurate[new];
+                Echo["Snippets >> removed"];
+            ]];
+        ]
+    ]
+]]
+
 action[".oncall-evaluate"] = action[".evaluate"];
+action[".oncall-evaluate-forreal"] = action[".evaluate"];
 
 stopCellsHashes = {};
 action[".oncall-once-evaluate"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
@@ -55,7 +68,7 @@ action[".oncall-once-evaluate"] = Function[{channel, data}, With[{prev = CellObj
 ]]
 
 action[".evaluate-export"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
-    Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[channel]},
+    Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[Global`client]},
         With[{new = CellListAddNewAfterAny[prev, data, <|"hidden"->True|>]},
             CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                 Echo["Snippets >> evaluated normally"];
@@ -77,14 +90,14 @@ action[".oncall-evaluate-export"] = action[".evaluate-export"]
 
 
 action[".oncall-evaluate-insert"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
-    With[{new = CellListAddNewAfterAny[prev, data]},
+    With[{new = CellListAddNewAfterAny[prev, data],cli = Global`client},
         CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
             Echo["Snippets >> evaluated"];
-            With[{text = new["data"]},
+            With[{text = outputCell["data"]},
                 CellListRemoveAccurate[new];
                 Echo["Snippets >> removed"];
 
-                WebSocketSend[Global`client, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
+                WebSocketSend[cli, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
             ];
         ]];
     ]
@@ -116,7 +129,7 @@ action[".onselected-evaluate"] = Function[{channel, data},
 ]
 
 action[".onselected-evaluate-export"] = Function[{channel, data},
-    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
+    With[{uid = CreateUUID[],cli = Global`client, prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -135,7 +148,7 @@ action[".onselected-evaluate-export"] = Function[{channel, data},
 ]
 
 action[".onselected-evaluate-replace"] = Function[{channel, data},
-    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
+    With[{uid = CreateUUID[], cli = Global`client,prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -143,8 +156,8 @@ action[".onselected-evaluate-replace"] = Function[{channel, data},
             With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated"];
-                    With[{text = new["data"]},
-                        WebSocketSend[Global`client, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
+                    With[{text = outputCell["data"]},
+                        WebSocketSend[cli, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
                         CellListRemoveAccurate[new];
                     ];
                 ]];
@@ -177,7 +190,7 @@ action[".onclipboard-evaluate"] = Function[{channel, data},
 
 
 action[".onclipboard-evaluate-export"] = Function[{channel, data},
-    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
+    With[{uid = CreateUUID[],cli = Global`client, prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -191,11 +204,11 @@ action[".onclipboard-evaluate-export"] = Function[{channel, data},
             ]           
         ];
 
-        WebSocketSend[Global`client, Global`TalkMaster[Global`ReadClipboard[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboard[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 action[".onclipboard-evaluate-insert"] = Function[{channel, data},
-    With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
+    With[{uid = CreateUUID[], cli = Global`client, prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
@@ -205,14 +218,14 @@ action[".onclipboard-evaluate-insert"] = Function[{channel, data},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated >> "<>outputCell["data"]];
                     With[{text = outputCell["data"]},
-                        WebSocketSend[Global`client, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
-                        CellListRemoveAccurate[outputCell];
+                        WebSocketSend[cli, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
+                        CellListRemoveAccurate[new];
                     ];
                 ]];
             ];            
         ];
 
-        WebSocketSend[Global`client, Global`TalkMaster[Global`ReadClipboard["Get"], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboard["Get"], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 

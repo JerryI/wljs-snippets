@@ -1,0 +1,39 @@
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "airport-940ef", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
+ry/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/parrot.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 6, 20, 38, 
+      16.942376`7.981549300550328}, "Instant", "Gregorian", 2.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$22], 
+   "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd429"|>, 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd429", 
+    "type" -> "input", "data" -> 
+     ".md\n## Color parrot\nchange the sidebar color", 
+    "display" -> "codemirror", "sign" -> "airport-940ef", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "f08cac15-a610-4e7f-b058-e0ea4633fa36", "type" -> "output", 
+    "data" -> "\n## Color parrot\nchange the sidebar color", 
+    "display" -> "markdown", "sign" -> "airport-940ef", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd429", 
+    "type" -> "input", "data" -> ".evaluate-forreal\n.js\nconst doc = \
+document.getElementsByClassName('notion-sidebar-container')[0];\nconsole.warn\
+(doc);\nif (!window.parrotColor) {\n  window.parrotColor = \
+0;\n}\n\n\nfunction randomChoice(arr) {\n    if (window.parrotColor >= \
+arr.length) window.parrotColor = 0;\n    const m = \
+arr[window.parrotColor].match(/^#([0-9a-f]{6})$/i)[1];\n    let rgb = [\n     \
+       parseInt(m.substr(0,2),16),\n            parseInt(m.substr(2,2),16),\n \
+           parseInt(m.substr(4,2),16)\n    ];\n    if \
+(document.getElementsByClassName('notion-body')[0].getAttribute('data-theme') \
+=== 'dark') {\n      rgb = rgb.map((e)=>(255-e));\n    };\n    \
+console.log(rgb);\n    window.parrotColor++;\n    return (`rgba(${rgb[0]}, \
+${rgb[1]}, ${rgb[2]}, 0.5)`);\n}\nconst color = ['#FBE7C6','#E7F2F8', \
+'#B4F8C8', '#A0E7E5', '#FB8DA0', '#FEC84D'];\ndoc.setAttribute('style', \
+'--sidebar-background:'+randomChoice(color));", "display" -> "codemirror", 
+    "sign" -> "airport-940ef", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a5833fd429", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "airport-940ef", "props" -> <|"hidden" -> True|>|>}, 
+ "serializer" -> "jsfn3"|>

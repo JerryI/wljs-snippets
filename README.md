@@ -47,6 +47,9 @@ Paste the content of the cells into the notebook
 ### `.evaluate`, `.oncall-evaluate`
 Evaluate the content of the cell, when a user call the snippet from the menu
 
+### `.evaluate-forreal`, `.oncall-evaluate-forreal`
+Evaluate the content of the cell inside the notebook for real and removes it
+
 ### `.oncall-once-evaluate`
 The same as previous, but does it once
 

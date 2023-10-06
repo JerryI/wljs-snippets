@@ -1,29 +1,28 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "geopolitics-4bfbb", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
-ry/Application \
-Support/wljs-frontend/Packages/wljs-snippets/library/clipboardhelp.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 6, 19, 4, 
-      36.452832`8.314306253399383}, "Instant", "Gregorian", 2.], 
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "invasion-35e20", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
+b/wolfram-js-frontend/Packages/wljs-snippets/library/clipboardhelp.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 6, 20, 46, 
+      6.358742`7.5559461917727475}, "Instant", "Gregorian", 2.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
      KirillBelov`WebSocketHandler`WebSocketChannel`$20], 
    "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd", 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd84c", 
     "type" -> "input", "data" -> 
      ".md\n## Paste table as list\nHelps to paste Excel-like tables as lists"\
-, "display" -> "codemirror", "sign" -> "geopolitics-4bfbb", 
+, "display" -> "codemirror", "sign" -> "invasion-35e20", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "7bdefe8b-64d8-4c33-a859-3a732d000375", "type" -> "output", 
+   <|"id" -> "7bdefe8b-64d8-4c33-a859-3a732d00037584c", "type" -> "output", 
     "data" -> 
      "\n## Paste table as list\nHelps to paste Excel-like tables as lists", 
-    "display" -> "markdown", "sign" -> "geopolitics-4bfbb", 
+    "display" -> "markdown", "sign" -> "invasion-35e20", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd", 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd84c", 
     "type" -> "input", "data" -> 
      ".onclipboard-evaluate-insert\nFunction[string, string]", 
-    "display" -> "codemirror", "sign" -> "geopolitics-4bfbb", 
+    "display" -> "codemirror", "sign" -> "invasion-35e20", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a5833fd", 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a5833fd84c", 
     "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
 take input of the crossbar position", "display" -> "codemirror", 
-    "sign" -> "geopolitics-4bfbb", "props" -> <|"hidden" -> True|>|>}, 
+    "sign" -> "invasion-35e20", "props" -> <|"hidden" -> True|>|>}, 
  "serializer" -> "jsfn3"|>
