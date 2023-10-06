@@ -1,45 +1,49 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "stepladder-5cf8b", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
-b/wolfram-js-frontend/Packages/wljs-snippets/library/listhelpers.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 9, 21, 10, 57, 
-      57.240157`8.510275789898191}, "Instant", "Gregorian", 2.], 
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "afield-a6a2c", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
+ry/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/listhelpers.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 6, 19, 2, 
+      55.699941`8.498429709307349}, "Instant", "Gregorian", 2.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$29], 
-   "SelectedCell" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a", 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$18], 
+   "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a583"|>, 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a583", 
     "type" -> "input", "data" -> ".md\n## List manipulation helpers\nSmall \
 and simple tools for fast data trimming, clipping and etc", 
-    "display" -> "codemirror", "sign" -> "stepladder-5cf8b", 
+    "display" -> "codemirror", "sign" -> "afield-a6a2c", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "7a5ecabd-8a1b-4e40-b55a-0b9f51f19a85", "type" -> "output", 
+   <|"id" -> "7a5ecabd-8a1b-4e40-b55a-0b9f51f19a85583", "type" -> "output", 
     "data" -> "\n## List manipulation helpers\nSmall and simple tools for \
 fast data trimming, clipping and etc", "display" -> "markdown", 
-    "sign" -> "stepladder-5cf8b", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a", "type" -> "input", 
-    "data" -> "Crop[min_, max_][data_List]\nTransformY[level_, \
-scale_:1][data_]\nRects[pts_, size_:{1,1}]\nDropHalf[exp_List]", 
-    "display" -> "codemirror", "sign" -> "stepladder-5cf8b", 
+    "sign" -> "afield-a6a2c", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a583", 
+    "type" -> "input", "data" -> "Crop[min_, \
+max_][data_List]\nTransformY[level_, scale_:1][data_]\nRects[pts_, \
+size_:{1,1}]\nTriags[pts_, size_:{1,1}]\nDropHalf[exp_List]", 
+    "display" -> "codemirror", "sign" -> "afield-a6a2c", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a", "type" -> "input", 
-    "data" -> ".md\nUse `handler` for other function to take input of the \
-crossbar position", "display" -> "codemirror", "sign" -> "stepladder-5cf8b", 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a583", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "afield-a6a2c", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a583", 
+    "type" -> "input", "data" -> ".md\nPaste this function into your \
+`Graphics` object. Use `handler` to pass the data of the current position to \
+some other function", "display" -> "codemirror", "sign" -> "afield-a6a2c", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a", "type" -> "input", 
-    "data" -> ".md\nPaste this function into your `Graphics` object. Use \
-`handler` to pass the data of the current position to some other function", 
-    "display" -> "codemirror", "sign" -> "stepladder-5cf8b", 
-    "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "fcefe55c-3cbf-4758-9e5c-3f63bd53adb379a", "type" -> "output", 
-    "data" -> "\nPaste this function into your `Graphics` object. Use \
-`handler` to pass the data of the current position to some other function", 
-    "display" -> "markdown", "sign" -> "stepladder-5cf8b", 
+   <|"id" -> "fcefe55c-3cbf-4758-9e5c-3f63bd53adb379a583", 
+    "type" -> "output", "data" -> "\nPaste this function into your `Graphics` \
+object. Use `handler` to pass the data of the current position to some other \
+function", "display" -> "markdown", "sign" -> "afield-a6a2c", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a", "type" -> "input", 
-    "data" -> ".export\nCrop[min_, max_][data_List] := Select[data, (#[[1]] \
->= min && #[[1]] <= max)&]\nTransformY[level_, scale_:1][data_] := {#[[1]], \
-scale #[[2]] + level} &/@ data;\nTransformX[level_, scale_:1][data_] := \
-{scale #[[1]] + level, #[[2]]} &/@ data;\nRects[pts_, size_:{1,1}] := \
-Rectangle[# - size, # + size] &/@ pts;\nDropHalf[exp_List] := Drop[exp, \
--Floor[Length[exp]/2]]", "display" -> "codemirror", 
-    "sign" -> "stepladder-5cf8b", "props" -> <|"hidden" -> False|>|>}, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a583", 
+    "type" -> "input", "data" -> ".export\n(* manipulations *)\nCrop[min_, \
+max_][data_List] := Select[data, (#[[1]] >= min && #[[1]] <= \
+max)&]\nTransformY[level_, scale_:1][data_] := {#[[1]], scale #[[2]] + level} \
+&/@ data;\nTransformX[level_, scale_:1][data_] := {scale #[[1]] + level, \
+#[[2]]} &/@ data;\nDropHalf[exp_List] := Drop[exp, -Floor[Length[exp]/2]]\n(* \
+plotting *)\nRects[pts_, size_:{1,1}] := Rectangle[# - size, # + size] &/@ \
+pts;\nTriags[pts_, size_:{1,1}] := Polygon[{{-0.5,-1/3}size + #, \
+{0,1-1/3}size + #, {0.5,-1/3}size + #}] &/@ pts;", "display" -> "codemirror", 
+    "sign" -> "afield-a6a2c", "props" -> <|"hidden" -> False|>|>}, 
  "serializer" -> "jsfn3"|>

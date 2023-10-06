@@ -199,10 +199,10 @@ action[".onclipboard-evaluate-insert"] = Function[{channel, data},
         promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
-
+            Echo["Snippets >> gonna insert it"];
             With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
-                    Echo["Snippets >> evaluated"];
+                    Echo["Snippets >> evaluated >> "<>new["data"]];
                     With[{text = new["data"]},
                         WebSocketSend[Global`client, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
                         CellListRemoveAccurate[new];
@@ -231,7 +231,7 @@ snippets = (Module[{path, snippet, cells, meta, exports, ico, name, desc},
     cells = Select[snippet["cells"], #["type"]=="input"&];
     meta = First[cells]["data"];
     exports = Table[
-        With[{data = StringDrop[#["data"], StringLength[type]+1]&/@ Select[cells, StringMatchQ[#["data"], type~~___]&]},
+        With[{data = StringDrop[#["data"], StringLength[type]+1]&/@ Select[cells, StringMatchQ[#["data"], type~~"\n"~~___]&]},
             If[Length[data] > 0,
                 Table[<|"type"->type, "content"->k|>, {k, data}]
             ,
