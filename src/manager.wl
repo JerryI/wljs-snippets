@@ -37,13 +37,18 @@ action[".evaluate"] = Function[{channel, data}, With[{prev = CellObj[JerryI`Wolf
     ]
 ]]
 
-action[".evaluate-forreal"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
-    Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[channel]},
-        With[{new = CellListAddNewLast[prev["sign"], data, <|"hidden"->True|>]},
+action[".evaluate-forreal"] = Function[{channel, data}, With[{},
+    Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[Global`client]},
+        With[{new = CellListAddNewLast[channel, data, <|"hidden"->True|>], w = JerryI`WolframJSFrontend`fireEvent},
             CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                 Echo["Snippets >> evaluated for real"];
-                CellListRemoveAccurate[new];
-                Echo["Snippets >> removed"];
+                SessionSubmit[ScheduledTask[
+                    Block[{JerryI`WolframJSFrontend`fireEvent = w},
+                        CellListRemoveAccurate[new];Echo["Snippets >> removed"];
+                    ]
+                , {Quantity[2, "Seconds"], 1}, AutoRemove->True]];
+                
+                
             ]];
         ]
     ]
