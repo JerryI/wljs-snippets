@@ -55,7 +55,7 @@ action[".evaluate-forreal"] = Function[{channel, data}, With[{},
 ]]
 
 action[".oncall-evaluate"] = action[".evaluate"];
-action[".oncall-evaluate-forreal"] = action[".evaluate"];
+action[".oncall-evaluate-forreal"] = action[".evaluate-forreal"];
 
 stopCellsHashes = {};
 action[".oncall-once-evaluate"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
@@ -74,9 +74,11 @@ action[".oncall-once-evaluate"] = Function[{channel, data}, With[{prev = CellObj
 
 action[".evaluate-export"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
     Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[Global`client]},
-        With[{new = CellListAddNewAfterAny[prev, data, <|"hidden"->True|>]},
+        With[{new = CellListAddNewAfterAny[prev, data, <|"hidden"->True|>], w = JerryI`WolframJSFrontend`fireEvent},
             CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
-                Echo["Snippets >> evaluated normally"];
+                Echo["Snippets >> evaluated for real"];
+                
+                
             ]];
         ]
     ]
@@ -120,7 +122,7 @@ action[".onselected-evaluate"] = Function[{channel, data},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
 
-            With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
+            With[{new = CellListAddNewAfterAny[prev, ToString[string, InputForm]<>";\n"<>data]},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated"];
                     CellListRemoveAccurate[new];
@@ -140,7 +142,7 @@ action[".onselected-evaluate-export"] = Function[{channel, data},
             Echo["Snippets >> selected >> "<>d];
 
             Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[channel]},
-                With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]", <|"hidden"->True|>]},
+                With[{new = CellListAddNewAfterAny[prev, ToString[string, InputForm]<>";\n"<>data, <|"hidden"->True|>]},
                     CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                         Echo["Snippets >> evaluated normally"];
                     ]];
@@ -158,7 +160,7 @@ action[".onselected-evaluate-replace"] = Function[{channel, data},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
 
-            With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
+            With[{new = CellListAddNewAfterAny[prev, ToString[string, InputForm]<>";\n"<>data]},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated"];
                     With[{text = outputCell["data"]},
@@ -176,11 +178,17 @@ action[".onselected-evaluate-replace"] = Function[{channel, data},
 
 action[".onclipboard-evaluate"] = Function[{channel, data},
     With[{uid = CreateUUID[], prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
-        promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
+        promises[uid][d_] := Module[{expr = ImportString[d, "JSON"], string},
+
+            string = ToString[Module[{reader},
+                reader["text/plain"][array_] := ByteArray[array] // ByteArrayToString;
+                reader[expr[[1]]][expr[[2]]]
+            ], InputForm];   
+
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
 
-            With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
+            With[{new = CellListAddNewAfterAny[prev, string<>";\n"<>data]},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated"];
                     CellListRemoveAccurate[new];
@@ -196,12 +204,18 @@ action[".onclipboard-evaluate"] = Function[{channel, data},
 
 action[".onclipboard-evaluate-export"] = Function[{channel, data},
     With[{uid = CreateUUID[],cli = Global`client, prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
-        promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
+        promises[uid][d_] := Module[{expr = ImportString[d, "JSON"], string},
+            
+            string = ToString[Module[{reader},
+                reader["text/plain"][array_] := ByteArray[array] // ByteArrayToString;
+                reader[expr[[1]]][expr[[2]]]
+            ], InputForm];
+
             promises[uid][yo_] := Null;
-            Echo["Snippets >> selected >> "<>d];
+            Echo["Snippets >> clipboard >> "<>string];
 
             Block[{JerryI`WolframJSFrontend`fireEvent = JerryI`WolframJSFrontend`Notebook`NotebookEventFire[channel]},
-                With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]", <|"hidden"->True|>]},
+                With[{new = CellListAddNewAfterAny[prev, string<>";\n"<>data, <|"hidden"->True|>]},
                     CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                         Echo["Snippets >> evaluated normally"];
                     ]];
@@ -214,11 +228,17 @@ action[".onclipboard-evaluate-export"] = Function[{channel, data},
 ]
 action[".onclipboard-evaluate-insert"] = Function[{channel, data},
     With[{uid = CreateUUID[], cli = Global`client, prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
-        promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
+        promises[uid][d_] := Module[{expr = ImportString[d, "JSON"], string},
+
+            string = ToString[Module[{reader},
+                reader["text/plain"][array_] := ByteArray[array] // ByteArrayToString;
+                reader[expr[[1]]][expr[[2]]]
+            ], InputForm];
+
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
             Echo["Snippets >> gonna insert it"];
-            With[{new = CellListAddNewAfterAny[prev, StringTrim[data]<>"["<>ToString[string, InputForm]<>"]"]},
+            With[{new = CellListAddNewAfterAny[prev, string<>";\n"<>data]},
                 Echo["Snippets >> newcell >> "<>new];
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated >> "<>outputCell["data"]];
@@ -230,7 +250,7 @@ action[".onclipboard-evaluate-insert"] = Function[{channel, data},
             ];            
         ];
 
-        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboard["Get"], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboardExtended[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 

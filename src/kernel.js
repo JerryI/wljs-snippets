@@ -12,10 +12,10 @@ core.PopUpSnippetsModal = async (args, env) => {
 core.ReadClipboardExtended = async (args, env) => {
   const clipboardContents = await navigator.clipboard.read();
   for (const item of clipboardContents) {
-    dom.innerText = item.types;
+
     const data = new Uint8Array(await (await item.getType(item.types[0])).arrayBuffer());
     const type = item.types[0];
-    return [type, data];
+    return [type, Array.from(data)];
   }
 }
 

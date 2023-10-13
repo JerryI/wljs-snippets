@@ -63,22 +63,22 @@ Pastes the content into the text, where the cursor is located
 Evaluates the cell in the background and insers the result into the selected text or where the cursor is located
 
 ### `.onselected-evaluate`
-Evaluates the cell in the background taking the selected cell as an argument. Please, use __anonymous__ function
+Evaluates the cell in the background taking the selected cell as an argument. Please, use `%` to capture the data
 
 ### `.onselected-evaluate-export`
-Evaluates the cell in the background taking the selected cell as an argument and paste the result into a new cell of the notebook. Please, use __anonymous__ function
+Evaluates the cell in the background taking the selected cell as an argument and paste the result into a new cell of the notebook. Please, use `%` to capture the data
 
 ### `.onselected-evaluate-replace`
-Evaluates the cell in the background taking the selected cell as an argument and paste the result instead of the selected text. Please, use __anonymous__ function
+Evaluates the cell in the background taking the selected cell as an argument and paste the result instead of the selected text. Please, use `%` to capture the data
 
 ### `.onclipboard-evaluate`
-Takes the content of clipboard and applies the function from the cell on it. Please, use __anonymous__ function
+Takes the content of clipboard and applies the function from the cell on it. Please, use `%` to capture the data
 
 ### `.onclipboard-evaluate-export`
-The same as the previous, but pastes the result into a new cell of the notebook. Please, use __anonymous__ function
+The same as the previous, but pastes the result into a new cell of the notebook. Please, use `%` to capture the data
 
 ### `.onclipboard-evaluate-insert`
-Takes the content of clipboard and applies the function from the cell on it and inserts it into the cell, where the cursor is located. Please, use __anonymous__ function
+Takes the content of clipboard and applies the function from the cell on it and inserts it into the cell, where the cursor is located. Please, use `%` to capture the data
 
 
 ## Contribution
