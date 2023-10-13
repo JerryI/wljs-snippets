@@ -1,0 +1,217 @@
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "radiantly-e9f35", 
+   "kernel" -> LocalKernel, "objects" -> 
+    <|"dfed354b-e6a8-414f-8e10-867f14bc48ee" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'0f2c4e4c-c444-46df-a9f5-ac9d77df2b16'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 13, 
+          0.661534`6.5731271591240255}, "Instant", "Gregorian", 2.]|>, 
+     "48864db5-b1cc-4a98-b3a9-f02d21dc25f9" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$27181\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          43.223556`8.388295470836015}, "Instant", "Gregorian", 2.]|>, 
+     "542bc05b-5878-4b0d-960f-fc5a14069186" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'709102b0-f828-44a9-b377-b45b5cb4b85c'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          43.200253`8.388061267676628}, "Instant", "Gregorian", 2.]|>, 
+     "c05bf3e8-7ccc-4961-9b56-09effbe80726" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$35859\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 17, 
+          33.577499`8.278623325000158}, "Instant", "Gregorian", 2.]|>, 
+     "32516a30-6146-4446-97ab-59f00bb3e187" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'8b3e55ef-80cc-46e1-9a31-d1a9eec6ba6b'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 17, 
+          33.390776`8.276201492313263}, "Instant", "Gregorian", 2.]|>, 
+     "ade03af7-33cc-481b-9a9a-d244ce6a9624" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$36871\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 17, 
+          43.563597`8.391698709230571}, "Instant", "Gregorian", 2.]|>, 
+     "7fe2357e-fa39-42fd-9aa9-1cc370f1d2b5" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'61ac950f-2bc0-4237-a221-71970c5f7fab'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 17, 
+          43.366412`8.389728468912555}, "Instant", "Gregorian", 2.]|>, 
+     "e319ed9e-21d4-481b-acfa-25cb694da6d6" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$39722\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          23.790024`8.128969863051784}, "Instant", "Gregorian", 2.]|>, 
+     "847365a7-dd7b-4728-a96d-114f2cb9305c" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'7e09d76f-0b1e-4993-b5d5-b39b118b6f57'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          23.580913`8.125135598878355}, "Instant", "Gregorian", 2.]|>, 
+     "f77339b6-f613-4227-a078-cf7a351a0ea8" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$40734\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          33.094277`8.272327877795437}, "Instant", "Gregorian", 2.]|>, 
+     "483ec6ef-16d0-4b52-88e6-049fc2d487a6" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'468209d2-fc9d-4ced-a3fb-bd6df34568bf'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          32.88779`8.269609671091391}, "Instant", "Gregorian", 2.]|>, 
+     "32516d4e-874d-481e-93b7-ef1c66e2e22b" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$41749\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          50.444069`8.455385086590933}, "Instant", "Gregorian", 2.]|>, 
+     "d8a81f0e-0599-43de-a198-ff2fb6e3f897" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'7261236d-a101-4182-adf6-c7fbe5964862'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 22, 
+          50.23903`8.453616221105856}, "Instant", "Gregorian", 2.]|>, 
+     "ae174164-bdb2-4aa0-8cd7-261ad9c7de4e" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$42764\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 23, 
+          11.256046`7.803960845418038}, "Instant", "Gregorian", 2.]|>, 
+     "9a02ddf8-510d-464b-94de-f910d59e9592" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'26d2f5ec-552d-4777-b76a-e9a335048fbc'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 23, 
+          11.054758`7.796124226026466}, "Instant", "Gregorian", 2.]|>, 
+     "03762d3a-7b7f-4964-8a2c-ba321955531b" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output$43779\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 23, 
+          19.719592`8.047472909086812}, "Instant", "Gregorian", 2.]|>, 
+     "a6433769-c895-44fe-a63c-da33e59e2a30" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'e88799b3-09a6-4b76-be31-e74793ab5380'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 23, 
+          19.518267`8.043016238612177}, "Instant", "Gregorian", 2.]|>, 
+     "a9050e32-af69-4362-b7d8-f731ae8a4bd8" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$46569\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 25, 
+          43.574584`8.391808227089292}, "Instant", "Gregorian", 2.]|>, 
+     "39ea21af-6d0b-4839-9f47-bf77f983d1c4" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'e617946f-0ba8-4027-9f33-780643c475a3'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 25, 
+          43.976247`8.39579314068422}, "Instant", "Gregorian", 2.]|>, 
+     "b4e6594e-3a4f-4ce1-a375-6842fcd44b28" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$47301\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          42.275833`8.37866715136593}, "Instant", "Gregorian", 2.]|>, 
+     "3225bea8-7e1f-4488-add5-4a19ed10a53a" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output2$47301\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          42.485301`8.380813677195286}, "Instant", "Gregorian", 2.]|>, 
+     "e8e85240-94ca-4669-be0e-90175c2c60df" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'30d57962-f79f-4cbb-a574-d96a421cee7d'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          42.06683`8.37651476413591}, "Instant", "Gregorian", 2.]|>, 
+     "13b56b8e-d39f-4d26-b9e7-402d6b0d6241" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$48769\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          55.593097`8.497595842702326}, "Instant", "Gregorian", 2.]|>, 
+     "7bb2bd9f-d205-4542-815e-82448311a1be" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output2$48769\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          55.768196`8.49896157023846}, "Instant", "Gregorian", 2.]|>, 
+     "e9910391-1774-493c-a4b9-be79b85a8b9c" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'7589b006-8701-4aac-8f52-b7c5a4d64676'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 27, 
+          55.372639`8.495870196168328}, "Instant", "Gregorian", 2.]|>, 
+     "771310cb-9e47-42b3-a07f-fb1a61c65712" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$52466\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          29.804845`8.226861848874435}, "Instant", "Gregorian", 2.]|>, 
+     "4fc66fe2-12bc-4651-a876-1c2694373add" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output2$52466\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          30.017241`8.229945753043832}, "Instant", "Gregorian", 2.]|>, 
+     "e68cba80-73dc-4546-a927-c1d1fed9e188" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'d7930da7-a7df-4990-9890-d29e2e9f7126'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          29.620377`8.22416556305103}, "Instant", "Gregorian", 2.]|>, 
+     "0c0db7d1-1923-446a-bef9-61ab21540478" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$53934\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          43.711335`8.393169048031945}, "Instant", "Gregorian", 2.]|>, 
+     "02c66e76-74d1-4283-8dba-0bd1c81ae980" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output2$53934\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          43.91121`8.39515038194846}, "Instant", "Gregorian", 2.]|>, 
+     "48e8adf8-ec8a-4153-94a4-ad20854cd262" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'63790c7a-e498-460f-ae1e-4f78ef891c4d'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          43.505129`8.39111543818134}, "Instant", "Gregorian", 2.]|>, 
+     "4340b640-b7a0-4d18-9d89-474780e951f3" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output1$56641\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          55.741348`8.498752441260669}, "Instant", "Gregorian", 2.]|>, 
+     "25a5c8af-1d98-4323-a730-c2431e58bfaf" -> 
+      <|"json" -> "[\"EditorView\",[\"Offload\",\"output2$56641\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          55.955256`8.500415861172796}, "Instant", "Gregorian", 2.]|>, 
+     "dc4356c3-a453-4982-911e-30b621a0d085" -> 
+      <|"json" -> "[\"FileUploadView\",[\"Rule\",\"'Label'\",\"'Drop an image \
+here'\"],[\"Rule\",\"'Event'\",\"'c5533d6b-8609-46db-9e99-f60d30fc2863'\"]]", 
+       "date" -> DateObject[{2023, 10, 13, 21, 28, 
+          55.561653`8.49735013199625}, "Instant", "Gregorian", 2.]|>|>, 
+   "path" -> "/Users/kirill/Library/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/ocrtables.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 13, 21, 49, 
+      22.69753`8.108553581950064}, "Instant", "Gregorian", 2.], 
+   "symbols" -> <|"output$27181" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          42.813113`8.384151784832483}, "Instant", "Gregorian", 2.], 
+       "data" -> "\"CEL ELYSErLeeL Le\\n@.3240813536668\\\"\\nCRUE ES \
+ee\\n\\nCOesReLY CCL rZsnbrm\\n\\n@.7550135340724028\\\"\\n\\nCTRL See PEs \
+coe\\nCerEEsCCLeeer re\\nCELE Seer\\n@,19437415121416232\\\"\\nCELLET LEC\""|>\
+, "output1$52466" -> <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          42.875242`8.384781562043036}, "Instant", "Gregorian", 2.], 
+       "data" -> " "|>, "output2$52466" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          42.935774`8.385394274003913}, "Instant", "Gregorian", 2.], 
+       "data" -> " "|>, "output1$53934" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          42.978104`8.385822230169657}, "Instant", "Gregorian", 2.], 
+       "data" -> " "|>, "output2$53934" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          43.017222`8.3862173381779}, "Instant", "Gregorian", 2.], 
+       "data" -> " "|>, "output1$56641" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          43.057139`8.386620146490978}, "Instant", "Gregorian", 2.], 
+       "data" -> "- none -"|>, "output2$56641" -> 
+      <|"date" -> DateObject[{2023, 10, 13, 21, 31, 
+          43.095187`8.387003746987657}, "Instant", "Gregorian", 2.], 
+       "data" -> "- none -"|>|>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$20], 
+   "SelectedCell" -> 
+    "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd84c0de"|>, 
+ "cells" -> 
+  {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".md\n## OCR Table from clipboard\nHelps to \
+paste tables as list from the image", "display" -> "codemirror", 
+    "sign" -> "radiantly-e9f35", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "1451d8d1-3d23-44d4-a7d9-31e6e2bf56ed", "type" -> "output", 
+    "data" -> "\n## OCR Table from clipboard\nHelps to paste tables as list \
+from the image", "display" -> "markdown", "sign" -> "radiantly-e9f35", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".evaluate-export\n.wlx\n\nLeakyModule[{img, \
+output1, output2, Ev, pipe, EditorRaw, EditorProcessed},\n  Ev = \
+InputFile[\"Drop an image here\"];\n  EventHandler[Ev, Function[file,\n    \
+pipe = ImportByteArray[file[\"data\"]//BaseDecode, \
+FileExtension[file[\"name\"]]//ToUpperCase];\n    pipe = Binarize[pipe];\n    \
+pipe = TextRecognize[pipe];\n    output1 = ToString[pipe, InputForm];\n\n    \
+output2 = ToString[(ToExpression /@ StringSplit[#, \"\n\"]) &/@ \
+StringSplit[pipe, \"\n\n\"], InputForm];\n  ]];\n\n  output1 = \"- none \
+-\";\n  output2 = \"- none -\";\n\n  EditorRaw = EditorView[output1 // \
+Offload] // CreateFrontEndObject;\n  EditorProcessed = EditorView[output2 // \
+Offload] // CreateFrontEndObject;\n\n  <div>\n    <div style=\"display: \
+flex;\"><Ev/></div>\n    <p>Raw string</p>\n    <div style=\"margin-top: \
+0.5em; margin-bottom: 0.5em; display: flex; border: 2px dashed \
+skyblue;\"><EditorRaw/></div>\n    <p>Processed string</p>\n    <div \
+style=\"margin-top: 0.5em; margin-bottom: 0.5em; display: flex; border: 2px \
+dashed deepskyblue;\"><EditorProcessed/></div>    \n  </div>\n]", 
+    "display" -> "codemirror", "sign" -> "radiantly-e9f35", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "radiantly-e9f35", "props" -> <|"hidden" -> True|>|>}, 
+ "serializer" -> "jsfn3"|>

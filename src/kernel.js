@@ -9,6 +9,16 @@ core.PopUpSnippetsModal = async (args, env) => {
     attachControls(win);
 }
 
+core.ReadClipboardExtended = async (args, env) => {
+  const clipboardContents = await navigator.clipboard.read();
+  for (const item of clipboardContents) {
+
+    const data = new Uint8Array(await (await item.getType(item.types[0])).arrayBuffer());
+    const type = item.types[0];
+    return [type, Array.from(data)];
+  }
+}
+
 const attachControls = (win) => {
     server.ask("JerryI`WolframJSFrontend`Snippets`Private`SnippetGet").then(async (list) => {
         autocomplete(document.getElementById("snippet-autoinput"), await interpretate(list, {}), (value)=>{
