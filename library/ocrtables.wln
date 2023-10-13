@@ -1,0 +1,32 @@
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "radiantly-e9f35", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
+ry/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/ocrtables.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 13, 19, 45, 
+      14.066316`7.900755354960442}, "Instant", "Gregorian", 2.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$35], 
+   "SelectedCell" -> 
+    "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd84c0de"|>, 
+ "cells" -> 
+  {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".md\n## OCR Table from clipboard\nHelps to \
+paste tables as list from the image", "display" -> "codemirror", 
+    "sign" -> "radiantly-e9f35", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "1451d8d1-3d23-44d4-a7d9-31e6e2bf56ed", "type" -> "output", 
+    "data" -> "\n## OCR Table from clipboard\nHelps to paste tables as list \
+from the image", "display" -> "markdown", "sign" -> "radiantly-e9f35", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".onclipboard-evaluate-insert\nBinarize[Imag\
+e[%]];\nTextRecognize[%];\nStringSplit[%, \"\n\n\"];\n(ToExpression/@ \
+StringSplit[#, \"\n\"])& /@ %", "display" -> "codemirror", 
+    "sign" -> "radiantly-e9f35", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "27c8e3f1-9b22-4343-a31c-106eac19a642", "type" -> "input", 
+    "data" -> "", "display" -> "codemirror", "sign" -> "radiantly-e9f35", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a5833fd84c0de", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "radiantly-e9f35", "props" -> <|"hidden" -> True|>|>}, 
+ "serializer" -> "jsfn3"|>

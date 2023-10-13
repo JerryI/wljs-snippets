@@ -189,7 +189,7 @@ action[".onclipboard-evaluate"] = Function[{channel, data},
             ];            
         ];
 
-        WebSocketSend[Global`client, Global`TalkMaster[Global`ReadClipboard[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[Global`client, Global`TalkMaster[Global`ReadClipboardExtended[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 
@@ -209,7 +209,7 @@ action[".onclipboard-evaluate-export"] = Function[{channel, data},
             ]           
         ];
 
-        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboard[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[cli, Global`TalkMaster[Global`ReadClipboardExtended[], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 action[".onclipboard-evaluate-insert"] = Function[{channel, data},
