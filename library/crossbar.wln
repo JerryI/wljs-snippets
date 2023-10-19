@@ -38,7 +38,7 @@ crossbar position", "display" -> "codemirror", "sign" -> "syllabub-6b758",
 color_:RGBColor[0.3,0.5,0.8]] := LeakyModule[{cross, crossMove},\n\n  \
 crossMove = Function[xy, cross = xy; handler[xy]];\n  cross = {0,0}; \n  \
 With[{sX = size[[1]], sY = size[[2]]},\n   {{Opacity[0], \
-EventHandler[Rectangle[{-sX, sY}, {sX, -sY}], {\"mousemove\"->crossMove}]},\n \
+EventHandler[Rectangle[{-sX, -sY}, {sX, sY}], {\"mousemove\"->crossMove}]},\n \
    {Opacity[0.8], color, \n      Line[With[{c = cross}, {{c[[1]], -sY}, \
 {c[[1]], sY}}]] // Offload, \n      Line[With[{c = cross}, {{-sX, c[[2]]}, \
 {sX, c[[2]]}}]] // Offload\n    }}\n  ]\n]", "display" -> "codemirror", 
