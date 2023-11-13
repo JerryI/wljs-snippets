@@ -1,0 +1,54 @@
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "tuberose-7ce5f", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
+b/wolfram-js-frontend/Packages/wljs-snippets/library/animate1.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 11, 13, 22, 30, 
+      37.761192`8.32962067419761}, "Instant", "Gregorian", 1.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$25], 
+   "SelectedCell" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285ba5434"|>, 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285ba5434", 
+    "type" -> "input", "data" -> 
+     ".md\n## Animate 1 parameter\ncached manipulate boilerplate", 
+    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "5bb3f31a-66b5-4446-8773-7bca15975f39", "type" -> "output", 
+    "data" -> "\n## Animate 1 parameter\ncached manipulate boilerplate", 
+    "display" -> "markdown", "sign" -> "tuberose-7ce5f", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285ba5434", 
+    "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
+take input of the crossbar position", "display" -> "codemirror", 
+    "sign" -> "tuberose-7ce5f", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285ba5434", 
+    "type" -> "input", "data" -> ".md\nSource code", 
+    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "ad00e8b3-96b1-42ef-ba9a-70ab022b7861434", "type" -> "output", 
+    "data" -> "\nSource code", "display" -> "markdown", 
+    "sign" -> "tuberose-7ce5f", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285ba5434", 
+    "type" -> "input", "data" -> ".export\nWith[{\n  (* sampling range {x, \
+-1, 1, 0.01} *)\n  plottingRanges = {-1, 1, 0.01},\n\n  (* ranges for a \
+slider {w, 0, 20, 1} *)\n  inputRanges = {0, 20, 1},\n\n  (* target \
+1-parameter function ( f[w][x] ) *)\n  targetFunction = Function[w, \
+(*FB[*)((1)(*,*)/(*,*)(50 80))(*]FB*) Sum[Cos[x #], {x, -20 + w, 20 + w, \
+0.01}]&]\n},\n  LeakyModule[{lines, slider, cache = <||>, calculate},\n    \
+EventHandler[EvaluationCell[], Function[Null, cache = <||>; \
+Unset[cache]]];\n\n    calculate[w_] := With[{f = targetFunction[w]}, {#, \
+f[#]}& /@ (Range@@plottingRanges)];\n\n    makecache := LeakyModule[{cell, \
+progress = 1.0, task},\n      cell = CellPrint[ToString[Graphics[{Red, \
+Rectangle[{-1,-1}, {Offload[progress],1}]}, ImageSize->{300,80}, \
+TransitionType->\"Linear\"], StandardForm]];\n    \n      task = \
+SetTimeout[(\n        Do[cache[w] = calculate[w]; progress = -1 + 2w/20.0 ; , \
+{w, inputRanges[[1]], inputRanges[[2]], inputRanges[[3]]}];\n        \
+Delete[cell];\n      ), 1000];\n    ];    \n  \n    slider = \
+EventHandler[(InputRange@@inputRanges), Function[w,\n        lines = \
+If[KeyExistsQ[cache, w], cache[w], (cache[w] = calculate[w])];\n    ]];\n\n   \
+ slider // EventFire;\n  \n    {\n      EventHandler[InputButton[\"Cache\"], \
+Function[Null, makecache]],\n      slider, \n      \
+Graphics[{(*VB[*)(RGBColor[0.922526, 0.385626, \
+0.209179])(*,*)(*\"1:eJxTTMoPSmNkYGAoZgESHvk5KRCeGJAIcndyzs/JLwouTyxJzghJzS3I\
+SSxJTWMGyXMgyRdd2frNLrT1rX3RHf35ayTW3bAv0nBnXJRw7JQ9AKbfHmU=\"*)(*]VB*), \
+Line[lines // Offload]}, Axes->True]\n    } // Column\n  ]\n]", 
+    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+    "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>
