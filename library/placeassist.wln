@@ -1,38 +1,38 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "glamorize-b1e60", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "neediness-a617a", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Githu\
 b/wolfram-js-frontend/Packages/wljs-snippets/library/placeassist.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 9, 21, 11, 21, 
-      48.597528`8.439189154727975}, "Instant", "Gregorian", 2.], 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 12, 21, 11, 
+      43.140885`8.387464027485862}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$26], 
-   "SelectedCell" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285", 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$27], 
+   "SelectedCell" -> "b05f306a-068b-4823-9f85-951467c26821eb7"|>, 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285eb7", 
     "type" -> "input", "data" -> ".md\n## Placement assistant\nA dynamic tool \
 for manipulating 2D parameters with a cursor on `Graphics` canvas", 
-    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "6227ac1c-d042-4e00-84c4-c1f8b5883b1e", "type" -> "output", 
+   <|"id" -> "6227ac1c-d042-4e00-84c4-c1f8b5883b1eeb7", "type" -> "output", 
     "data" -> "\n## Placement assistant\nA dynamic tool for manipulating 2D \
 parameters with a cursor on `Graphics` canvas", "display" -> "markdown", 
-    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a285", 
+    "sign" -> "neediness-a617a", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a285eb7", 
     "type" -> "input", "data" -> "PlaceAssist[init_:{0,0}]", 
-    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285", 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285eb7", 
     "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
 take input of the crossbar position", "display" -> "codemirror", 
-    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285", 
+    "sign" -> "neediness-a617a", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285eb7", 
     "type" -> "input", "data" -> 
      ".md\nSee examples section to see how to use it", 
-    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+    "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb4", "type" -> "output", 
+   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb4eb7", "type" -> "output", 
     "data" -> "\nSee examples section to see how to use it", 
-    "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+    "display" -> "markdown", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285", 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285eb7", 
     "type" -> "input", "data" -> ".export\nPlaceAssist[init_:{0,0}] := \
 With[{uid = CreateUUID[]},\n\tLeakyModule[{variable = init, text = init // \
 ToString, gizmo},\n         gizmo[var_, text_] := With[{v = var // \
@@ -45,28 +45,28 @@ CreateFrontEndObject[TextView[text // Offload], uid]},\n\n    \t\t(* private \
 *)\n    \t\tCreateFrontEndObject[With[{g = gizmo[variable, text]},\n    \
 \t\t\tOffload[Static[g]; variable]\n    \t\t], uid, \
 \"Type\"->\"Private\"];\n\n            (* public *)\n            fe\n        \
-]\n\t]\n]", "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+]\n\t]\n]", "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba", "type" -> "input", 
+   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342baeb7", "type" -> "input", 
     "data" -> 
      ".md\n## Example\nSelect `PlaceAssist[]` and click __Evaluate in \
-Place__", "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+Place__", "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "9b1a2cf1-1d15-440f-9307-17432ab5f164", "type" -> "output", 
+   <|"id" -> "9b1a2cf1-1d15-440f-9307-17432ab5f164eb7", "type" -> "output", 
     "data" -> 
      "\n## Example\nSelect `PlaceAssist[]` and click __Evaluate in Place__", 
-    "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+    "display" -> "markdown", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "b05f306a-068b-4823-9f85-951467c26821", "type" -> "input", 
-    "data" -> "Plot[Sin[CM6Sqrt[x]], {x,0,36}, Epilog->{Text[Style[\"Chirp \
-pulse\", FontSize->16], PlaceAssist[{10, 0.5}]]}]", 
-    "display" -> "codemirror", "sign" -> "glamorize-b1e60", 
+   <|"id" -> "b05f306a-068b-4823-9f85-951467c26821eb7", "type" -> "input", 
+    "data" -> "Plot[Sin[(*SqB[*)Sqrt[x](*]SqB*)], {x,0,36}, \
+Epilog->{Text[Style[\"Chirp pulse\", FontSize->16], PlaceAssist[{10, \
+0.5}]]}]", "display" -> "codemirror", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc43", "type" -> "input", 
+   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc43eb7", "type" -> "input", 
     "data" -> ".md\nThen, you can evaluate the cell and manipulate the \
 position of the text", "display" -> "codemirror", 
-    "sign" -> "glamorize-b1e60", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "a6c724ed-4a28-4fcf-a061-8e096cf51ee7", "type" -> "output", 
+    "sign" -> "neediness-a617a", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "a6c724ed-4a28-4fcf-a061-8e096cf51ee7eb7", "type" -> "output", 
     "data" -> "\nThen, you can evaluate the cell and manipulate the position \
-of the text", "display" -> "markdown", "sign" -> "glamorize-b1e60", 
+of the text", "display" -> "markdown", "sign" -> "neediness-a617a", 
     "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>

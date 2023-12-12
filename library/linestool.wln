@@ -1,39 +1,39 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "temporally-a9228", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "dopey-98a81", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Githu\
 b/wolfram-js-frontend/Packages/wljs-snippets/library/linestool.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 9, 21, 11, 27, 
-      31.481386`8.2506288250683}, "Instant", "Gregorian", 2.], 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 12, 21, 13, 
+      0.61799`6.543556436773115}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
      KirillBelov`WebSocketHandler`WebSocketChannel`$30], 
    "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a2855c7", 
+ "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a2855c7c10", 
     "type" -> "input", "data" -> ".md\n## Line tools\nA dynamic helper tool \
 for placing lines on existing plots using meta-markers", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "632b8a03-295a-4fdc-93b8-abb0b2b98407", "type" -> "output", 
+   <|"id" -> "632b8a03-295a-4fdc-93b8-abb0b2b98407c10", "type" -> "output", 
     "data" -> "\n## Line tools\nA dynamic helper tool for placing lines on \
 existing plots using meta-markers", "display" -> "markdown", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7c10", 
     "type" -> "input", "data" -> "placeLine[marker_String, \
 initial_:{{0,0},{1,1}}]\nplaceVLine[marker_String, initial_:{0,0}, \
-size_:1000]", "display" -> "codemirror", "sign" -> "temporally-a9228", 
+size_:1000]", "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a2855c7", 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a2855c7c10", 
     "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
 take input of the crossbar position", "display" -> "codemirror", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a2855c7", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a2855c7c10", 
     "type" -> "input", "data" -> 
      ".md\nSee examples section to see how to use it", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb45c7", "type" -> "output", 
-    "data" -> "\nSee examples section to see how to use it", 
-    "display" -> "markdown", "sign" -> "temporally-a9228", 
-    "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a2855c7", 
+   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb45c7c10", 
+    "type" -> "output", "data" -> 
+     "\nSee examples section to see how to use it", "display" -> "markdown", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a2855c7c10", 
     "type" -> "input", "data" -> ".export\nplaceLine[marker_String, \
 initial_:{{0,0},{1,1}}] := Module[{left, right, pt1, pt2, expr},\n  left = \
 Function[xy, pt1 = xy];\n  right = Function[xy, pt2 = xy];\n  {pt1, pt2} = \
@@ -46,38 +46,38 @@ size_:1000] := Module[{left, dr, pt, pt2, expr},\n  dr = Function[xy, pt = \
 {initial[[1]], size}};\n  expr = {Darker[Blue], Line[pt // Offload], \
 Opacity[0.2], PointSize[0.1], EventHandler[Point[initial], \
 {\"drag\"->dr}]};\n  \n  FrontSubmit[expr, MetaMarker[marker]]\n];", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba5c7", "type" -> "input", 
+   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba5c7c10", "type" -> "input", 
     "data" -> ".md\n## Example\nFor example, you have a plot or any other 2D \
 graphics object. Mark it using `MetaMarkers`", "display" -> "codemirror", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "3322342d-c3b2-4c43-b44d-712e9d24552b", "type" -> "output", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "3322342d-c3b2-4c43-b44d-712e9d24552bc10", "type" -> "output", 
     "data" -> "\n## Example\nFor example, you have a plot or any other 2D \
 graphics object. Mark it using `MetaMarkers`", "display" -> "markdown", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "b05f306a-068b-4823-9f85-951467c268215c7", "type" -> "input", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "b05f306a-068b-4823-9f85-951467c268215c7c10", "type" -> "input", 
     "data" -> "ParametricPlot[2Exp[-t/9]{Cos[t], Sin[t]}, {t, 0, 8$Pi$}, \
 Epilog->{MetaMarker[\"myPlot\"]}, PlotRange->Full]", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc435c7", "type" -> "input", 
+   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc435c7c10", "type" -> "input", 
     "data" -> ".md\nThen you can append anything ontop, using the the \
 provided string id, i.e. `\"myPlot\"`", "display" -> "codemirror", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "c9e7361e-db8d-4b6e-aad8-3325ea806d63", "type" -> "output", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "c9e7361e-db8d-4b6e-aad8-3325ea806d63c10", "type" -> "output", 
     "data" -> "\nThen you can append anything ontop, using the the provided \
 string id, i.e. `\"myPlot\"`", "display" -> "markdown", 
-    "sign" -> "temporally-a9228", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "4bc31eed-e1fb-4eab-b94f-468b8cb2e2ae", "type" -> "input", 
+    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "4bc31eed-e1fb-4eab-b94f-468b8cb2e2aec10", "type" -> "input", 
     "data" -> "placeVLine[\"myPlot\"]\nplaceLine[\"myPlot\"]", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "aecc995a-d0d5-4aa2-95bb-3ab3971e16ee", "type" -> "input", 
+   <|"id" -> "aecc995a-d0d5-4aa2-95bb-3ab3971e16eec10", "type" -> "input", 
     "data" -> ".md\n*Lines won't be saved, they are created temporaly*", 
-    "display" -> "codemirror", "sign" -> "temporally-a9228", 
+    "display" -> "codemirror", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "dca938d4-971e-43c3-99b1-b92bcb301f16", "type" -> "output", 
+   <|"id" -> "dca938d4-971e-43c3-99b1-b92bcb301f16c10", "type" -> "output", 
     "data" -> "\n*Lines won't be saved, they are created temporaly*", 
-    "display" -> "markdown", "sign" -> "temporally-a9228", 
+    "display" -> "markdown", "sign" -> "dopey-98a81", 
     "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>

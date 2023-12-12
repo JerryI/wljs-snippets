@@ -1,4 +1,4 @@
-<|"notebook" -> <|"name" -> "Beatified", "id" -> "halitosis-13764", 
+<|"notebook" -> <|"name" -> "Beatified", "id" -> "retch-58d66", 
    "kernel" -> LocalKernel, "objects" -> 
     <|"igroup-b66e74f8-8fa8-448b-b791-e8efac68fcb9" -> 
       <|"json" -> "[\"RangeView\",[\"List\",1,10,1,2],[\"Rule\",\"'Event'\",\
@@ -240,12 +240,11 @@ bf-5905-4225-b70b-bc7c4029ac61'\"]]]", "date" -> DateObject[
 e\",\"'Event'\",\"'06551444-c576-465b-8d01-7cb09416485e'\"]]", 
        "date" -> DateObject[{2023, 10, 29, 13, 1, 
           50.229264`8.453531790092754}, "Instant", "Gregorian", 1.]|>|>, 
-   "path" -> "/Users/kirill/Library/Application \
-Support/wljs-frontend/Packages/wljs-snippets/library/matrixhelper.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 29, 13, 4, 
-      12.316956`7.8430783758786875}, "Instant", "Gregorian", 1.], 
-   "symbols" -> <|"matrix$12831" -> 
-      <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
+   "path" -> "/Users/kirill/Github/wolfram-js-frontend/Packages/wljs-snippets\
+/library/matrixhelper.wln", "cell" :> Exit[], 
+   "date" -> DateObject[{2023, 12, 12, 21, 12, 42.59827`8.38196693960728}, 
+     "Instant", "Gregorian", 1.], "symbols" -> 
+    <|"matrix$12831" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
           12.342774`7.843987762885818}, "Instant", "Gregorian", 1.], 
        "data" -> "{{0,0},{0,0},{0,0}}"|>, "matrix$14605" -> 
       <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
@@ -278,16 +277,16 @@ Support/wljs-frontend/Packages/wljs-snippets/library/matrixhelper.wln",
    "channel" -> WebSocketChannel[
      KirillBelov`WebSocketHandler`WebSocketChannel`$16], 
    "SelectedCell" -> "89ff10da-5690-45ad-9755-d7a418d9eba2"|>, 
- "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b28", 
+ "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b28199", 
     "type" -> "input", "data" -> 
      ".md\n## Insert matrix\nplace matrix in inside selected WL code", 
-    "display" -> "codemirror", "sign" -> "halitosis-13764", 
+    "display" -> "codemirror", "sign" -> "retch-58d66", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "0a4998db-ebb7-4de5-a144-1b265a6e4b95", "type" -> "output", 
+   <|"id" -> "0a4998db-ebb7-4de5-a144-1b265a6e4b95199", "type" -> "output", 
     "data" -> "\n## Insert matrix\nplace matrix in inside selected WL code", 
-    "display" -> "markdown", "sign" -> "halitosis-13764", 
+    "display" -> "markdown", "sign" -> "retch-58d66", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba2", "type" -> "input", 
+   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba2199", "type" -> "input", 
     "data" -> ".evaluate-export\n.wlx\nModule[{matrix, Inputs, Editor, \
 InsertButton},\n  Inputs = InputGroup[{\n    InputRange[1,10,1,2, \
 \"Label\"->\"Rows\"], \n    InputRange[1,10,1,2, \"Label\"->\"Cols\"],\n    \
@@ -304,5 +303,5 @@ EditorView[matrix//Offload, \"ReadOnly\"->True] // CreateFrontEndObject;\n\n  \
 <div style=\"display: flex;\">\n    <div style=\"flex:50%\">\n      \
 <Inputs/>\n      <InsertButton/>\n    </div>\n        \n    <div \
 style=\"flex:50%\"><Editor/></div>\n  </div>\n]", "display" -> "codemirror", 
-    "sign" -> "halitosis-13764", "props" -> <|"hidden" -> False|>|>}, 
+    "sign" -> "retch-58d66", "props" -> <|"hidden" -> False|>|>}, 
  "serializer" -> "jsfn3"|>
