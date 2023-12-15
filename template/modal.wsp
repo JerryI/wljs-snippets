@@ -4,12 +4,22 @@
       position: relative;
       display: inline-block;
     }
+    .autocomplete-line {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
     .autocomplete input[type=text] {
         background-color: var(--background-menu);
         width: 100%;
     }
     .autocomplete input[type=text]:focus-visible {
         outline: none;
+    }
+    .autocomplete-info {
+        margin-left: auto;
+        width: 2em;
+        text-align: center;
     }
     .autocomplete input {
         border: 1px solid transparent;
@@ -30,7 +40,7 @@
     }
 
     .autocomplete-items div {
-        padding: 10px;
+        padding: 4px;
         border-radius: 4px;
         cursor: pointer;
         background-color: var(--topbar-background);

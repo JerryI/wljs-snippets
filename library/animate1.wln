@@ -1,32 +1,51 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "tuberose-7ce5f", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Volumes/Data/Githu\
-b/wolfram-js-frontend/Packages/wljs-snippets/library/animate1.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 11, 13, 22, 30, 
-      37.761192`8.32962067419761}, "Instant", "Gregorian", 1.], 
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "gropingly-a3297", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
+ry/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/animate1.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 23, 
+      57.867184`8.515007322349181}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$25], 
-   "SelectedCell" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285ba5434"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285ba5434", 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$35], 
+   "SelectedCell" -> 
+    "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285ba5434a58"|>, 
+ "cells" -> 
+  {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a285ba5434a58", 
     "type" -> "input", "data" -> 
-     ".md\n## Animate 1 parameter\ncached manipulate boilerplate", 
-    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+     ".md\n## Animate 1 parameter\na boilerplate code", 
+    "display" -> "codemirror", "sign" -> "gropingly-a3297", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "5bb3f31a-66b5-4446-8773-7bca15975f39", "type" -> "output", 
-    "data" -> "\n## Animate 1 parameter\ncached manipulate boilerplate", 
-    "display" -> "markdown", "sign" -> "tuberose-7ce5f", 
+   <|"id" -> "2092b156-705c-4d2b-91f0-42fd94d93757", "type" -> "output", 
+    "data" -> "\n## Animate 1 parameter\na boilerplate code", 
+    "display" -> "markdown", "sign" -> "gropingly-a3297", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285ba5434", 
+   <|"id" -> "eda994aa-4dff-49d0-ab72-607aa84f9260", "type" -> "input", 
+    "data" -> ".md\n- samples the target function\n- provides a slider for a \
+single parameter of target function", "display" -> "codemirror", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "cba667cc-952f-4911-b62b-87b6995a88eb", "type" -> "output", 
+    "data" -> "\n- samples the target function\n- provides a slider for a \
+single parameter of target function", "display" -> "markdown", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "7b6b9e74-8ad8-4f67-87af-03f5e12acc81", "type" -> "input", 
+    "data" -> ".md\n## Usage\nCall this snippet in your notebook. It will \
+insert the boilerplate code in a new cell", "display" -> "codemirror", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "c7c47516-5dbc-40af-be34-6c8076cc7ddb", "type" -> "output", 
+    "data" -> "\n## Usage\nCall this snippet in your notebook. It will insert \
+the boilerplate code in a new cell", "display" -> "markdown", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a285ba5434a58", 
     "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
 take input of the crossbar position", "display" -> "codemirror", 
-    "sign" -> "tuberose-7ce5f", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285ba5434", 
-    "type" -> "input", "data" -> ".md\nSource code", 
-    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a285ba5434a58", 
+    "type" -> "input", "data" -> ".md\n### Source code", 
+    "display" -> "codemirror", "sign" -> "gropingly-a3297", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "ad00e8b3-96b1-42ef-ba9a-70ab022b7861434", "type" -> "output", 
-    "data" -> "\nSource code", "display" -> "markdown", 
-    "sign" -> "tuberose-7ce5f", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285ba5434", 
+   <|"id" -> "a57496fe-ccb4-4f54-bf5d-26a0c348c180", "type" -> "output", 
+    "data" -> "\n### Source code", "display" -> "markdown", 
+    "sign" -> "gropingly-a3297", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a285ba5434a58", 
     "type" -> "input", "data" -> ".export\nWith[{\n  (* sampling range {x, \
 -1, 1, 0.01} *)\n  plottingRanges = {-1, 1, 0.01},\n\n  (* ranges for a \
 slider {w, 0, 20, 1} *)\n  inputRanges = {0, 20, 1},\n\n  (* target \
@@ -50,5 +69,5 @@ Graphics[{(*VB[*)(RGBColor[0.922526, 0.385626, \
 0.209179])(*,*)(*\"1:eJxTTMoPSmNkYGAoZgESHvk5KRCeGJAIcndyzs/JLwouTyxJzghJzS3I\
 SSxJTWMGyXMgyRdd2frNLrT1rX3RHf35ayTW3bAv0nBnXJRw7JQ9AKbfHmU=\"*)(*]VB*), \
 Line[lines // Offload]}, Axes->True]\n    } // Column\n  ]\n]", 
-    "display" -> "codemirror", "sign" -> "tuberose-7ce5f", 
+    "display" -> "codemirror", "sign" -> "gropingly-a3297", 
     "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>

@@ -13,8 +13,17 @@ action = <||>
 
 SnippetPut[id_String] := Module[{}, With[{channel = JerryI`WolframJSFrontend`Notebook`$AssociationSocket[Global`client]},
     If[!KeyExistsQ[snippets, id], Return[Print[">> snippet does not exist!"], Module]];
+    Print["Getting snippet action..."];
 
     action[#["type"]][channel, #["content"]] &/@ snippets[id]["cells"]
+]]
+
+SnippetInfo[id_String] := Module[{}, With[{channel = JerryI`WolframJSFrontend`Notebook`$AssociationSocket[Global`client]},
+    If[!KeyExistsQ[snippets, id], Return[Print[">> snippet does not exist!"], Module]];
+    Print["Getting information..."];
+
+    WebSocketSend[Global`client, Global`FrontEndJSEval[StringTemplate["openawindow('/index.wsp?path=``', '_blank')"][snippets[id]["path"] // URLEncode]] // DefaultSerializer];
+
 ]]
 
 action[".export"] = Function[{channel, data}, With[{prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]},
@@ -156,7 +165,7 @@ action[".onselected-evaluate-export"] = Function[{channel, data},
 
 action[".onselected-evaluate-replace"] = Function[{channel, data},
     With[{uid = CreateUUID[], cli = Global`client,prev = CellObj[JerryI`WolframJSFrontend`Notebook`Notebooks[channel]["SelectedCell"]]}, 
-        promises[uid][d_] := With[{string = ImportString[d, "JSON"]},
+        promises[uid][d_] := With[{string = BaseDecode[ImportString[d, "JSON"]] // ByteArrayToString},
             promises[uid][yo_] := Null;
             Echo["Snippets >> selected >> "<>d];
 
@@ -164,14 +173,14 @@ action[".onselected-evaluate-replace"] = Function[{channel, data},
                 CellObjEvaluate[new, JerryI`WolframJSFrontend`Notebook`Processors, Function[outputCell,
                     Echo["Snippets >> evaluated"];
                     With[{text = outputCell["data"]},
-                        WebSocketSend[cli, Global`FrontEditorSelected["Set", text] // DefaultSerializer];
+                        WebSocketSend[cli, Global`FrontEditorSelected["Set", text // Global`escapeLinebreaks]  // DefaultSerializer];
                         CellListRemoveAccurate[new];
                     ];
                 ]];
             ];            
         ];
 
-        WebSocketSend[Global`client, Global`TalkMaster[Global`FrontEditorSelected["Get"], "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
+        WebSocketSend[Global`client, Global`TalkMaster[Global`FrontEditorSelected["Get"] // Global`uit82b64, "JerryI`WolframJSFrontend`Snippets`Private`promises[\""<>uid<>"\"]"] // DefaultSerializer];
     ]
 ]
 

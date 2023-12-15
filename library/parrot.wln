@@ -2,10 +2,10 @@
    "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
 ry/Application \
 Support/wljs-frontend/Packages/wljs-snippets/library/parrot.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 10, 13, 21, 2, 
-      33.096472`8.272356681711468}, "Instant", "Gregorian", 2.], 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 37, 
+      41.606305`8.37173412637361}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$17], 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$47], 
    "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd429"|>, 
  "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a5833fd429", 
     "type" -> "input", "data" -> 
@@ -16,6 +16,22 @@ Support/wljs-frontend/Packages/wljs-snippets/library/parrot.wln",
     "data" -> "\n## Color parrot\nchange the sidebar color", 
     "display" -> "markdown", "sign" -> "airport-940ef", 
     "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "4e28f551-50ae-44c5-b213-f2dd8270b2bd", "type" -> "input", 
+    "data" -> ".md\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) \
+in your notebook. It will randomly change the color of your sidebar.", 
+    "display" -> "codemirror", "sign" -> "airport-940ef", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "cc59320b-fe62-4705-a756-338a6fd1b17b", "type" -> "output", 
+    "data" -> "\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) in \
+your notebook. It will randomly change the color of your sidebar.", 
+    "display" -> "markdown", "sign" -> "airport-940ef", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "9cff4da1-6796-442d-b78a-e3caa042aaa6", "type" -> "input", 
+    "data" -> ".md\n__source code__", "display" -> "codemirror", 
+    "sign" -> "airport-940ef", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "860ca90c-28de-4c45-9ad5-b88bdd5cffc5", "type" -> "output", 
+    "data" -> "\n__source code__", "display" -> "markdown", 
+    "sign" -> "airport-940ef", "props" -> <|"hidden" -> False|>|>, 
    <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a5833fd429", 
     "type" -> "input", "data" -> ".evaluate-forreal\n.js\nconst doc = \
 document.getElementsByClassName('notion-sidebar-container')[0];\nconsole.warn\

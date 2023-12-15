@@ -1,0 +1,2 @@
+PacletInstall["CodeFormatter"];
+Needs["CodeFormatter`"];

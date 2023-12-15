@@ -1,39 +1,54 @@
-<|"notebook" -> <|"name" -> "Bestiary", "id" -> "dopey-98a81", 
-   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Githu\
-b/wolfram-js-frontend/Packages/wljs-snippets/library/linestool.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 12, 21, 13, 
-      0.61799`6.543556436773115}, "Instant", "Gregorian", 1.], 
+<|"notebook" -> <|"name" -> "Bestiary", "id" -> "anorexic-732f5", 
+   "kernel" -> LocalKernel, "objects" -> <||>, "path" -> "/Users/kirill/Libra\
+ry/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/linestool.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 33, 
+      55.528011`8.497087091585813}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$30], 
-   "SelectedCell" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7"|>, 
- "cells" -> {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a2855c7c10", 
-    "type" -> "input", "data" -> ".md\n## Line tools\nA dynamic helper tool \
-for placing lines on existing plots using meta-markers", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$42], 
+   "SelectedCell" -> 
+    "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a2855c7c107a2"|>, 
+ "cells" -> 
+  {<|"id" -> "7d58050c-7269-4783-8bce-d08d797bfa2a5fa79a2855c7c107a2", 
+    "type" -> "input", "data" -> ".md\n## Line meta tools\nA dynamic helper \
+tool for placing lines on existing plots using meta-markers", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "632b8a03-295a-4fdc-93b8-abb0b2b98407c10", "type" -> "output", 
-    "data" -> "\n## Line tools\nA dynamic helper tool for placing lines on \
-existing plots using meta-markers", "display" -> "markdown", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7c10", 
+   <|"id" -> "75783e74-6d7b-44a3-8dc6-ca3e50a97e0b", "type" -> "output", 
+    "data" -> "\n## Line meta tools\nA dynamic helper tool for placing lines \
+on existing plots using meta-markers", "display" -> "markdown", 
+    "sign" -> "anorexic-732f5", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "6a5f0a09-d00b-44e3-9590-983bc58e71865fa79a2855c7c107a2", 
     "type" -> "input", "data" -> "placeLine[marker_String, \
 initial_:{{0,0},{1,1}}]\nplaceVLine[marker_String, initial_:{0,0}, \
-size_:1000]", "display" -> "codemirror", "sign" -> "dopey-98a81", 
+size_:1000]", "display" -> "codemirror", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a2855c7c10", 
+   <|"id" -> "652cdbb0-541d-4f41-a2d3-ff7f2efff5f65fa79a2855c7c107a2", 
     "type" -> "input", "data" -> ".md\nUse `handler` for other function to \
 take input of the crossbar position", "display" -> "codemirror", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a2855c7c10", 
+    "sign" -> "anorexic-732f5", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "225de83e-48cd-4e61-b352-7a4d46204ff55fa79a2855c7c107a2", 
     "type" -> "input", "data" -> 
      ".md\nSee examples section to see how to use it", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "0de8057c-f3ae-4054-8d8f-f040800aebb45c7c10", 
-    "type" -> "output", "data" -> 
-     "\nSee examples section to see how to use it", "display" -> "markdown", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a2855c7c10", 
+   <|"id" -> "58dc7204-78e2-4924-8005-bdbb680af836", "type" -> "input", 
+    "data" -> ".md\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) \
+in your notebook. It will insert the code to a new cell", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "da2ef516-c893-4575-8d80-145d6f3ab230", "type" -> "output", 
+    "data" -> "\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) in \
+your notebook. It will insert the code to a new cell", 
+    "display" -> "markdown", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "cff6eb0a-ba9c-46dd-a9e4-2157cbea5b14", "type" -> "input", 
+    "data" -> ".md\n__source code__", "display" -> "codemirror", 
+    "sign" -> "anorexic-732f5", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "57f38bb3-aea0-471a-9825-6e9fedbf9a1b", "type" -> "output", 
+    "data" -> "\n__source code__", "display" -> "markdown", 
+    "sign" -> "anorexic-732f5", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "348ca7f7-a1ec-4ba8-bd4d-7c879275d8585fa79a2855c7c107a2", 
     "type" -> "input", "data" -> ".export\nplaceLine[marker_String, \
 initial_:{{0,0},{1,1}}] := Module[{left, right, pt1, pt2, expr},\n  left = \
 Function[xy, pt1 = xy];\n  right = Function[xy, pt2 = xy];\n  {pt1, pt2} = \
@@ -46,38 +61,43 @@ size_:1000] := Module[{left, dr, pt, pt2, expr},\n  dr = Function[xy, pt = \
 {initial[[1]], size}};\n  expr = {Darker[Blue], Line[pt // Offload], \
 Opacity[0.2], PointSize[0.1], EventHandler[Point[initial], \
 {\"drag\"->dr}]};\n  \n  FrontSubmit[expr, MetaMarker[marker]]\n];", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba5c7c10", "type" -> "input", 
-    "data" -> ".md\n## Example\nFor example, you have a plot or any other 2D \
-graphics object. Mark it using `MetaMarkers`", "display" -> "codemirror", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "3322342d-c3b2-4c43-b44d-712e9d24552bc10", "type" -> "output", 
-    "data" -> "\n## Example\nFor example, you have a plot or any other 2D \
-graphics object. Mark it using `MetaMarkers`", "display" -> "markdown", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "b05f306a-068b-4823-9f85-951467c268215c7c10", "type" -> "input", 
-    "data" -> "ParametricPlot[2Exp[-t/9]{Cos[t], Sin[t]}, {t, 0, 8$Pi$}, \
-Epilog->{MetaMarker[\"myPlot\"]}, PlotRange->Full]", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
-    "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc435c7c10", "type" -> "input", 
-    "data" -> ".md\nThen you can append anything ontop, using the the \
-provided string id, i.e. `\"myPlot\"`", "display" -> "codemirror", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "c9e7361e-db8d-4b6e-aad8-3325ea806d63c10", "type" -> "output", 
-    "data" -> "\nThen you can append anything ontop, using the the provided \
-string id, i.e. `\"myPlot\"`", "display" -> "markdown", 
-    "sign" -> "dopey-98a81", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "4bc31eed-e1fb-4eab-b94f-468b8cb2e2aec10", "type" -> "input", 
-    "data" -> "placeVLine[\"myPlot\"]\nplaceLine[\"myPlot\"]", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
-    "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "aecc995a-d0d5-4aa2-95bb-3ab3971e16eec10", "type" -> "input", 
-    "data" -> ".md\n*Lines won't be saved, they are created temporaly*", 
-    "display" -> "codemirror", "sign" -> "dopey-98a81", 
+   <|"id" -> "2b31696e-5b67-45c3-93f9-181a8b1342ba5c7c107a2", 
+    "type" -> "input", "data" -> ".md\n## Example\nFor example, you have a \
+plot or any other 2D graphics object. Mark it using `MetaMarkers`", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "dca938d4-971e-43c3-99b1-b92bcb301f16c10", "type" -> "output", 
-    "data" -> "\n*Lines won't be saved, they are created temporaly*", 
-    "display" -> "markdown", "sign" -> "dopey-98a81", 
+   <|"id" -> "3322342d-c3b2-4c43-b44d-712e9d24552bc107a2", 
+    "type" -> "output", "data" -> "\n## Example\nFor example, you have a plot \
+or any other 2D graphics object. Mark it using `MetaMarkers`", 
+    "display" -> "markdown", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "b05f306a-068b-4823-9f85-951467c268215c7c107a2", 
+    "type" -> "input", "data" -> "ParametricPlot[2Exp[-t/9]{Cos[t], Sin[t]}, \
+{t, 0, 8$Pi$}, Epilog->{MetaMarker[\"myPlot\"]}, PlotRange->Full]", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "7b453c91-97a3-4c3c-9e3f-7fd11868cc435c7c107a2", 
+    "type" -> "input", "data" -> ".md\nThen you can append anything ontop, \
+using the the provided string id, i.e. `\"myPlot\"`", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "c9e7361e-db8d-4b6e-aad8-3325ea806d63c107a2", 
+    "type" -> "output", "data" -> "\nThen you can append anything ontop, \
+using the the provided string id, i.e. `\"myPlot\"`", 
+    "display" -> "markdown", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "4bc31eed-e1fb-4eab-b94f-468b8cb2e2aec107a2", "type" -> "input", 
+    "data" -> "placeVLine[\"myPlot\"]\nplaceLine[\"myPlot\"]", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "aecc995a-d0d5-4aa2-95bb-3ab3971e16eec107a2", "type" -> "input", 
+    "data" -> ".md\n*Lines won't be saved, they are created temporaly*", 
+    "display" -> "codemirror", "sign" -> "anorexic-732f5", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "dca938d4-971e-43c3-99b1-b92bcb301f16c107a2", 
+    "type" -> "output", "data" -> 
+     "\n*Lines won't be saved, they are created temporaly*", 
+    "display" -> "markdown", "sign" -> "anorexic-732f5", 
     "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>

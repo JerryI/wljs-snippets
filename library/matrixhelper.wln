@@ -1,4 +1,4 @@
-<|"notebook" -> <|"name" -> "Beatified", "id" -> "retch-58d66", 
+<|"notebook" -> <|"name" -> "Beatified", "id" -> "quenchless-67185", 
    "kernel" -> LocalKernel, "objects" -> 
     <|"igroup-b66e74f8-8fa8-448b-b791-e8efac68fcb9" -> 
       <|"json" -> "[\"RangeView\",[\"List\",1,10,1,2],[\"Rule\",\"'Event'\",\
@@ -240,53 +240,42 @@ bf-5905-4225-b70b-bc7c4029ac61'\"]]]", "date" -> DateObject[
 e\",\"'Event'\",\"'06551444-c576-465b-8d01-7cb09416485e'\"]]", 
        "date" -> DateObject[{2023, 10, 29, 13, 1, 
           50.229264`8.453531790092754}, "Instant", "Gregorian", 1.]|>|>, 
-   "path" -> "/Users/kirill/Github/wolfram-js-frontend/Packages/wljs-snippets\
-/library/matrixhelper.wln", "cell" :> Exit[], 
-   "date" -> DateObject[{2023, 12, 12, 21, 12, 42.59827`8.38196693960728}, 
-     "Instant", "Gregorian", 1.], "symbols" -> 
-    <|"matrix$12831" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.342774`7.843987762885818}, "Instant", "Gregorian", 1.], 
-       "data" -> "{{0,0},{0,0},{0,0}}"|>, "matrix$14605" -> 
-      <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.371244`7.844988358529082}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, \
-0, 0, 0}}])"|>, "matrix$16529" -> 
-      <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.397714`7.845916599378964}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{0, 0}, {0, 0}}])"|>, 
-     "matrix$18469" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.427044`7.846942821917056}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, \
-0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}}])"|>, "matrix$21083" -> 
-      <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.454256`7.847892774383646}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{\"3\", \"3\"}, {\"3\", \"3\"}}])"|>, 
-     "matrix$23601" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.480402`7.848803560301428}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{Null, Null}, {Null, Null}}])"|>, 
-     "matrix$28154" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.504788`7.849651319201691}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{0, 0}, {0, 0}}])"|>, 
-     "matrix$29807" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.531087`7.8505637310731045}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{1, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0}, {0, 0, 1, \
-0, 0, 0}, {0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 1, 0}, {0, 0, 0, 0, 0, 1}}])"|>, 
-     "matrix$33555" -> <|"date" -> DateObject[{2023, 10, 29, 13, 4, 
-          12.683859`7.855826391438256}, "Instant", "Gregorian", 1.], 
-       "data" -> "(CM6Grid[{{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}}])"|>|>, 
-   "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$16], 
+   "path" -> "/Users/kirill/Library/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/matrixhelper.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 36, 
+      8.824841`7.6982818762848515}, "Instant", "Gregorian", 1.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$46], 
    "SelectedCell" -> "89ff10da-5690-45ad-9755-d7a418d9eba2"|>, 
- "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b28199", 
+ "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b28199525", 
     "type" -> "input", "data" -> 
      ".md\n## Insert matrix\nplace matrix in inside selected WL code", 
-    "display" -> "codemirror", "sign" -> "retch-58d66", 
+    "display" -> "codemirror", "sign" -> "quenchless-67185", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "0a4998db-ebb7-4de5-a144-1b265a6e4b95199", "type" -> "output", 
-    "data" -> "\n## Insert matrix\nplace matrix in inside selected WL code", 
-    "display" -> "markdown", "sign" -> "retch-58d66", 
+   <|"id" -> "0a4998db-ebb7-4de5-a144-1b265a6e4b95199525", 
+    "type" -> "output", "data" -> 
+     "\n## Insert matrix\nplace matrix in inside selected WL code", 
+    "display" -> "markdown", "sign" -> "quenchless-67185", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba2199", "type" -> "input", 
+   <|"id" -> "922c67d1-f1c0-4506-8c63-39c75cc0387f", "type" -> "input", 
+    "data" -> ".md\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) \
+in your notebook. It will create a temporal widget to set the parameters of a \
+matrix. After submitting it will insert a matrix on the cell, __where your \
+last cursor was__.", "display" -> "codemirror", "sign" -> "quenchless-67185", 
+    "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "0ee9ce45-56cb-4363-9df2-16d4740b3f03", "type" -> "output", 
+    "data" -> "\n## Usage\nCall this snippet (using `Cmd`/`Super` + `P`) in \
+your notebook. It will create a temporal widget to set the parameters of a \
+matrix. After submitting it will insert a matrix on the cell, __where your \
+last cursor was__.", "display" -> "markdown", "sign" -> "quenchless-67185", 
+    "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "fbe83951-9b38-43a5-bb1b-6779d9778c90", "type" -> "input", 
+    "data" -> ".md\n__source code__", "display" -> "codemirror", 
+    "sign" -> "quenchless-67185", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "93f2d9ca-ecc2-44ac-946e-dc384c37ecec", "type" -> "output", 
+    "data" -> "\n__source code__", "display" -> "markdown", 
+    "sign" -> "quenchless-67185", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba2199525", "type" -> "input", 
     "data" -> ".evaluate-export\n.wlx\nModule[{matrix, Inputs, Editor, \
 InsertButton},\n  Inputs = InputGroup[{\n    InputRange[1,10,1,2, \
 \"Label\"->\"Rows\"], \n    InputRange[1,10,1,2, \"Label\"->\"Cols\"],\n    \
@@ -303,5 +292,5 @@ EditorView[matrix//Offload, \"ReadOnly\"->True] // CreateFrontEndObject;\n\n  \
 <div style=\"display: flex;\">\n    <div style=\"flex:50%\">\n      \
 <Inputs/>\n      <InsertButton/>\n    </div>\n        \n    <div \
 style=\"flex:50%\"><Editor/></div>\n  </div>\n]", "display" -> "codemirror", 
-    "sign" -> "retch-58d66", "props" -> <|"hidden" -> False|>|>}, 
+    "sign" -> "quenchless-67185", "props" -> <|"hidden" -> False|>|>}, 
  "serializer" -> "jsfn3"|>

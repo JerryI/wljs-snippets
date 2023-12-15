@@ -1,4 +1,4 @@
-<|"notebook" -> <|"name" -> "Beatified", "id" -> "lazy-8b0a3", 
+<|"notebook" -> <|"name" -> "Beatified", "id" -> "buzz-28240", 
    "kernel" -> LocalKernel, "objects" -> 
     <|"igroup-b66e74f8-8fa8-448b-b791-e8efac68fcb9" -> 
       <|"json" -> "[\"RangeView\",[\"List\",1,10,1,2],[\"Rule\",\"'Event'\",\
@@ -240,30 +240,44 @@ bf-5905-4225-b70b-bc7c4029ac61'\"]]]", "date" -> DateObject[
 e\",\"'Event'\",\"'06551444-c576-465b-8d01-7cb09416485e'\"]]", 
        "date" -> DateObject[{2023, 10, 29, 13, 1, 
           50.229264`8.453531790092754}, "Instant", "Gregorian", 1.]|>|>, 
-   "path" -> "/Volumes/Data/Github/wolfram-js-frontend/Packages/wljs-snippets\
-/library/colorpick.wln", "cell" :> Exit[], 
-   "date" -> DateObject[{2023, 11, 7, 12, 19, 14.609751`7.917217799479163}, 
-     "Instant", "Gregorian", 1.], "symbols" -> <||>, 
-   "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$24], 
-   "SelectedCell" -> "d4f305e6-626c-4e3a-9475-3cef183f8b281f1"|>, 
- "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b281f1", 
+   "path" -> "/Users/kirill/Library/Application \
+Support/wljs-frontend/Packages/wljs-snippets/library/colorpick.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 24, 
+      34.62137`8.2919192292047}, "Instant", "Gregorian", 1.], 
+   "symbols" -> <||>, "channel" -> WebSocketChannel[
+     KirillBelov`WebSocketHandler`WebSocketChannel`$36], 
+   "SelectedCell" -> "ea74371c-8dc0-41aa-9de5-45678bab0350"|>, 
+ "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b281f1138133", 
     "type" -> "input", "data" -> 
-     ".md\n## Pick a color\nfrom the color wheel", "display" -> "codemirror", 
-    "sign" -> "lazy-8b0a3", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "2cf30f8a-7b30-441d-9bcd-cbab2545640f", "type" -> "output", 
-    "data" -> "\n## Pick a color\nfrom the color wheel", 
-    "display" -> "markdown", "sign" -> "lazy-8b0a3", 
+     ".md\n## Color picker\nfrom the color wheel", "display" -> "codemirror", 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "da99e15e-55ef-4dae-9802-47e9c73c9e54", "type" -> "output", 
+    "data" -> "\n## Color picker\nfrom the color wheel", 
+    "display" -> "markdown", "sign" -> "buzz-28240", 
     "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba21f1", "type" -> "input", 
-    "data" -> ".evaluate-export\n.wlx\nWith[{UId = CreateUUID[], cell = \
-EvaluationCell[]},\n  EventHandler[UId, Function[color,\n    \
-FrontEditorSelected[\"Set\", ToString[RGBColor[color], StandardForm]] // \
-FrontSubmit;\n    Delete[cell // ParentCell];\n  ]];\n\n  <div>\n    \
-<span>Pick a color </span>\n    <input id=\"{UId}\" type=\"color\" \
+   <|"id" -> "754b18d5-04b6-4489-86eb-67bb00ec47aa", "type" -> "input", 
+    "data" -> ".md\n## Usage\nCall this snippet in your notebook. It will \
+create a temporal window with a color-wheel", "display" -> "codemirror", 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "ff18a1d9-35e1-40df-b87e-e357c51c887e", "type" -> "output", 
+    "data" -> "\n## Usage\nCall this snippet in your notebook. It will create \
+a temporal window with a color-wheel", "display" -> "markdown", 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "ea74371c-8dc0-41aa-9de5-45678bab0350", "type" -> "input", 
+    "data" -> ".md\n### Source code", "display" -> "codemirror", 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "f0e3ac50-8281-45d0-a71c-d87b9127532a", "type" -> "output", 
+    "data" -> "\n### Source code", "display" -> "markdown", 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba21f1138133", 
+    "type" -> "input", "data" -> ".evaluate-export\n.wlx\nWith[{UId = \
+CreateUUID[], cell = EvaluationCell[]},\n  EventHandler[UId, \
+Function[color,\n    FrontEditorSelected[\"Set\", ToString[RGBColor[color], \
+StandardForm]] // FrontSubmit;\n    Delete[cell // ParentCell];\n  ]];\n\n  \
+<div>\n    <span>Pick a color </span>\n    <input id=\"{UId}\" type=\"color\" \
 value=\"#e66465\" />\n    <script>\n      \
 document.getElementById(\"<UId/>\").addEventListener('change', (event)=>{\n   \
      server.emitt(\"<UId/>\", '\"'+event.target.value+'\"');\n      }, \
 false)\n    </script>\n  </div>\n]", "display" -> "codemirror", 
-    "sign" -> "lazy-8b0a3", "props" -> <|"hidden" -> False|>|>}, 
+    "sign" -> "buzz-28240", "props" -> <|"hidden" -> False|>|>}, 
  "serializer" -> "jsfn3"|>

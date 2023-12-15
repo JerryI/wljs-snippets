@@ -19,17 +19,37 @@ core.ReadClipboardExtended = async (args, env) => {
   }
 }
 
+core.escapeLinebreaks = async (args, env) => {
+  const str = await interpretate(args[0], env);
+  window.testStr = str;
+
+  return str.replaceAll('\\n', '\n').replaceAll('\\t', '\t').replaceAll('\\"', '"');
+}
+
+core.uit82b64 = async (args, env) => {
+  const str = await interpretate(args[0], env);
+  function bytesToBase64(bytes) {
+    const binString = String.fromCodePoint(...bytes);
+    return btoa(binString);
+  }
+  return bytesToBase64(new TextEncoder().encode(str));
+}
+
 const attachControls = (win) => {
     server.ask("JerryI`WolframJSFrontend`Snippets`Private`SnippetGet").then(async (list) => {
         autocomplete(document.getElementById("snippet-autoinput"), await interpretate(list, {}), (value)=>{
             server.socket.send('JerryI`WolframJSFrontend`Snippets`Private`SnippetPut["'+value+'"]');
-        }, ()=>{
+        }
+        , (value)=>{
+          server.socket.send('JerryI`WolframJSFrontend`Snippets`Private`SnippetInfo["'+value+'"]');
+        }
+        , ()=>{
             win.remove();
         });
     });
 }
 
-function autocomplete(inp, arr, cbk, destory) {
+function autocomplete(inp, arr, cbk, cbk2, destory) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
@@ -54,21 +74,33 @@ function autocomplete(inp, arr, cbk, destory) {
             if (arr[0][i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
               /*create a DIV element for each matching element:*/
               b = document.createElement("DIV");
+              b.classList.add('autocomplete-line');
               /*make the matching letters bold:*/
               b.innerHTML = "<strong>" + arr[0][i].substr(0, val.length) + "</strong>";
               b.innerHTML += arr[0][i].substr(val.length);
-              b.innerHTML += " <i>";
+              b.innerHTML += " <i> ";
               b.innerHTML += arr[1][i].substring(0, Math.min(25, arr[1][i].length));
               b.innerHTML += "...</i>";
               /*insert a input field that will hold the current array item's value:*/
               b.innerHTML += "<input type='hidden' value='" + arr[0][i] + "'>";
+
+              b.innerHTML += "<div class=\"autocomplete-info\">?</div>";
+              
               /*execute a function when someone clicks on the item value (DIV element):*/
                   b.addEventListener("click", function(e) {
                   /*insert the value for the autocomplete text field:*/
+                  
                   inp.value = this.getElementsByTagName("input")[0].value;
                   /*close the list of autocompleted values,
                   (or any other open lists of autocompleted values:*/
-                  done();
+                  if (e.target.className == "autocomplete-info") {
+                    //info opener
+                    done2();
+                  } else {
+                    //run snippet
+                    done();
+                  }
+                  
                   closeAllLists();
                   destory();
                   
@@ -148,6 +180,10 @@ function autocomplete(inp, arr, cbk, destory) {
     function done() {
         cbk(inp.value);
     }
+
+    function done2() {
+      cbk2(inp.value);
+  }
 
     function closeAllLists(elmnt) {
       /*close all autocomplete lists in the document,

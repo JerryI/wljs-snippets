@@ -1,4 +1,4 @@
-<|"notebook" -> <|"name" -> "Beatified", "id" -> "tangelo-045d2", 
+<|"notebook" -> <|"name" -> "Beatified", "id" -> "icecap-c8c4e", 
    "kernel" -> LocalKernel, "objects" -> 
     <|"igroup-b66e74f8-8fa8-448b-b791-e8efac68fcb9" -> 
       <|"json" -> "[\"RangeView\",[\"List\",1,10,1,2],[\"Rule\",\"'Event'\",\
@@ -241,64 +241,40 @@ e\",\"'Event'\",\"'06551444-c576-465b-8d01-7cb09416485e'\"]]",
        "date" -> DateObject[{2023, 10, 29, 13, 1, 
           50.229264`8.453531790092754}, "Instant", "Gregorian", 1.]|>|>, 
    "path" -> "/Users/kirill/Library/Application \
-Support/wljs-frontend/Packages/wljs-snippets/library/datfilesuploader.wln", 
-   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 12, 24, 
-      54.310554`8.487459207308913}, "Instant", "Gregorian", 1.], 
+Support/wljs-frontend/Packages/wljs-snippets/library/upload.wln", 
+   "cell" :> Exit[], "date" -> DateObject[{2023, 12, 15, 13, 0, 
+      27.263192`8.188151683874993}, "Instant", "Gregorian", 1.], 
    "symbols" -> <||>, "channel" -> WebSocketChannel[
-     KirillBelov`WebSocketHandler`WebSocketChannel`$33], 
-   "SelectedCell" -> "89ff10da-5690-45ad-9755-d7a418d9eba250f164"|>, 
- "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b2850f164", 
-    "type" -> "input", "data" -> 
-     ".md\n## Insert DAT file\nupload and import ASCII data-files", 
-    "display" -> "codemirror", "sign" -> "tangelo-045d2", 
+     KirillBelov`WebSocketHandler`WebSocketChannel`$54], 
+   "SelectedCell" -> "89ff10da-5690-45ad-9755-d7a418d9eba21f1138d7375d"|>, 
+ "cells" -> {<|"id" -> "d4f305e6-626c-4e3a-9475-3cef183f8b281f1138d7375d", 
+    "type" -> "input", "data" -> ".md\n## Insert a file\ndrag and drop", 
+    "display" -> "codemirror", "sign" -> "icecap-c8c4e", 
     "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "f2e63fdc-0a64-45c7-8c2f-1ba0f61ef942", "type" -> "output", 
-    "data" -> "\n## Insert DAT file\nupload and import ASCII data-files", 
-    "display" -> "markdown", "sign" -> "tangelo-045d2", 
-    "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "bc7ff3d5-5820-49c2-9544-3f38409a86b5", "type" -> "input", 
-    "data" -> ".md\nSource code", "display" -> "codemirror", 
-    "sign" -> "tangelo-045d2", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "5c3797e4-0098-48d6-b044-628eba825d62", "type" -> "input", 
-    "data" -> ".md\n## Usage\nCall this snippet in your notebook. It will \
-create a temporal window for handling files and preview imported data", 
-    "display" -> "codemirror", "sign" -> "tangelo-045d2", 
-    "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "f306ad08-72fd-4391-81eb-fb3095a8f1cb", "type" -> "output", 
-    "data" -> "\n## Usage\nCall this snippet in your notebook. It will create \
-a temporal window for handling files and preview imported data", 
-    "display" -> "markdown", "sign" -> "tangelo-045d2", 
-    "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "9aebbaf4-8bd2-468a-8447-db9d6a05a0a2", "type" -> "input", 
-    "data" -> ".md\n### Source code", "display" -> "codemirror", 
-    "sign" -> "tangelo-045d2", "props" -> <|"hidden" -> True|>|>, 
-   <|"id" -> "bdc851db-9595-4dc4-bc36-a8e00d903ff5", "type" -> "output", 
-    "data" -> "\n### Source code", "display" -> "markdown", 
-    "sign" -> "tangelo-045d2", "props" -> <|"hidden" -> False|>|>, 
-   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba250f164", "type" -> "input", 
-    "data" -> ".evaluate-export\nModule[{file, content, headerLines, \
-previewCell, fileData, submit, imported, format},\n  file = InputFile[\"Drop \
-a *.dat file\"];\n  content = \"\";\n  format = \"TSV\";\n  headerLines = 0; \
-\n\n  previewCell = Null;\n  fileData = Null;\n\n  With[{cell = \
-EvaluationCell[]},\n    submit = InputButton[\"Insert\"];\n    \
-EventHandler[submit, Function[Null,\n        \
-CellPrint[ToString[Iconize[imported], StandardForm], \"Type\"->\"Input\"];\n  \
-      ParentCell[cell] // Delete;\n    ]];\n  ];\n\n\n  update := With[{},\n  \
-  If[fileData =!= Null,\n      If[previewCell =!= Null , Delete[previewCell]; \
-previewCell = Null,\n        CellPrint[ToString[submit, StandardForm]];\n     \
- ];\n      \n      With[{},\n        imported = ImportByteArray[fileData, \
-format, HeaderLines->headerLines];\n        previewCell = \
-Switch[Depth[imported],\n          3,\n            \
-CellPrint[ToString[InputTable[imported], StandardForm]]\n          ,\n\n      \
-    2,\n            CellPrint[ToString[Take[imported, Min[30, \
-Length[imported]]], StandardForm] <> \"...\"]\n          ,\n\n          1,\n  \
-          With[{str = ToString[imported, StandardForm]},\n              \
-CellPrint[StringTake[str, Min[30, StringLength[str]]] <> \"...\"]\n           \
- ]\n        \n        ];\n      ];\n    ];\n  ];\n\n\n  {\n    {\n      \
-EventHandler[InputRange[0,3,1,0, \"Label\"->\"Header lines\"], Function[n, \
-headerLines = n; update;]],\n      EventHandler[InputSelect[{\"TSV\", \
-\"CSV\"}], Function[sel, format = sel; update;]]\n    },\n    \
-{EventHandler[file, Function[data,\n      fileData = data[\"data\"] // \
-BaseDecode;\n      update;\n    ]]}\n  } // Grid\n]", 
-    "display" -> "codemirror", "sign" -> "tangelo-045d2", 
-    "props" -> <|"hidden" -> False|>|>}, "serializer" -> "jsfn3"|>
+   <|"id" -> "9196888a-1c93-436a-a8bb-7ed4ad979cc775d", "type" -> "output", 
+    "data" -> "\n## Insert a file\ndrag and drop", "display" -> "markdown", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "16aae373-142a-4e36-ad1b-51709a7aaa1b", "type" -> "input", 
+    "data" -> ".md\n### Usage\nCall this snippet from your notebook. It will \
+create a temporal widget for files handling.", "display" -> "codemirror", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "8b4f6117-cbcd-4dd5-8211-e62bab3133de", "type" -> "output", 
+    "data" -> "\n### Usage\nCall this snippet from your notebook. It will \
+create a temporal widget for files handling.", "display" -> "markdown", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "9a3793aa-2285-41ab-8af7-0cd6475881f6", "type" -> "input", 
+    "data" -> ".md\n__source code__", "display" -> "codemirror", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> True|>|>, 
+   <|"id" -> "23e451b1-d721-4370-ad56-f1487982e85e", "type" -> "output", 
+    "data" -> "\n__source code__", "display" -> "markdown", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> False|>|>, 
+   <|"id" -> "89ff10da-5690-45ad-9755-d7a418d9eba21f1138d7375d", 
+    "type" -> "input", "data" -> ".evaluate-export\nModule[{file, removed = \
+False},\n  file = InputFile[\"Drop files here\"];\n\n  With[{cell = \
+EvaluationCell[]},\n    EventHandler[file, Function[data,\n      \
+BinaryWrite[data[\"name\"], data[\"data\"] // BaseDecode];\n\n      \
+If[!removed,\n        CellPrint[\"Get[\\\"\"<>data[\"name\"]<>\"\\\"]\", \
+\"After\"->cell, \"Type\"->\"Input\"];\n        ParentCell[cell] // Delete;\n \
+     ];\n      removed = True;\n    ]]\n  ]\n]", "display" -> "codemirror", 
+    "sign" -> "icecap-c8c4e", "props" -> <|"hidden" -> False|>|>}, 
+ "serializer" -> "jsfn3"|>
