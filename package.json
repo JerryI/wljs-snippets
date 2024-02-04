@@ -8,15 +8,13 @@
   },
   "defaultPackage": true,
   "wljs-meta": {
-    "wl": "src/manager.wl",
-    "wlkernel": "src/kernel.wl",
-    "jsmodule": "src/kernel.js",
+    "js": "src/kernel.js",
     "priority": 9999999,
     "menu": [
       {
         "label": "Snippets",
         "accelerator": ["Cmd+p", "Ctrl+p"],
-        "internalHandler": "snippets",
+        "internalHandler": "snippetsOpen",
         "spawnWindow": false,
         "type": "button"
       }
