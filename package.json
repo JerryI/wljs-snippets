@@ -10,6 +10,7 @@
   "wljs-meta": {
     "js": "src/kernel.js",
     "priority": 9999999,
+    "category": "Notebook Extensions",
     "menu": [
       {
         "label": "Snippets",
