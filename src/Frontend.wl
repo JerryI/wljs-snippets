@@ -15,9 +15,7 @@ Begin["`Internal`"]
 
 rootFolder = $InputFileName // DirectoryName // ParentDirectory;
 
-AppExtensions`TemplateInjection["AppOverlay"] = ImportComponent[FileNameJoin[{rootDir, "template", "Overlay.wlx"}] ];
-
-
+AppExtensions`TemplateInjection["AppTopBar"] = ImportComponent[FileNameJoin[{rootFolder, "template", "Overlay.wlx"}] ];
 
 End[]
 EndPackage[]

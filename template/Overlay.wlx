@@ -1,0 +1,103 @@
+open[_, localControls_, typeWritter_, keyListener_, emptyPanel_, paneState_] := With[{client = Global`$Client(*`*), localTunnel = CreateUUID[]},
+    Echo["Open!"];
+    EventFire[localControls, "Load", <|"Client"->client|>];
+    EventFire[keyListener, "Start", <|"Client"->client|>];
+    EventHandler[keyListener, {"Pressed" -> Function[key,
+        Switch[key,
+            27,
+                EventFire[localControls, "Remove", <|"Client"->client|>];
+                EventFire[keyListener, "Stop", <|"Client"->client|>];
+                EventRemove[keyListener];
+                EventRemove[typeWritter];
+                paneState = "Shown";
+            ,    
+            _,
+                Echo[key]
+        ]
+    ]}];
+
+    EventHandler[typeWritter, {"Type" -> Function[text,
+        If[StringLength[text] > 2,
+            If[paneState === "Hidden", 
+                
+                EventFire[emptyPanel, "Refresh", <|"Client"->client|>];
+                paneState = "Shown";
+                Echo[paneState];
+            ];
+            Return[];
+        ,
+            If[paneState === "Shown", 
+                EventFire[emptyPanel, "Clear", <|"Client"->client|>];
+                paneState = "Hidden";
+                Echo[paneState];
+            ];
+        ];
+
+        Echo[text];
+    ]}];
+];
+
+SetAttributes[open, HoldRest];
+
+QuickActions   := ImportComponent["Components/QuickActions.wlx"];
+RecentItems     = ImportComponent["Components/Recent.wlx"];
+
+Component[OptionsPattern[]] := 
+Module[{
+    paneState = "Shown"
+},
+With[{
+    Title = FileNameTake[OptionValue["Path"]],
+    LocalControls = CreateUUID[],
+    emptyPanel = CreateUUID[],
+    actions = CreateUUID[],
+    resultsPanel = CreateUUID[],
+    typeWritter = CreateUUID[],
+    keyListener = CreateUUID[]
+},
+
+    EventHandler[LocalControls, {"Open" -> (open[#, LocalControls, typeWritter, keyListener, emptyPanel, paneState]&)}];
+
+
+    <div id="palette" class="grow relative h-full p-1 items-center flex rounded-md 0 h-7 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
+        <svg id="palette-ico" class="hidden pointer-events-none mr-2 h-4 w-4 text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+        </svg>
+        <input type="text" id="palette-field" class="leading-6 text-sm text-gray-400 bg-transparent w-full border-0 placeholder:text-gray-400 focus:ring-0" style="outline:unset" placeholder="{Title}"/>
+
+        <WebUILazyLoad Event={LocalControls}>
+            <div id="palette-list" class="absolute top-0 mt-10 right-0 left-0 w-full">
+               <div class="mx-auto max-w-2xl transform divide-y divide-gray-500 divide-opacity-10 overflow-hidden rounded-md bg-gray-100 bg-opacity-80 shadow-md  backdrop-blur backdrop-filter transition-all bg-d9 text-left text-gray-500 w-70 ring-1 ring-inset ring-gray-400 pb-2 dark:bg-gray-700">
+                  <ul class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto">
+                                   
+                    <WebUIRefresh Event={emptyPanel}>
+                         <RecentItems Event={actions}/>
+                         <QuickActions Event={actions}/>
+                    </WebUIRefresh>     
+                  </ul>
+               </div>
+            </div>
+        </WebUILazyLoad>
+
+        <WebUIEventListener Type={"click"} Id={"palette"} Pattern={"Open"} Event={LocalControls} />   
+        <WebUIEventListener Type={"input"} Id={"palette-field"} Pattern={"Type"} Event={typeWritter} />  
+
+        <WebUIKeyListener   Pattern={"Pressed"} Event={keyListener} />
+
+        <WebUIJSBind Event={LocalControls}>
+            const ico = document.getElementById("palette-ico");
+            const field = document.getElementById("palette-field");
+            this.on('Load', () => {
+                ico.classList.remove('hidden');
+            });
+            this.on('Remove', () => {
+                ico.classList.add('hidden');
+                field.value = '';
+                field.blur();
+            });
+        </WebUIJSBind>
+    </div>
+]]
+
+Component
+
