@@ -1,4 +1,22 @@
-open[_, localControls_, typeWritter_, keyListener_, emptyPanel_, paneState_] := With[{client = Global`$Client(*`*), localTunnel = CreateUUID[]},
+search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "]},
+    With[{results = Flatten[Function[word, With[{str = word},
+        {
+            MapIndexed[If[Length[#1]==0, Nothing, #2[[1]]]&, StringCases[Values @ DatabaseIndices, str~~___]],
+            MapIndexed[If[Length[#1]==0, Nothing, #2[[1]]]&, StringCases[Values @ DatabaseIndices, __~~RegularExpression["[^\\w]"]~~str~~___]]
+        }
+    ]] /@ words]},
+        (Keys @ DatabaseIndices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+    ]
+];
+
+open[_, localControls_, typeWritter_, keyListener_, emptyPanel_, searchPanel_, fieldState_, paneState_, timer_] := Module[{lastResults = Null, typed = False, searchState = "Hidden"},
+With[{
+    client = Global`$Client(*`*), 
+    localTunnel = CreateUUID[]
+},
+
+    If[fieldState, Return[]];
+    fieldState = True;
     Echo["Open!"];
     EventFire[localControls, "Load", <|"Client"->client|>];
     EventFire[keyListener, "Start", <|"Client"->client|>];
@@ -7,44 +25,75 @@ open[_, localControls_, typeWritter_, keyListener_, emptyPanel_, paneState_] := 
             27,
                 EventFire[localControls, "Remove", <|"Client"->client|>];
                 EventFire[keyListener, "Stop", <|"Client"->client|>];
+                EventFire[searchPanel, "Remove", <|"Client"->client|>];
+                fieldState = False;
+                ClearAll[lastResults];
+                ClearAll[typed];
+                ClearAll[searchState];
                 EventRemove[keyListener];
                 EventRemove[typeWritter];
+                EventRemove[searchPanel];
                 paneState = "Shown";
             ,    
             _,
                 Echo[key]
-        ]
+        ];
     ]}];
 
     EventHandler[typeWritter, {"Type" -> Function[text,
-        If[StringLength[text] > 2,
+        If[StringLength[text] < 3,
             If[paneState === "Hidden", 
                 
-                EventFire[emptyPanel, "Refresh", <|"Client"->client|>];
+                EventFire[emptyPanel, "Show", <|"Client"->client|>];
                 paneState = "Shown";
                 Echo[paneState];
             ];
-            Return[];
+            EventFire[searchPanel, "Remove", <|"Client"->client|>];
+            searchState = "Hidden";
         ,
             If[paneState === "Shown", 
-                EventFire[emptyPanel, "Clear", <|"Client"->client|>];
+                EventFire[emptyPanel, "Hide", <|"Client"->client|>];
                 paneState = "Hidden";
                 Echo[paneState];
             ];
+            
         ];
 
         Echo[text];
+        If[AbsoluteTime[] - timer > 0.3,
+            timer = AbsoluteTime[];
+            With[{
+                results = If[StringLength[text] =!= 0, search[text], Keys @ Database]
+            },
+                    If[searchState === "Hidden",
+                        searchState = "Shown";
+                        lastResults = Null;
+                    ];
+                    
+                    If[lastResults =!= results,
+                        Echo["Update panel"];
+                        Echo[results];
+                        EventFire[searchPanel, "Load", <|"Data"->results, "Client"->client|>];
+                        lastResults = results;
+                    ];
+            ]
+        ];
+
     ]}];
-];
+] ];
 
 SetAttributes[open, HoldRest];
 
 QuickActions   := ImportComponent["Components/QuickActions.wlx"];
 RecentItems     = ImportComponent["Components/Recent.wlx"];
 
+SearchResults   = ImportComponent["Components/SearchResults.wlx"];
+
 Component[OptionsPattern[]] := 
 Module[{
-    paneState = "Shown"
+    paneState = "Shown",
+    fieldState = False,
+    timer = AbsoluteTime[]
 },
 With[{
     Title = FileNameTake[OptionValue["Path"]],
@@ -53,10 +102,11 @@ With[{
     actions = CreateUUID[],
     resultsPanel = CreateUUID[],
     typeWritter = CreateUUID[],
-    keyListener = CreateUUID[]
+    keyListener = CreateUUID[],
+    searchPanel = CreateUUID[]
 },
 
-    EventHandler[LocalControls, {"Open" -> (open[#, LocalControls, typeWritter, keyListener, emptyPanel, paneState]&)}];
+    EventHandler[LocalControls, {"Open" -> (open[#, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState, paneState, timer]&)}];
 
 
     <div id="palette" class="grow relative h-full p-1 items-center flex rounded-md 0 h-7 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
@@ -69,10 +119,12 @@ With[{
             <div id="palette-list" class="absolute top-0 mt-10 right-0 left-0 w-full">
                <div class="mx-auto max-w-2xl transform divide-y divide-gray-500 divide-opacity-10 overflow-hidden rounded-md bg-gray-100 bg-opacity-80 shadow-md  backdrop-blur backdrop-filter transition-all bg-d9 text-left text-gray-500 w-70 ring-1 ring-inset ring-gray-400 pb-2 dark:bg-gray-700">
                   <ul class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto">
-                                   
+                    <WebUILazyLoad Event={searchPanel}>
+                        <SearchResults Event={actions} Data={WebUILazyLoadDataProvided}/>
+                    </WebUILazyLoad>               
                     <WebUIRefresh Event={emptyPanel}>
                          <RecentItems Event={actions}/>
-                         <QuickActions Event={actions}/>
+                         <QuickActions Event={actions} List={ {"newFile", "newFolder"} }/>
                     </WebUIRefresh>     
                   </ul>
                </div>
