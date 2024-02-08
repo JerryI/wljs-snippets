@@ -15,7 +15,7 @@
       {
         "label": "Snippets",
         "accelerator": ["Cmd+p", "Ctrl+p"],
-        "internalHandler": "snippetsOpen",
+        "event": "open_snippets",
         "spawnWindow": false,
         "type": "button"
       }

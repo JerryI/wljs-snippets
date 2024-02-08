@@ -11,40 +11,33 @@ BeginPackage["Notebook`Editor`Snippets`", {
     "JerryI`Notebook`AppExtensions`"
 }]
 
+SnippetsDatabase;
+SnippetsDatabaseEvents;
+SnippetsCreateItem;
+SnippetsDatabaseIndices;
+
+SnippetsGenericTemplate;
+
 Begin["`Internal`"]
 
 rootFolder = $InputFileName // DirectoryName // ParentDirectory;
 iTemplate  = FileNameJoin[{$InputFileName // DirectoryName // ParentDirectory, "template", "Components", "Items"}];
 
-Database = <||>;
-createItem[tag_, opts__] := With[{list = List[opts] // Association},
-    Database[tag] = <|"Title" -> list["Title"], "Template" -> (list["Template"][opts])|>;
+SnippetsDatabase = <||>;
+SnippetsEvents = CreateUUID[];
+SnippetsCreateItem[tag_, opts__] := With[{list = List[opts] // Association},
+    SnippetsDatabase[tag] = <|"Title" -> list["Title"], "Template" -> (list["Template"][opts, "Tag"->tag])|>;
 ];
 
-createItem[
-    "newFile", 
+SnippetsDatabaseIndices := (ToLowerCase[#["Title"]] &/@ SnippetsDatabase);
 
-    "Template"->ImportComponent[FileNameJoin[{iTemplate, "File.wlx"}] ], 
-    "Title"->"New notebook"
-];
+SnippetsGenericTemplate = ImportComponent[FileNameJoin[{iTemplate, "Generic.wlx"}] ];
 
-createItem[
-    "newFolder", 
-
-    "Template"->ImportComponent[FileNameJoin[{iTemplate, "Folder.wlx"}] ], 
-    "Title"->"New folder"
-];
-
-createItem[
-    "renameNotebook", 
-
-    "Template"->ImportComponent[FileNameJoin[{iTemplate, "Folder.wlx"}] ], 
-    "Title"->"Rename notebook"
-];
-
-DatabaseIndices = (ToLowerCase[#["Title"]] &/@ Database);
+Get[FileNameJoin[{rootFolder, "src", "Defaults.wl"}] ];
 
 AppExtensions`TemplateInjection["AppTopBar"] = ImportComponent[FileNameJoin[{rootFolder, "template", "Overlay.wlx"}] ];
+
+
 
 End[]
 EndPackage[]
