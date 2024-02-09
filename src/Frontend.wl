@@ -18,10 +18,14 @@ SnippetsDatabaseIndices;
 
 SnippetsGenericTemplate;
 
+SnippetsEvents;
+
 Begin["`Internal`"]
 
 rootFolder = $InputFileName // DirectoryName // ParentDirectory;
 iTemplate  = FileNameJoin[{$InputFileName // DirectoryName // ParentDirectory, "template", "Components", "Items"}];
+
+NotebookQ[path_String] := FileExtesion[path] === "wln"
 
 SnippetsDatabase = <||>;
 SnippetsEvents = CreateUUID[];
@@ -34,6 +38,7 @@ SnippetsDatabaseIndices := (ToLowerCase[#["Title"]] &/@ SnippetsDatabase);
 SnippetsGenericTemplate = ImportComponent[FileNameJoin[{iTemplate, "Generic.wlx"}] ];
 
 Get[FileNameJoin[{rootFolder, "src", "Defaults.wl"}] ];
+Get[FileNameJoin[{rootFolder, "src", "Library.wl"}] ];
 
 AppExtensions`TemplateInjection["AppTopBar"] = ImportComponent[FileNameJoin[{rootFolder, "template", "Overlay.wlx"}] ];
 

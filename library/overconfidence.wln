@@ -1,0 +1,32 @@
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$41], 
+   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
+/Packages/wljs-snippets/library/overconfidence.wln"|>, 
+ "Cells" -> 
+  {<|"Data" -> ".md\n## My powerful snippet\nWhat can I do with it?", 
+    "Display" -> "codemirror", "Hash" -> 
+     "b069ffa5-f7c3-4174-ba22-ef7ad87a7b34", "Props" -> <|"Hidden" -> True|>, 
+    "State" -> "Idle", "Type" -> "Input", "UID" -> Null, 
+    "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>, 
+   <|"Data" -> "## My powerful snippet\nWhat can I do with it?", 
+    "Display" -> "markdown", "Hash" -> 
+     "387aefec-b3cb-4ff0-a394-39ece03dec90", "Props" -> <||>, 
+    "State" -> "Idle", "Type" -> "Output", "UID" -> Null, 
+    "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "b4c2c5a1-2b38-4643-8c8e-eb0c28c37860", "Props" -> <||>, 
+    "State" -> "Idle", "Type" -> "Input", "UID" -> Null, 
+    "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>, 
+   <|"Data" -> ".md\n__Many things__", "Display" -> "codemirror", 
+    "Hash" -> "ad7b5027-3758-4cd7-998a-3b2acb1ae685", 
+    "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", "Type" -> "Input", 
+    "UID" -> Null, "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>, 
+   <|"Data" -> "__Many things__", "Display" -> "markdown", 
+    "Hash" -> "9c030c4d-6511-457f-a227-ce008cbe518c", "Props" -> <||>, 
+    "State" -> "Idle", "Type" -> "Output", "UID" -> Null, 
+    "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>, 
+   <|"Data" -> ".action-export\n.wl\nSpecialCode[]", 
+    "Display" -> "codemirror", "Hash" -> 
+     "da87e161-cd5f-44d6-a5e8-63870a66c8ca", "Props" -> <||>, 
+    "State" -> "Idle", "Type" -> "Input", "UID" -> Null, 
+    "Notebook" -> "0d850449-19eb-40e4-8c50-a0cd14b923c3"|>}, 
+ "serializer" -> "jsfn4"|>

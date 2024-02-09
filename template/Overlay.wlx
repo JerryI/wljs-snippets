@@ -9,7 +9,7 @@ search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = Sn
     ]
 ];
 
-open[_, quickTags_, ClickActions_, controls_, modals_, messanger_, localControls_, typeWritter_, keyListener_, emptyPanel_, searchPanel_, fieldState_] := Module[{
+open[_, quickTags_, ClickActions_, path_, controls_, modals_, messanger_, localControls_, typeWritter_, keyListener_, emptyPanel_, searchPanel_, fieldState_] := Module[{
     lastResults = Null, typed = False, 
     searchState = "Hidden",
     paneState = "Shown",
@@ -45,7 +45,7 @@ With[{
 
     EventHandler[ClickActions, {"Click" -> Function[data,
         Echo[data];
-        EventFire[SnippetsEvents, data, <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger|>];
+        EventFire[SnippetsEvents, data, <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
         destroy;
     ]}];
 
@@ -72,7 +72,7 @@ With[{
                 If[Length[tagList] == 0, Return[]];
                 If[position < 1, Return[]];
                 Echo[tagList[[position]]];
-                EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger|>];
+                EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
                 destroy;
             ,
             _,
@@ -141,9 +141,10 @@ Module[{
 With[{
     Title = FileNameTake[OptionValue["Path"]],
     Controls = OptionValue["Controls"],
+    Path = OptionValue["Path"],
     Messanger = OptionValue["Messanger"],
     Modals = OptionValue["Modals"],
-    quickTags = {"newFile", "newFolder"},
+    quickTags = {"newFile", "renameNotebook"},
     LocalControls = CreateUUID[],
     emptyPanel = CreateUUID[],
     ClickActions = CreateUUID[],
@@ -154,7 +155,7 @@ With[{
 },
     EventHandler[EventClone[Controls], {"open_snippets" -> Function[Null, EventFire[LocalControls, "Open", True]]}];
 
-    EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState]&)}];
+    EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Path, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState]&)}];
 
 
     <div id="palette" class="grow relative h-full p-1 items-center flex rounded-md 0 h-7 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
@@ -206,10 +207,19 @@ With[{
 
             this.on('Rescan', () => {
                 storage = palette.querySelectorAll('[tag]');
+                const btags = palette.querySelectorAll('[btag]');
                 for (let i=0; i<storage.length; ++i) {
                     storage[i].addEventListener('click', (event) => {
                         console.log(['<ClickActions/>', '"'+storage[i].getAttribute("tag")+'"', 'Click']);
                         server.emitt('<ClickActions/>', '"'+storage[i].getAttribute("tag")+'"', 'Click');
+                        event.stopPropagation();
+                    });
+                }
+                //buttons ans etc
+                for (let i=0; i<btags.length; ++i) {
+                    btags[i].addEventListener('click', (event) => {
+                        console.log(['<ClickActions/>', '"'+btags[i].getAttribute("tag")+'"', 'Click']);
+                        server.emitt('<ClickActions/>', '"'+btags[i].getAttribute("btag")+'"', 'Click');
                         event.stopPropagation();
                     });
                 }
