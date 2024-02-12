@@ -76,13 +76,13 @@ groupCells[cells_] := GroupBy[(Join[#, <|"__type" -> (StringSplit[#["Data"], "\n
 
 Parse[a_Association] := With[{cells = groupCells[ a["Cells"] ], path = a["Notebook", "Path"] },
     Echo["Snippets >> Loading >> "<>path];
-    Module[{title = "", decription = "", label = Automatic, action = {}},
+    Module[{title = "", decription = "", template = Automatic, action = {}},
         With[{t = cells[".md"] // First},
             If[!StringMatchQ[t["Data"], ".md\n"~~__], Echo["Snippets >> Library >> Title is missing!"]; Return[$Failed] ];
             {title, decription} = StringCases[t["Data"], RegularExpression[".md\n[#| ]*([^\n]*)\n?(.*)?"]:> {"$1", "$2"}] // First;
         ];
 
-        If[KeyExistsQ[cells, ".label"], label = StringDrop[First[ cells[".label"] ]["Data"], 12] ];
+        If[KeyExistsQ[cells, ".template"], template = StringDrop[First[ cells[".template"] ]["Data"], 15] ];
 
         action = With[{key = #},
             Map[Function[unit,
@@ -90,7 +90,7 @@ Parse[a_Association] := With[{cells = groupCells[ a["Cells"] ], path = a["Notebo
             ], cells[key] ]
         ] &/@ Intersection[ Keys[cells], Keys[actions] ] // Flatten;
 
-        {"Title" -> title, "Decription" -> decription, "Actions" -> action, "Label" -> label, "Path" -> path}
+        {"Title" -> title, "Decription" -> decription, "Actions" -> action, "RawTemplate" -> template, "Path" -> path}
     ]
 ]
 
@@ -129,18 +129,20 @@ bookOpen[tag_String][assoc_] := Module[{},
 ]
 
 With[{book = Get[#] // Parse},
+  With[{temp = ("RawTemplate" /. book)},
+   
     With[{
-        template = If[("Label" /. book) === Automatic, 
+        template = If[temp === Automatic, 
             ImportComponent[FileNameJoin[{iTemplate, "Generic.wlx"}] ]
         , 
-            ProcessString[("Label" /. book), "Localize"->True] // ReleaseHold 
+            ProcessString[temp, "Localize"->True] // ReleaseHold
         ],
 
         tag = "snippet-"<>StringTake[CreateUUID[], 6],
         btag = "shelp-"<>StringTake[CreateUUID[], 6]
     },
-
-        SnippetsCreateItem @@ Join[{tag, "Template"->template, "Button"->btag}, book];
+        
+        SnippetsCreateItem @@ Join[{tag, "Button"->btag}, book, {"Template"->template}];
         books[tag] = List[book] // Association;
         EventHandler[SnippetsEvents, {
             tag -> bookHandler[tag],
@@ -148,6 +150,7 @@ With[{book = Get[#] // Parse},
         }];
 
     ]
+  ]
 ] &/@ Flatten[{FileNames["*.wln", $libraryPath], FileNames["*.wln", $userLibraryPath]}]
 
 

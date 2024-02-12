@@ -1,0 +1,60 @@
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$57], 
+   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
+/Packages/wljs-snippets/library/upload.wln"|>, 
+ "Cells" -> 
+  {<|"Data" -> 
+     ".md\n# Upload file\nA form to upload files into project folder", 
+    "Display" -> "codemirror", "Hash" -> 
+     "1f66e989-014b-49b0-87eb-3065b7c2371a", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> "# Upload file\nA form to upload files into project folder", 
+    "Display" -> "markdown", "Hash" -> 
+     "a1e8d366-90de-4565-b830-9779dd649cfb", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> ".md\n## Usage\nCall this snippet from the palette menu in the \
+top bar and drop a file", "Display" -> "codemirror", 
+    "Hash" -> "1ad4bc87-9168-4891-b073-90cb763f0c24", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> "## Usage\nCall this snippet from the palette menu in the top \
+bar and drop a file", "Display" -> "markdown", 
+    "Hash" -> "083e7870-fca6-4cc4-9c18-30b4841cbdc2", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "72a412aa-6ea6-4f78-829f-84792b7b2c78", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
+    "Hash" -> "9ec81acb-3709-4ed8-bcb3-39789a9284a6", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, <|"Data" -> "__source code__", 
+    "Display" -> "markdown", "Hash" -> 
+     "cd5e616e-db45-4d58-8e0d-1e024e13806e", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> ".action-evaluate-export\nModule[{file, removed = False},\n  \
+file = InputFile[];\n\n  With[{cell = EvaluationCell[], out = \
+ResultCell[]},\n    EventHandler[file, {\"File\" -> Function[data,\n      \
+BinaryWrite[data[\"Name\"], data[\"Data\"] // BaseDecode];\n\n      \
+If[!removed,\n        CellPrint[\"Get[\\\"\"<>data[\"Name\"]<>\"\\\"]\", \
+\"After\"->out, \"Type\"->\"Input\"];\n        cell // Delete;\n      ];\n    \
+  removed = True;\n    ]}]\n  ]\n]", "Display" -> "codemirror", 
+    "Hash" -> "e39caa08-02fc-472a-9e1f-9a5a78ac0fe7", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "4c3cfe98-8f56-4015-ad2d-5ecc7a75bf50", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "89207f3e-228d-4b7c-a730-d1beb2f29354"|>}, "serializer" -> "jsfn4"|>
