@@ -9,7 +9,7 @@ SnippetsCreateItem[
 SnippetsCreateItem[
     "renameNotebook", 
 
-    "Template"->SnippetsGenericTemplate, 
+    "Template"->ImportComponent[FileNameJoin[{iTemplate, "Rename.wlx"}] ], 
     "Title"->"Rename notebook"
 ];
 
