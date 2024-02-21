@@ -1,83 +1,83 @@
-<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$36], 
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$78], 
    "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
-/Packages/wljs-snippets/library/upload.wln"|>, 
+/wljs_packages/wljs-snippets/library/upload.wln"|>, 
  "Cells" -> 
   {<|"Data" -> 
      ".md\n# Upload file\nA form to upload files into project folder", 
     "Display" -> "codemirror", "Hash" -> 
-     "95df7bea-1c0d-46a8-bdf3-71988d7876f4", "Invisible" -> False, 
+     "c3d93708-38f1-4bfd-b124-d5379162b792", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> "# Upload file\nA form to upload files into project folder", 
     "Display" -> "markdown", "Hash" -> 
-     "cfe25dd8-68f3-42d2-bed7-5c569c970f65", "Invisible" -> False, 
+     "3dfbeb0f-eec5-481b-80e1-0bdf899a4e73", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> ".md\n## Usage\nCall this snippet from the palette menu in the \
 top bar and drop a file", "Display" -> "codemirror", 
-    "Hash" -> "d2b55d76-ea4b-4101-963f-0bdab2e0b599", "Invisible" -> False, 
+    "Hash" -> "30024543-9275-49f1-946c-b0f0d8d1f840", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> "## Usage\nCall this snippet from the palette menu in the top \
 bar and drop a file", "Display" -> "markdown", 
-    "Hash" -> "69c041d8-874a-4669-b382-4d59c71c55a0", "Invisible" -> False, 
+    "Hash" -> "b88b008c-24e4-4c2d-b4c4-d0bfe148e312", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "e2a7153c-65d8-487b-a170-eb8c313b63b9", "Invisible" -> False, 
+    "Hash" -> "0b3f0b08-7963-4c54-8aff-593c8a0d953f", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "4131573e-3bec-427b-b7d7-983edff6e49d", "Invisible" -> False, 
+    "Hash" -> "c5b7007f-e8d3-4909-84ba-f2f2a136fce9", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, <|"Data" -> "__source code__", 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "a56c3080-254a-49e9-ae24-713ae86f9d52", "Invisible" -> False, 
+     "4e997159-fcd8-491f-8e15-8e664b0a2c26", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> ".action-evaluate-export\n.wlx\nModule[{file, count = 0, names \
 = {}},\n  LFile = InputFile[\"Class\"->\"block\"];\n\n  With[{cell = \
 EvaluationCell[], out = ResultCell[]},\n    EventHandler[LFile, {\n      \
 \"File\" -> Function[data,\n        BinaryWrite[data[\"Name\"], \
 data[\"Data\"] // BaseDecode];\n        names = Append[names, \
-data[\"Name\"]];\n\n        count = count - 1;\n        If[count > 0,\n       \
-   CellPrint[StringJoin[\"Get /@ \", ToString[names, InputForm]], \
-\"After\"->out, \"Type\"->\"Input\"];\n          cell // Delete;\n        \
-];\n      ],\n      \"Transaction\" -> Function[data,\n        count = \
-data[\"Length\"];\n      ]\n    }]\n  ];\n\n  <div class=\"flex center w-full \
-items-center flex-col text-center\">\n    <LFile/>\n  </div>\n]", 
-    "Display" -> "codemirror", "Hash" -> 
-     "2903f10a-a536-4abf-a06a-b028725d3ab0", "Invisible" -> False, 
+data[\"Name\"]];\n\n        count = count - 1;\n        \n        If[count \
+=== 0,\n        CellPrint[StringJoin[\"Get /@ \", ToString[names, \
+InputForm]], \"After\"->out, \"Type\"->\"Input\"];\n          cell // \
+Delete;\n        ];\n      ],\n      \"Transaction\" -> Function[data,\n      \
+  count = data[\"Length\"];\n      ]\n    }]\n  ];\n\n  <div class=\"flex \
+center w-full items-center flex-col text-center\">\n    <LFile/>\n  \
+</div>\n]", "Display" -> "codemirror", 
+    "Hash" -> "2e2fd327-a304-4639-9707-1c5da8118a97", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "1a4306d8-77c5-45ac-9aa1-284c04f783e1", "Invisible" -> False, 
+    "Hash" -> "e5a02126-a3c9-4dc9-9a2c-127c655a83b7", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "6acf6030-15e5-4e20-8302-2383c38c96e5", "Invisible" -> False, 
+    "Hash" -> "33cefb77-d0d2-48ea-bae6-1c73eb41025c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "fefc1b97-53ec-4259-ac58-edb5fd2a8960", "Invisible" -> False, 
+    "Hash" -> "0a9f4480-c1f8-4fe4-b21a-aa9d1323718d", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, <|"Data" -> "__template__", 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, <|"Data" -> "__template__", 
     "Display" -> "markdown", "Hash" -> 
-     "866af59a-35c9-4d98-b529-bbbc5d782cb7", "Invisible" -> False, 
+     "61af8938-6a1e-44f4-907a-e7ebbf0b0ea6", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>, 
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -125,7 +125,7 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "2556eceb-d472-43c3-b5a6-5c876bc2bd2e", "Invisible" -> False, 
+     "66f93f54-fc28-4f0f-b9f0-f0f732e4d54b", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "4dd65663-2344-4218-9124-383c7ae878a5"|>}, "serializer" -> "jsfn4"|>
+     "eed4fa17-ad34-4465-a6db-7417976e9f69"|>}, "serializer" -> "jsfn4"|>

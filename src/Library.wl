@@ -74,7 +74,7 @@ actions[".action-evaluate"] = Function[{string, notebook, controls, cli},
 
 groupCells[cells_] := GroupBy[(Join[#, <|"__type" -> (StringSplit[#["Data"], "\n"] // First)|>]) &/@ Select[cells, Function[c, c["Type"] === "Input"] ], Function[c, c["__type"] ] ];
 
-Parse[a_Association] := With[{cells = groupCells[ a["Cells"] ], path = a["Notebook", "Path"] },
+Parse[a_Association, path_] := With[{cells = groupCells[ a["Cells"] ]},
     Echo["Snippets >> Loading >> "<>path];
     Module[{title = "", decription = "", template = Automatic, action = {}},
         With[{t = cells[".md"] // First},
@@ -128,7 +128,7 @@ bookOpen[tag_String][assoc_] := Module[{},
   ]
 ]
 
-With[{book = Get[#] // Parse},
+With[{book = Parse[Get[#], #]},
   With[{temp = ("RawTemplate" /. book)},
    
     With[{
