@@ -8,7 +8,8 @@ BeginPackage["Notebook`Editor`Snippets`", {
     "JerryI`WLX`",
     "JerryI`WLX`Importer`",
     "JerryI`WLX`WebUI`", 
-    "JerryI`Notebook`AppExtensions`"
+    "JerryI`Notebook`AppExtensions`",
+    "KirillBelov`CSockets`EventsExtension`"
 }]
 
 SnippetsDatabase;
