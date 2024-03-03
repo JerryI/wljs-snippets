@@ -24,6 +24,7 @@ With[{
 
 With[{
     destroy := (
+        Echo["Snippets >> removed"];
         EventFire[localControls, "Remove", <|"Client"->client|>];
         EventFire[keyListener, "Stop", <|"Client"->client|>];
         fieldState = False;
@@ -32,7 +33,6 @@ With[{
         ClearAll[tagList];
         ClearAll[position];
         ClearAll[searchState];
-        EventRemove[keyListener];
         EventRemove[typeWritter];
         EventRemove[searchPanel];
         paneState = "Shown";
@@ -79,6 +79,7 @@ With[{
                 Echo[key]
         ];
     ]}];
+
 
     EventHandler[typeWritter, {"Type" -> Function[text,
         If[StringLength[text] < 3,
@@ -186,7 +187,7 @@ With[{
         <WebUIEventListener Type={"click"} Id={"palette"} Pattern={"Open"} Event={LocalControls} />   
         <WebUIEventListener Type={"input"} Id={"palette-field"} Pattern={"Type"} Event={typeWritter} />  
 
-        <WebUIKeyListener   Pattern={"Pressed"} Event={keyListener} />
+        <WebUIKeyListener  Pattern={"Pressed"} Event={keyListener} />
 
         <WebUIJSBind Event={LocalControls}>
             const ico = document.getElementById("palette-ico");
