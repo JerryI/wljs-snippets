@@ -159,7 +159,7 @@ With[{
     EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Path, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState]&)}];
 
 
-    <div id="palette" class="grow relative p-1 items-center flex rounded-md 0 h-7 win:h-6 win:mt-1 linux:h-6 linux:mt-1 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
+    <div id="palette" class="grow relative p-1 items-center flex rounded-md 0 h-7 owin:h-6 owin:mt-1 win:h-6 win:mt-1 linux:h-6 linux:mt-1 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
         <svg id="palette-ico" class="hidden pointer-events-none mr-2 h-4 w-4 text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
