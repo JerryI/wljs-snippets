@@ -1,127 +1,179 @@
-<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$134], 
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$61], 
    "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
 /wljs_packages/wljs-snippets/library/placement.wln"|>, 
  "Cells" -> {<|"Data" -> ".md\n# Inline gizmo navigation\nA helper tool for \
 manipulation 2D/3D parameters with a visible cursor on `Graphics` or \
 `Graphics3D` primitives", "Display" -> "codemirror", 
-    "Hash" -> "6fad636f-899a-4e36-bfea-c532d102598c", "Invisible" -> False, 
+    "Hash" -> "39627c7a-1d97-4cf3-9fad-d0e24d3e114c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> "# Inline gizmo navigation\nA helper tool for manipulation \
 2D/3D parameters with a visible cursor on `Graphics` or `Graphics3D` \
 primitives", "Display" -> "markdown", 
-    "Hash" -> "de5f6504-6c5f-451c-9ea8-ca535e6250a3", "Invisible" -> False, 
+    "Hash" -> "996e835f-f388-4258-8338-2e0595ef72b8", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".md\n## Usage\n1. Select a list with two coordinates in your \
 graphics primitive", "Display" -> "codemirror", 
-    "Hash" -> "b850d69e-25bd-47d9-94fb-33d578134687", "Invisible" -> False, 
+    "Hash" -> "e65b88b5-1f18-4c74-9eb1-e90119cb6cc8", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> "## Usage\n1. Select a list with two coordinates in your \
 graphics primitive", "Display" -> "markdown", 
-    "Hash" -> "17823bbb-46b6-420d-a8e0-ee5841d70d93", "Invisible" -> False, 
+    "Hash" -> "957c369f-914a-4412-8bff-21fb86bd87a4", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> "Plot[Sin[(*SqB[*)Sqrt[x](*]SqB*)], {x,0,36}, \
 Epilog->{Text[Style[\"Chirp pulse\", FontSize->16], \
 (*BB[*)({0.`,0.`})(*,*)(*\"1:eJxTTMoPSmNkYGAoZgESHvk5KWlMIB4HkAguqcxJdcqvgIiA\
 5INKc1KLuYAMp8Tk7PSi/NK8lDRmmPIgdyfn/Jz8okyQcRACiBnQdPOADS7KLPDP88wrKC0pZgUKu\
 CXmFKcCANSAHe4=\"*)(*]BB*)]}]", "Display" -> "codemirror", 
-    "Hash" -> "a8360d0b-a01b-4b9c-814a-a913535a299d", "Invisible" -> False, 
+    "Hash" -> "4f32a2fe-a689-4802-b6ad-27456492a074", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".md\n2. Call this snippet from the palette menu using \
 `Cmd/Win + P`\n3. Evaluate this cell\n4. A gizmo should appear under the \
 text. Now you can manipulate it using a mouse.\n5. Move it to the place you \
 want and copy the given coordinates from the text-box", 
     "Display" -> "codemirror", "Hash" -> 
-     "b62dd8a1-25aa-4e6e-a7b5-1e1e4c63410f", "Invisible" -> False, 
+     "0d34a304-1dc9-4681-a793-d10c1f48f92b", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> "2. Call this snippet from the palette menu using `Cmd/Win + \
 P`\n3. Evaluate this cell\n4. A gizmo should appear under the text. Now you \
 can manipulate it using a mouse.\n5. Move it to the place you want and copy \
 the given coordinates from the text-box", "Display" -> "markdown", 
-    "Hash" -> "a3d30485-83a0-4b1f-a650-400b41d3489f", "Invisible" -> False, 
+    "Hash" -> "e1d3a2de-15f1-4e8a-b120-eea7b62eb944", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".md\n![](assets/placement-assist.gif)", 
     "Display" -> "codemirror", "Hash" -> 
-     "62583a0e-030a-4003-8715-da8f66900ce5", "Invisible" -> False, 
+     "cd029447-d036-41e2-aa01-7ffc779462b2", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> "![](assets/placement-assist.gif)", "Display" -> "markdown", 
-    "Hash" -> "d71abe10-3899-442d-8344-7126c031d519", "Invisible" -> False, 
+    "Hash" -> "bc619baf-5586-46b8-8dff-d2c354ac2e9c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "d56f50b3-0604-4ae1-8ace-8e17ecc65544", "Invisible" -> False, 
+    "Hash" -> "11c705f8-aaee-4320-9321-5d00af9e6624", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "103560a7-c879-4003-baee-ccaff9b80dd2", "Invisible" -> False, 
+    "Hash" -> "8a39ecb1-ea28-481b-ac6c-f93d2276114a", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, <|"Data" -> "__source code__", 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "6d1c9e83-6402-4426-9f78-6e583abf7609", "Invisible" -> False, 
+     "1b3924de-cd97-40fa-bbd7-e0398ad76b64", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> ".md\nTemplate of a widget", "Display" -> "codemirror", 
+    "Hash" -> "98a8a4b7-f069-4749-a3f3-73143adc8c88", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> "Template of a widget", "Display" -> "markdown", 
+    "Hash" -> "520f1c8f-6f83-4999-9820-e82a3f2291aa", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> ".action-once\n.wlx\ngizmo`Component[OptionsPattern[]] := \
+With[{UId = OptionValue[\"UId\"], BEvent = OptionValue[\"Button\"]},\n  {\n  \
+<span style=\"top: -0.25rem\" class=\"sm-controls flex relative \
+cursor-default rounded-md 0 h-6 pl-3 pr-2 text-left text-gray-500  \
+focus:outline-none focus:ring-2 focus:ring-teal-600 sm:text-xs sm:leading-6 \
+bg-gray-100 border-1 border-gray-800\">\n    <div class=\"relative flex \
+flex-grow items-stretch\">\n      <input id=\"{UId}\" type=\"text\" \
+class=\"text-left text-gray-500 bg-gray-100 border-0 sm:text-xs\" \
+placeholder=\"...\"/>\n    </div>\n    <button id=\"{UId}-button\" \
+type=\"button\" class=\"relative -ml-px inline-flex items-center px-2 text-sm \
+hover:bg-gray-50\">\n      <svg class=\"h-5 w-5 text-gray-500\" viewBox=\"0 0 \
+20 20\" fill=\"currentColor\" aria-hidden=\"true\">\n        <svg \
+fill=\"currentColor\" stroke-width=\"1.5\" class=\"w-5 h-5\" viewBox=\"0 0 24 \
+24\"><path \
+d=\"M12,21h0a9,9,0,0,1-9-9H3a9,9,0,0,1,9-9h0a9,9,0,0,1,9,9h0A9,9,0,0,1,12,21Z\
+M8,11.5l3,3,5-5\" fill=\"none\" stroke=\"currentColor\"></path></svg>\n      \
+</svg>\n    </button>\n  </span>\n  ,\n    <script type=\"module\">\n      \
+const b = document.getElementById('<UId/>-button');\n      \
+b.addEventListener('click', () => {\n        server.kernel.emitt('<BEvent/>', \
+'True');\n      })\n    </script>\n  }\n]\n\nOptions[gizmo`Component] = \
+{\"UId\"->\"\", \"Button\"->\"\"};\n\ngizmo`View[value_, opts__] := With[{id \
+= CreateUUID[]},\n\tWLXEmbed[ gizmo`Component[\"UId\" -> id, opts], \
+\"SideEffect\"-> Global`InternalHandleTextView[value, id] ]\n];", 
+    "Display" -> "codemirror", "Hash" -> 
+     "ac889851-9dd9-4ef0-b0ae-0fd77287b872", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> ".md\nLogic of a widget", "Display" -> "codemirror", 
+    "Hash" -> "22322bb3-13ec-44bb-affb-1b121fd38317", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> "Logic of a widget", "Display" -> "markdown", 
+    "Hash" -> "0a69eac2-bbd1-4d10-a11d-341c05e30095", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".action-evaluate\n\nModule[{init = {0,0}, input = \
 FrontFetch[FrontEditorSelected[\"Get\"]], result},\n  If[StringLength[input] \
 === 0, Print[\"Assumming {0.,0.}...\"],\n    init = ToExpression[input, \
-InputForm];\n    If[!ListQ[init], FrontSubmit[Notify[\"Selected expression is \
-not a list\", \"Topic\"->\"Warning\"]]; Return[$Failed]];\n    \
-If[Length[init] =!= 2 && Length[init] =!= 3, FrontSubmit[Notify[\"The list \
-length must be 2 or 3\", \"Topic\"->\"Warning\"]]; Return[$Failed]];  \n  \
-];\n\n  With[{},\n\tLeakyModule[{variable = init, text = init // ToString, \
-gizmo},\n\n       Switch[Length[init]\n         ,2\n         ,gizmo[var_, \
-text_] := With[{v = var // Evaluate},\n        \t{\n        \
-\t\tPointSize[0.05], Red, \n        \t\tEventHandler[\n        \
-\t\t\tPoint[v], \n        \t\t\t{\n        \t\t\t\t\"drag\"->Function[xy, var \
-= xy; text = xy // ToString]\n        \t\t\t}\n        \t\t]\n        \t}\n   \
-     ]\n\n        ,3\n        ,gizmo[var_, text_] := With[{v = var // \
-Evaluate},\n        \t{\n        \t\tRed, \n        \t\tEventHandler[\n       \
- \t\t\tSphere[v, 0.02], \n        \t\t\t{\n        \
-\t\t\t\t\"transform\"->Function[assoc, var = assoc[\"position\"]; text = \
-assoc[\"position\"] // ToString]\n        \t\t\t}\n        \t\t]\n        \
-\t}\n        ];\n      ];\n        \n        SetAttributes[gizmo, \
-HoldAll];\n\n        With[{g = gizmo[variable, text]},\n    \t\tWith[{box = \
-Interpretation[TextView[text // Offload] // CreateFrontEndObject, \
-Offload[Static[g]; variable]]},\n              \
-FrontSubmit[FrontEditorSelected[\"Set\", ToString[box, StandardForm]]];\n     \
-     ]\n        ]\n\t]\n  ];\n    \n \n]", "Display" -> "codemirror", 
-    "Hash" -> "c6823a46-c9a5-4a9c-bea0-c33c1c14d4be", "Invisible" -> False, 
+InputForm];\n    If[!ListQ[init], Notify[\"Selected expression is not a \
+list\", \"Topic\"->\"Warning\"]; Return[$Failed]];\n    If[Length[init] =!= 2 \
+&& Length[init] =!= 3, Notify[\"The list length must be 2 or 3\", \
+\"Topic\"->\"Warning\"]; Return[$Failed]];  \n  ];\n\n  With[{event = \
+CreateUUID[], marker = MetaMarker[CreateUUID[]], window = \
+CurrentWindow[]},\n\tLeakyModule[{variable = init, text = init // ToString, \
+gizmo},\n\n      EventHandler[event, Function[Null,\n        \
+FrontSubmit[ViewBox`OuterExpression[text], marker, \"Window\"->window];\n     \
+   Notify[\"Done!\", \"Topic\"->\"Gizmo\"];\n      ]];\n\n       \
+Switch[Length[init]\n         ,2\n         ,gizmo[var_, text_] := With[{v = \
+var // Evaluate},\n        \t{\n        \t\tPointSize[0.05], Red, \n        \
+\t\tEventHandler[\n        \t\t\tPoint[v], \n        \t\t\t{\n        \
+\t\t\t\t\"drag\"->Function[xy, var = xy; text = xy // ToString]\n        \
+\t\t\t}\n        \t\t]\n        \t}\n        ]\n\n        ,3\n        \
+,gizmo[var_, text_] := With[{v = var // Evaluate},\n        \t{\n        \
+\t\tRed, \n        \t\tEventHandler[\n        \t\t\tSphere[v, 0.02], \n       \
+ \t\t\t{\n        \t\t\t\t\"transform\"->Function[assoc, var = \
+assoc[\"position\"]; text = assoc[\"position\"] // ToString]\n        \
+\t\t\t}\n        \t\t]\n        \t}\n        ];\n      ];\n        \n        \
+SetAttributes[gizmo, HoldAll];\n\n        With[{g = gizmo[variable, text]},\n \
+   \t\tWith[{box = Interpretation[{gizmo`View[text // Offload, \
+\"Button\"->event], marker} // CreateFrontEndObject, Offload[Static[g]; \
+variable]]},\n              FrontSubmit[FrontEditorSelected[\"Set\", \
+ToString[box, StandardForm]]];\n          ]\n        ]\n\t]\n  ];\n    \n \
+\n]", "Display" -> "codemirror", "Hash" -> 
+     "5d9f3cbc-663c-4d50-ae69-5b3c488c9acd", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "09ebe648-34eb-459d-934b-2549e330eda3", "Invisible" -> False, 
+    "Hash" -> "fc6cdfa0-f7fb-4f91-9d55-083ba169658d", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
-   <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "c133fa56-5edc-4b3e-a337-53b35222580a", "Invisible" -> False, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> ".md\n__icon snippet template__", "Display" -> "codemirror", 
+    "Hash" -> "a700e57c-c055-4404-be43-d2146e296810", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, <|"Data" -> "__template__", 
-    "Display" -> "markdown", "Hash" -> 
-     "ebcf6ae0-3377-4704-b94a-f3cea08b2704", "Invisible" -> False, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
+   <|"Data" -> "__icon snippet template__", "Display" -> "markdown", 
+    "Hash" -> "7a969762-343e-40a1-9dfa-d1f3de333b5a", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>, 
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -174,7 +226,7 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "dc6b74f4-895b-4a6e-ad55-aa2f577dbe03", "Invisible" -> False, 
+     "69086644-59a5-4455-863e-18a20a76ee6c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "503baec8-4643-403f-86ef-edd5efd7c23f"|>}, "serializer" -> "jsfn4"|>
+     "0d93267e-d033-4bba-86bc-c061a9b2c833"|>}, "serializer" -> "jsfn4"|>

@@ -4,6 +4,7 @@ BeginPackage["Notebook`Editor`Snippets`", {
     "JerryI`Notebook`Kernel`", 
     "JerryI`Notebook`Transactions`",
     "JerryI`Misc`Events`",
+    "JerryI`Misc`Async`",
     "JerryI`Misc`Events`Promise`",
     "JerryI`WLX`",
     "JerryI`WLX`Importer`",

@@ -40,35 +40,54 @@ actions[".action-evaluate-export"] = Function[{string, notebook, controls, cli},
     ,
         CellObj["Data" -> string, "Type" -> "Input", "Props"-><|"Hidden"->True|>, "MetaOnly"->True, "Notebook" -> notebook]
     ]},
-        EventFire[controls, "NotebookCellEvaluate", cell];
+        EventFire[controls, "NotebookCellEvaluate", cell]
     ]
 ]
 
 actions[".action-evaluate-project"] = Function[{string, notebook, controls, cli},
 
     With[{cell = CellObj["Data" -> string, "Type" -> "Input", "Invisible"->True, "MetaOnly"->True, "Notebook" -> notebook]},
-        EventFire[controls, "NotebookCellProject", cell];
-        With[{cloned = EventClone[cli]},
-            EventHandler[cloned, {"Closed" -> Function[Null,
-                EventRemove[cloned];
-                Echo["Snippets >> Removed temporal cell"];
-                Delete[cell];
-            ]}];
-        ];
+        With[{promise = EventFire[controls, "NotebookCellProject", cell]},
+                SetTimeout[
+                    Echo["Snippets >> Removed temporal cell"];
+                    Delete[cell];
+                , 3000];
+            promise
+        ]
     ]
 ]
 
 actions[".action-evaluate"] = Function[{string, notebook, controls, cli},
 
     With[{cell = CellObj["Data" -> string, "Type" -> "Input", "Invisible"->True, "MetaOnly"->True, "Notebook" -> notebook]},
-        EventFire[controls, "NotebookCellEvaluate", cell];
-        With[{cloned = EventClone[cli]},
-            EventHandler[cloned, {"Closed" -> Function[Null,
-                EventRemove[cloned];
-                Echo["Snippets >> Removed temporal cell"];
-                Delete[cell];
-            ]}];
-        ];
+            
+            With[{promise = EventFire[controls, "NotebookCellEvaluate", cell]},
+                SetTimeout[
+                    Echo["Snippets >> Removed temporal cell"];
+                    Delete[cell];
+                , 3000];
+
+                promise
+            ]
+    ]
+]
+
+aonce = <||>;
+
+actions[".action-once"] = Function[{string, notebook, controls, cli},
+    With[{hash = Hash[{string, notebook["Evaluator"]["Kernel"]}]},
+        (* fuck IT I HAVE TO CHECK KERNELS STATE!!!*)
+        (* TODO: FIXME *)
+        With[{cell = CellObj["Data" -> string, "Type" -> "Input", "Invisible"->True, "MetaOnly"->True, "Notebook" -> notebook]},
+            With[{promise = EventFire[controls, "NotebookCellEvaluate", cell]},
+                SetTimeout[
+                    Echo["Snippets >> Removed temporal cell"];
+                    Delete[cell];
+                , 3000];
+
+                promise
+            ]
+        ]
     ]
 ]
 
@@ -95,7 +114,8 @@ Parse[a_Association, path_] := With[{cells = groupCells[ a["Cells"] ]},
 ]
 
 
-
+ApplySync[f_, w_, {first_, rest___}] := f[w@@first, Function[Null, Echo["Async >> Next"]; ApplySync[f,w, {rest}]]]
+ApplySync[f_, w_, {}] := Null;
 
 books = <||>;
 
@@ -111,11 +131,13 @@ bookHandler[tag_String][assoc_] := Module[{},
             Return[];
     ];
 
-    With[{notebook = result},
-       With[{string = #["Content"], action = #["Action"]},
-        actions[action][string, notebook, controls, assoc["Client"] ]
-       ] &/@ books[tag, "Actions"];    
-
+    With[{notebook = result},    
+       ApplySync[Then, Function[{a1,a2,a3,a4,a5}, actions[a1][a2,a3,a4,a5] ],  
+            With[{string = #["Content"], action = #["Action"]},
+             Print["Action: ", action];
+             {action, string, notebook, controls, assoc["Client"]}
+            ] &/@ SortBy[books[tag, "Actions"], Function[item, If[item["Action"] === ".action-once", -1, 10] ] ]
+       ]
     ];
   ]
 ]
