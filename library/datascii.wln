@@ -1,91 +1,92 @@
-<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$39], 
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$38], 
    "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
-/Packages/wljs-snippets/library/datascii.wln"|>, 
+/wljs_packages/wljs-snippets/library/datascii.wln"|>, 
  "Cells" -> 
   {<|"Data" -> 
      ".md\n# Upload ASCII data file\nA helper to import ASCII-data files", 
     "Display" -> "codemirror", "Hash" -> 
-     "843abf39-9d34-4681-a3ce-e16cf4581898", "Invisible" -> False, 
+     "1cd99b58-aad3-4d20-a5f3-e24233307292", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> "# Upload ASCII data file\nA helper to import ASCII-data \
 files", "Display" -> "markdown", "Hash" -> 
-     "7c59da27-de1b-4f33-a5bd-1b455dfd2757", "Invisible" -> False, 
+     "d560dbde-6260-4b06-8daf-0effa967b718", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> ".md\n## Usage\nCall this snippet in your notebook. It will \
 create a temporal window for handling files and preview imported data", 
     "Display" -> "codemirror", "Hash" -> 
-     "77a021f8-9e69-458f-8123-f679c7b98b43", "Invisible" -> False, 
+     "a23ba19c-51be-4b0d-bdfd-8ed9fb5d51c6", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> "## Usage\nCall this snippet in your notebook. It will create \
 a temporal window for handling files and preview imported data", 
     "Display" -> "markdown", "Hash" -> 
-     "0c962512-3afc-4201-bec7-1c97e9cbc94d", "Invisible" -> False, 
+     "5e8a214f-3ecd-43ce-bc60-fffb1eb7ee12", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "2d760735-9633-4d27-8da8-56fab01bb792", "Invisible" -> False, 
+    "Hash" -> "71efa195-0eb6-4c9f-97ce-88571cf1aa89", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, <|"Data" -> "__source code__", 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "76ba47ac-5fd3-472b-919d-53cb2b39a901", "Invisible" -> False, 
+     "d22cf61d-0a71-4a79-80fd-b00d82eb24f0", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> ".action-evaluate-export\nModule[{file, content, headerLines, \
-previewCell, fileData, submit, imported, format, last},\n With[{cell = \
+previewCell, fileData, submit, imported, format, last, name},\n With[{cell = \
 EvaluationCell[], out = ResultCell[]},\n  file = \
 InputFile[\"Label\"->\"Attach a file\"];\n  content = \"\";\n  format = \
 \"TSV\";\n  headerLines = 0; \n\n  previewCell = Null;\n  fileData = \
 Null;\n\n  With[{},\n    submit = InputButton[\"Insert\"];\n    \
 EventHandler[submit, Function[Null,\n        \
-CellPrint[ToString[Iconize[imported], StandardForm], \"Type\"->\"Input\", \
-\"After\"->previewCell];\n        Delete[cell];\n        \n        \n    \
-]];\n  ];\n\n\n  update := With[{},\n    If[fileData =!= Null,\n      \
-If[previewCell =!= Null , Delete[previewCell]; previewCell = Null,\n        \
-last = CellPrint[ToString[submit, StandardForm], \"After\"->out];\n      ];\n \
-     \n      With[{},\n        imported = ImportByteArray[fileData, format, \
-HeaderLines->headerLines];\n        previewCell = Switch[Depth[imported],\n   \
-       3,\n            CellPrint[ToString[TableView[imported], StandardForm], \
-\"After\"->last]\n          ,\n\n          2,\n            \
-CellPrint[ToString[Take[imported, Min[30, Length[imported]]], StandardForm] \
-<> \"...\", \"After\"->last]\n          ,\n\n          1,\n            \
-With[{str = ToString[imported, StandardForm]},\n              \
-CellPrint[StringTake[str, Min[30, StringLength[str]]] <> \"...\", \
-\"After\"->last]\n            ]\n        \n        ];\n      ];\n    ];\n  \
-];\n\n\n  {\n    {\n      EventHandler[InputRange[0,3,1,0, \
-\"Label\"->\"Header lines\"], Function[n, headerLines = n; update;]],\n      \
-EventHandler[InputSelect[{\"TSV\", \"CSV\"}, Null, \"Label\"->\"Format\"], \
-Function[sel, format = sel; update;]]\n    },\n    {},\n    \
-{EventHandler[file, {\"File\" -> Function[data,\n      fileData = \
-data[\"Data\"] // BaseDecode;\n      update;\n     ]}\n    ]},\n    {}\n  } \
-// Grid\n] ]", "Display" -> "codemirror", 
-    "Hash" -> "2da51483-872d-4dba-a1f3-cf883dcaa441", "Invisible" -> False, 
+CellPrint[ToString[Iconize[imported, \"Label\"->name], StandardForm], \
+\"Type\"->\"Input\", \"After\"->previewCell];\n        Delete[cell];\n        \
+\n        \n    ]];\n  ];\n\n\n  update := With[{},\n    If[fileData =!= \
+Null,\n      If[previewCell =!= Null , Delete[previewCell]; previewCell = \
+Null,\n        last = CellPrint[ToString[submit, StandardForm], \
+\"After\"->out];\n      ];\n      \n      With[{},\n        imported = \
+ImportByteArray[fileData, format, HeaderLines->headerLines];\n        \
+previewCell = Switch[Depth[imported],\n          3,\n            \
+CellPrint[ToString[TableView[imported], StandardForm], \"After\"->last]\n     \
+     ,\n\n          2,\n            CellPrint[ToString[Take[imported, Min[30, \
+Length[imported]]], StandardForm] <> \"...\", \"After\"->last]\n          \
+,\n\n          1,\n            With[{str = ToString[imported, \
+StandardForm]},\n              CellPrint[StringTake[str, Min[30, \
+StringLength[str]]] <> \"...\", \"After\"->last]\n            ]\n        \n   \
+     ];\n      ];\n    ];\n  ];\n\n\n  {\n    {\n      \
+EventHandler[InputRange[0,3,1,0, \"Label\"->\"Header lines\"], Function[n, \
+headerLines = n; update;]],\n      EventHandler[InputSelect[{\"TSV\", \
+\"CSV\"}, Null, \"Label\"->\"Format\"], Function[sel, format = sel; \
+update;]]\n    },\n    {},\n    {EventHandler[file, {\"File\" -> \
+Function[data,\n      fileData = data[\"Data\"] // BaseDecode;\n      name = \
+data[\"Name\"];\n      update;\n     ]}\n    ]},\n    {}\n  } // Grid\n] ]", 
+    "Display" -> "codemirror", "Hash" -> 
+     "07ceb2f4-ff2e-4c6b-8d1c-d507bf7a7310", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "33ce451e-789c-425d-9bc3-7ebb229f891a", "Invisible" -> False, 
+    "Hash" -> "18cc86ea-7523-4b6c-80a1-0c3577c0c3cf", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "995ae1fe-f47a-4ed6-b8ee-9f966285511b", "Invisible" -> False, 
+    "Hash" -> "86aee5b5-9312-4e21-b39e-4750c13db239", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, <|"Data" -> "__template__", 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, <|"Data" -> "__template__", 
     "Display" -> "markdown", "Hash" -> 
-     "55eae933-9c78-46b6-aab0-deea3286ea75", "Invisible" -> False, 
+     "cc731d2b-c8e6-4c9b-b77b-3596893163dc", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>, 
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -128,7 +129,7 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "a385735d-1f18-4b4c-8b1a-8d99e6ca2af5", "Invisible" -> False, 
+     "e30053c2-0810-4e67-b5d2-c949f73aec24", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "2532c633-d3bf-4705-ab6f-5cf971a097c3"|>}, "serializer" -> "jsfn4"|>
+     "4f103c3b-2c0d-49bb-843f-047d9fbbccb4"|>}, "serializer" -> "jsfn4"|>
