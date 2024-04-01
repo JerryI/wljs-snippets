@@ -1,22 +1,21 @@
 {
   "name": "wljs-snippets",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "description": "Snippets for WLJS editor",
   "scripts": {
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/rollup --config rollup.config.mjs",
-    "restore": "mkdir _temp && cd _temp && git clone https://github.com/JerryI/wljs-snippets && mv wljs-snippets/.git ../.git && cd .. && rm -rf _temp"
+    "restore": "mkdir _temp && cd _temp && git clone --branch dev https://github.com/JerryI/wljs-snippets && mv wljs-snippets/.git ../.git && cd .. && rm -rf _temp"
   },
   "defaultPackage": true,
   "wljs-meta": {
-    "wl": "src/manager.wl",
-    "wlkernel": "src/kernel.wl",
-    "jsmodule": "src/kernel.js",
+    "frontend": "src/Frontend.wl",
     "priority": 9999999,
+    "category": "Notebook Extensions",
     "menu": [
       {
         "label": "Snippets",
         "accelerator": ["Cmd+p", "Ctrl+p"],
-        "internalHandler": "snippets",
+        "event": "open_snippets",
         "spawnWindow": false,
         "type": "button"
       }

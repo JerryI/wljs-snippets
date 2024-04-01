@@ -1,0 +1,112 @@
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$143], 
+   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
+/Packages/wljs-snippets/library/matrix.wln"|>, 
+ "Cells" -> {<|"Data" -> ".md\n# Insert matrix\nPlace matrix to the \
+selection", "Display" -> "codemirror", 
+    "Hash" -> "57964268-4701-4299-b9b4-cd81412a2dba", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> "# Insert matrix\nPlace matrix to the selection", 
+    "Display" -> "markdown", "Hash" -> 
+     "51eaaacd-3523-46fd-93de-9e32f9530321", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
+    "Hash" -> "57860793-fac4-4109-959c-b3221baaa83c", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, <|"Data" -> "__source code__", 
+    "Display" -> "markdown", "Hash" -> 
+     "f5e9c36b-681b-4aa3-8ee2-d286f4796382", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> ".action-evaluate-export\n.wlx\nModule[{matrix, Inputs, \
+Editor, InsertButton},\n  InsertButton = InputButton[\"Insert\", \
+\"Class\"->\"mt-2\"];\n\n  Inputs = InputGroup[{\n    InputRange[1,10,1,2, \
+\"Label\"->\"Rows\"], \n    InputRange[1,10,1,2, \"Label\"->\"Cols\"],\n    \
+InputCheckbox[False, \"Label\"->\"Fill diagonal with 1\"],\n    \
+InsertButton\n  }];\n\n  EventHandler[Inputs, Function[size,\n    matrix \
+=If[size[[3]],\n      ToString[Table[KroneckerDelta[i,j], {i,1,size[[1]]}, \
+{j, 1, size[[2]]}]//MatrixForm, StandardForm]\n    ,\n     ToString[Table[0, \
+{i,1,size[[1]]}, {j, 1, size[[2]]}]//MatrixForm, StandardForm]\n    ];\n  \
+]];\n\n  EventFire[Inputs];\n\n  With[{cell = EvaluationCell[], window = \
+CurrentWindow[]},\n    EventHandler[InsertButton // EventClone, \
+Function[Null, \n      FrontSubmit[FrontEditorSelected[\"Set\", matrix], \
+\"Window\"->window];\n      Delete[cell];\n    ]];\n  ];\n\n  Editor = \
+EditorView[matrix//Offload, \"ReadOnly\"->True] // CreateFrontEndObject;\n\n  \
+<div class=\"flex flex-row w-full gap-x-2\">\n    <div class=\"basis-1/2\">\n \
+     <Inputs/>\n    </div>\n        \n    <div class=\"basis-1/2 rounded-md \
+shadow\">\n      <div class=\"p-4 items-center \">\n        <Editor/>\n      \
+</div>\n    </div>\n  </div>\n]", "Display" -> "codemirror", 
+    "Hash" -> "9d5c9e4a-6d75-420a-8771-785237001fc6", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "b7d96082-4250-4c88-b4ec-9d989d083d14", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
+    "Hash" -> "48130923-02bd-4f65-8e93-41c486e7cc16", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, <|"Data" -> "__template__", 
+    "Display" -> "markdown", "Hash" -> 
+     "1bdfc52f-8cca-4faf-a7a0-1ca0d5b4892d", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
+OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
+OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
+tabindex=\"-1\" tag=\"{UTag}\" class=\"nooline rounded-sm group flex \
+cursor-default select-none items-center rounded-md px-2 py-1 \
+focus:bg-teal-500/25\">\n              <svg class=\"h-4 w-5 flex-none \
+text-gray-900  dark:text-gray-400 text-opacity-40\" fill=\"currentColor\" \
+viewBox=\"0 0 48 48\">\n\n<path d=\"M0 0h48v48H0z\" fill=\"none\"/>\n<g \
+>\n\t<rect x=\"4\" y=\"4\" width=\"10\" height=\"10\"/>\n\t<rect x=\"19\" \
+y=\"4\" width=\"10\" height=\"10\"/>\n\t<rect x=\"34\" y=\"4\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"4\" y=\"19\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"19\" y=\"19\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"34\" y=\"19\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"4\" y=\"34\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"19\" y=\"34\" width=\"10\" \
+height=\"10\"/>\n\t<rect x=\"34\" y=\"34\" width=\"10\" \
+height=\"10\"/>\n</g>\n</svg>\n              <span class=\"ml-3 flex-auto \
+truncate\"><Title/></span><span class=\"ml-3 flex-none text-xs font-semibold \
+text-gray-500\">\n                <kbd class=\"font-sans\"><Kbd/></kbd>\n     \
+           <button class=\"p-0.5 rounded hover:bg-gray-100 \
+dark:hover:bg-gray-200\" btag=\"{Btn}\">\n                  <svg class=\"w-4 \
+h-4 text-gray-400\" viewBox=\"0 0 24 24\" fill=\"none\">\n                    \
+<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 \
+2.75 6.89137 2.75 12C2.75 17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 \
+17.1086 21.25 12C21.25 6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 \
+6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 \
+17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 7.75C11.3787 \
+7.75 10.875 8.25368 10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 \
+9.625C9.71079 9.625 9.375 9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 \
+6.25C13.4497 6.25 14.625 7.42525 14.625 8.875C14.625 9.83834 14.1056 10.6796 \
+13.3353 11.1354C13.1385 11.2518 12.9761 11.3789 12.8703 11.5036C12.7675 \
+11.6246 12.75 11.7036 12.75 11.75V13C12.75 13.4142 12.4142 13.75 12 \
+13.75C11.5858 13.75 11.25 13.4142 11.25 13V11.75C11.25 11.2441 11.4715 \
+10.8336 11.7266 10.533C11.9786 10.236 12.2929 10.0092 12.5715 9.84439C12.9044 \
+9.64739 13.125 9.28655 13.125 8.875C13.125 8.25368 12.6213 7.75 12 7.75ZM12 \
+17C12.5523 17 13 16.5523 13 16C13 15.4477 12.5523 15 12 15C11.4477 15 11 \
+15.4477 11 16C11 16.5523 11.4477 17 12 17Z\" fill=\"currentColor\"/>\n        \
+          </svg>                  \n                </button>\n              \
+</span>\n    </li>    \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \
+\"Shortcut\"->\"\", \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
+    "Display" -> "codemirror", "Hash" -> 
+     "351fbd16-940c-4fdb-b14d-2c160a82f0c7", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "f44b2050-c835-4582-bebd-418396fdcbe3", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "1937637a-c68b-4c75-9986-055486799b3e"|>}, "serializer" -> "jsfn4"|>
