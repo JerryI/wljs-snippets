@@ -118,8 +118,10 @@ Module[{rest = StringTrim[text]},
         , 
 			
 		True, 
-			add["Data"->(".md\n" <> text), "Display"->"codemirror", "Type"->"Input", "Props"-><|"Hidden"->True|>];
-            add["Data"->text, "Display"->"markdown", "Type"->"Output"];
+            With[{processed = StringReplace[StringReplace[text, {"\\"->"\\\\"}], {"\\\\[" -> "\n$$\n", "\\\\]" -> "\n$$\n", "&"->"", "\\\\begin{align*}" -> "", "\\\\end{align*}" -> "", "\\\\begin{align}" -> "", "\\\\end{align}" -> ""}]},
+			    add["Data"->(".md\n" <> processed), "Display"->"codemirror", "Type"->"Input", "Props"-><|"Hidden"->True|>];
+                add["Data"->processed, "Display"->"markdown", "Type"->"Output"];
+            ]
 	]
 ]
 
