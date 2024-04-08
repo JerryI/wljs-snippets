@@ -6,7 +6,7 @@ core.Siriwave = async (args, env) => {
   const id = await interpretate(args[1], env);
   const doc = document.getElementById(id);
 
-  if (!siri) siri = (await import('siriwave')).default;
+  if (!siri) siri = (await import('./siriwave.esm-80419990.js')).default;
 
   switch(op) {
     case 'Start':
@@ -33,7 +33,7 @@ core.Siriwave = async (args, env) => {
       siriInstance = false;
     break;
   }
-}
+};
 
 core.ReadClipboardExtended = async (args, env) => {
   const clipboardContents = await navigator.clipboard.read();
@@ -43,4 +43,4 @@ core.ReadClipboardExtended = async (args, env) => {
     const type = item.types[0];
     return [type, Array.from(data)];
   }
-}
+};

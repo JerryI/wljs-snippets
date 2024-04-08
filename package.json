@@ -1,6 +1,6 @@
 {
   "name": "wljs-snippets",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Snippets for WLJS editor",
   "scripts": {
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/rollup --config rollup.config.mjs",
@@ -9,12 +9,16 @@
   "defaultPackage": true,
   "wljs-meta": {
     "frontend": "src/Frontend.wl",
+    "js": "dist/kernel.js",
     "priority": 9999999,
     "category": "Notebook Extensions",
     "menu": [
       {
         "label": "Snippets",
-        "accelerator": ["Cmd+p", "Ctrl+p"],
+        "accelerator": [
+          "Cmd+p",
+          "Ctrl+p"
+        ],
         "event": "open_snippets",
         "spawnWindow": false,
         "type": "button"
@@ -26,7 +30,8 @@
     "url": "https://github.com/JerryI/wljs-snippets"
   },
   "dependencies": {
-    "rollup": "^3.21.6"
+    "rollup": "^3.21.6",
+    "siriwave": "^2.4.0"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
