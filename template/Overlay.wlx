@@ -11,6 +11,7 @@ search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = Sn
 
 open[_, quickTags_, ClickActions_, path_, controls_, modals_, messanger_, localControls_, typeWritter_, keyListener_, emptyPanel_, searchPanel_, fieldState_] := Module[{
     lastResults = Null, typed = False, 
+    currentText = "",
     searchState = "Hidden",
     paneState = "Shown",
     position = 0,
@@ -30,6 +31,7 @@ With[{
         fieldState = False;
         ClearAll[lastResults];
         ClearAll[typed];
+        ClearAll[currentText];
         ClearAll[tagList];
         ClearAll[position];
         ClearAll[searchState];
@@ -69,11 +71,17 @@ With[{
                 EventFire[localControls, "Focus", <|"Position" -> position, "Client"->client|>];            
             ,
             13,
-                If[Length[tagList] == 0, Return[]];
-                If[position < 1, Return[]];
-                Echo[tagList[[position]]];
-                EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
-                destroy;
+                If[position === 0 && StringLength[currentText] > 7, 
+                    Echo["Send data to AI"];
+                    EventFire[SnippetsEvents, "InvokeAI", <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path, "Promt"->currentText|>];
+                    destroy;
+                ,
+                    If[Length[tagList] == 0, Return[]];
+                    If[position < 1, Return[]];
+                    Echo[tagList[[position]]];
+                    EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
+                    destroy;
+                ];
             ,
             _,
                 Echo[key]
@@ -99,8 +107,12 @@ With[{
                 paneState = "Hidden";
                 Echo[paneState];
             ];
+
+            
             
         ];
+
+        currentText = text;
 
         Echo[text];
         If[AbsoluteTime[] - timer > 0.3,
@@ -158,8 +170,15 @@ With[{
 
     EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Path, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState]&)}];
 
-
-    <div id="palette" class="grow relative p-1 items-center flex rounded-md 0 h-7 owin:h-6 owin:mt-1 win:h-6 win:mt-1 linux:h-6 linux:mt-1 pl-3 bg-gray-100 pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 dark:bg-gray-700">
+<div class="relative grow rounded-md bg-gray-100 dark:bg-gray-700">
+    <style>
+        #canvas-palette-back > canvas {
+            filter: blur(15px);
+        }
+    </style>
+    <div class="absolute w-full h-full rounded-md overflow-hidden" id="canvas-palette-back">
+    </div>
+    <div id="palette" class="grow relative p-1 items-center flex rounded-md 0 h-7 owin:h-6 owin:mt-1 win:h-6 win:mt-1 linux:h-6 linux:mt-1 pl-3  pr-2 text-left text-gray-500  ring-1 ring-inset ring-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-xs sm:leading-6 dark:ring-gray-600 ">
         <svg id="palette-ico" class="hidden pointer-events-none mr-2 h-4 w-4 text-gray-900 dark:text-gray-400 text-opacity-40" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
         </svg>
@@ -193,6 +212,7 @@ With[{
             const ico = document.getElementById("palette-ico");
             const field = document.getElementById("palette-field");
             const palette = document.getElementById('palette');
+
             let storage;
 
             this.on('Load', () => {
@@ -239,6 +259,7 @@ With[{
 
         </WebUIJSBind>
     </div>
+</div>    
 ]]
 
 Options[Component] = {"Path"->"", "Parameters"->"", "Modals"->"", "AppEvent"->"", "Controls"->"", "Messanger"->""}

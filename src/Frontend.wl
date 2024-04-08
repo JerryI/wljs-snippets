@@ -41,6 +41,7 @@ SnippetsGenericTemplate = ImportComponent[FileNameJoin[{iTemplate, "Generic.wlx"
 
 Get[FileNameJoin[{rootFolder, "src", "Defaults.wl"}] ];
 Get[FileNameJoin[{rootFolder, "src", "Library.wl"}] ];
+Get[FileNameJoin[{rootFolder, "src", "AI.wl"}] ];
 
 AppExtensions`TemplateInjection["AppTopBar"] = ImportComponent[FileNameJoin[{rootFolder, "template", "Overlay.wlx"}] ];
 
