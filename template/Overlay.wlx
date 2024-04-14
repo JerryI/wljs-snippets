@@ -8,7 +8,11 @@ search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = Sn
         If[StringLength[s] > 10,
             Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
         ,
-            (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+            If[StringLength[s] < 5,
+                (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+            ,
+                Join[(Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]], {"InvokeAI"}] // DeleteDuplicates
+            ]   
         ]
         
     ]
