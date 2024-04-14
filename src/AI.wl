@@ -4,13 +4,21 @@ BeginPackage["Notebook`Editor`Snippets`AI`", {
     "JerryI`Notebook`Kernel`", 
     "JerryI`Notebook`Transactions`",
     "JerryI`Misc`Events`",
+    "JerryI`Misc`Async`",
     "JerryI`Misc`Events`Promise`",
     "JerryI`WLX`",
+    "JerryI`WLX`WLJS`",
+    "JerryI`Misc`WLJS`Transport`",
     "JerryI`WLX`Importer`",
     "JerryI`WLX`WebUI`",     
     "Notebook`Editor`Snippets`",
     "Notebook`EditorUtilsMinimal`",
-    "JerryI`LPM`"
+    "JerryI`Notebook`AppExtensions`",
+    "KirillBelov`HTTPHandler`",
+    "KirillBelov`HTTPHandler`Extensions`",
+    "KirillBelov`Internal`",
+    "JerryI`LPM`",
+    "JerryI`WLJSPM`"
 }]
 
 PacletRepositories[{
@@ -19,32 +27,54 @@ PacletRepositories[{
 
 Needs["KirillBelov`GPTLink`"];
 
+
+GPTChatObject /: EventHandler[o_GPTChatObject, opts_] := EventHandler[o["Hash"], opts]
+GPTChatObject /: EventFire[o_GPTChatObject, opts__] := EventFire[o["Hash"], opts]
+GPTChatObject /: EventClone[o_GPTChatObject] := EventClone[o["Hash"] ]
+GPTChatObject /: EventRemove[o_GPTChatObject, opts_] := EventRemove[o["Hash"], opts]
+
+
+AIChatRenderer;
 Global`Siriwave;
+Global`SiriwaveMagicRun;
+
+AIChat`HashMap;
 
 Begin["`Private`"]
 
-GPTChatCompletePromise[args__, rules___Rule] := With[{p = Promise[]},
+AIChat`HashMap = <||>;
+
+$rootDir =  ParentDirectory[ DirectoryName[$InputFileName] ];
+
+AIChatRenderer = "";
+
+chatWindow = ImportComponent[FileNameJoin[{$rootDir, "template", "Chat.wlx"}] ];
+
+With[{http = AppExtensions`HTTPHandler},
+    Echo[http];
+    http["MessageHandler", "ChatWindow"] = AssocMatchQ[<|"Path" -> "/gptchat"|>] -> chatWindow;
+];
+
+GPTChatCompletePromise[args__, rules___Rule] := With[{p = Promise[], o = {args} // First},
     GPTChatCompleteAsync[args, Function[data,
-        EventFire[p, Resolve, data]
+        With[{},
+            EventFire[o, "Complete", o["Messages"] ];
+        ];
+        EventFire[p, Resolve, data];
     ], rules];
     p
 ];
 
 Print[">> Snippets >> AI loading..."];
 
-chat = GPTChatObject["You are helping with Wolfram Language or Mathematica now."];
+makePromt[data_Association] := data["Promt"]
 
-makePromt[data_Association] := With[{p = Promise[]},
-    (*Then[WebUIFetch[FrontEditorSelected["GetDoc"], data["Client"], "Format"->"JSON" ] ]*)
-    Echo["Making promt: "<>data["Promt"] ];
-    EventFire[p, Resolve, data["Promt"] ];
-    p
-]
-
-getNotebook[assoc_Association] := With[{result = EventFire[assoc["Controls"], "NotebookQ", True] /. {{___, n_Notebook, ___} :> n} , controls = assoc["Controls"]},
+getNotebook[assoc_Association] := With[{result = EventFire[assoc["Controls"], "NotebookQ", True] /. {{___, n_Notebook, ___} :> n}},
     Print[result];
     Echo["Getting notebook"];
     If[MatchQ[result, _Notebook],
+            Echo["Got"];
+            Echo[result];
             result
     ,
             Echo["rejected"];
@@ -125,6 +155,229 @@ Module[{rest = StringTrim[text]},
 	]
 ]
 
+trimContent[str_String] := With[{splitted = StringSplit[str, "\n"]},
+    If[StringMatchQ[splitted // First, "."~~WordCharacter..],
+        StringRiffle[Rest[splitted], "\n"]
+    ,
+        str
+    ]
+]
+
+checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
+    If[StringMatchQ[splitted // First, "."~~WordCharacter..],
+        StringReplace[StringTrim[splitted // First], {
+            ".js" -> "Javascript",
+            ".md" -> "Markdown",
+            ".html" -> "HTML",
+            ".wlx" -> "HTML",
+            ".mermaid" -> "Mermaid Diagrams"
+        }]
+    ,
+        "Wolfram Language"
+    ]
+]
+
+restoreLanguage[lang_, content_] := Switch[lang,
+    StringMatchQ[lang, {"Wolfram", "Mathematica"} ~~ __, IgnoreCase -> True],
+    content,
+
+    StringMatchQ[lang, {"HTML", "XML"} ~~ __, IgnoreCase -> True],
+    StringJoin[".html\n", content],
+
+    StringMatchQ[lang, {"Javascript", "JS"} ~~ __, IgnoreCase -> True],
+    StringJoin[".js\n", content],
+
+    StringMatchQ[lang, {"Markdown", "MD"} ~~ __, IgnoreCase -> True],
+    StringJoin[".md\n", content],
+
+    StringMatchQ[lang, {"Mermaid"} ~~ __, IgnoreCase -> True],
+    StringJoin[".mermaid\n", content],
+
+    _,
+    content
+]
+
+basisChatFunction[_] := {
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "cellGetContent", 
+    		"description" -> "get content of code in the current cell as a text string.  Returns ERROR if no cell is selected by user", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <||>
+    		|>
+    	|>
+    |>,
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "cellGetLanguage", 
+    		"description" -> "gets the name of a programming language used in a current cell. ", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <||>
+    		|>
+    	|>
+    |>,
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "cellSetContent", 
+    		"description" -> "set the entire content in the current cell to a given a string expression. Returns ERROR if no cell is selected by user, then try printCell function instead", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "expression" -> <|
+                        "type"-> "string",
+                        "description"-> "new code content"
+                    |>
+                |>
+    		|>
+    	|>
+    |>,
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "printCell", 
+    		"description" -> "creates a new cell after the current one or at the end of the notebook with a code in language languageName and content given as a string in content argument", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "languageName" -> <|
+                        "type"-> "string",
+                        "description"-> "name of a programming language used"
+                    |>,
+
+                    "content" -> <|
+                        "type"-> "string",
+                        "description"-> "content of a cell"
+                    |>
+                |>
+    		|>
+    	|>
+    |>            
+}
+
+
+createChat[assoc_Association] := With[{
+    client = assoc["Client"],
+    notebook = assoc["Notebook"]
+},
+    Module[{
+        chat,
+        functionsHandler,
+        setContent,
+        printCell,
+        last = notebook["FocusedCell"]
+    },
+
+        Print["Selected cell"];
+        Print[last];
+        
+
+        printCell[language_String, str_String] := With[{
+            new = If[!MatchQ[last, _CellObj], 
+                            CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[language, str], "After"-> (___?OutputCellQ) ]
+                        ,
+                            CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[language, str], "After"->Sequence[last, ___?OutputCellQ] ]
+                        ]
+        },
+            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>new["Hash"] ], client];
+
+            new
+        ];
+        
+        setContent[str_String] := (
+            Echo["AI>>setContent"]; 
+            WebUISubmit[FrontEditorSelected["SetDoc", restoreLanguage[checkLanguage[ last["Data"] ], str] ], client];
+            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>last["Hash"] ], client];
+        );
+
+        functionsHandler[a_Association] := With[{},
+            Echo[a];
+
+            Function[call,
+                Switch[call["function", "name"],
+                    "cellGetContent",
+                        If[!MatchQ[last, _CellObj], "ERROR",
+                            trimContent[ last["Data"] ]
+                        ],
+
+                    "cellGetLanguage",
+                        If[!MatchQ[last, _CellObj], "Wolfram Language",
+                            checkLanguage[ last["Data"] ]
+                        ],
+                    
+                    "printCell",
+                        last = (Apply[printCell] @ Values @ ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]); 
+                        "Ok",
+
+                    "cellSetContent",
+                        If[!MatchQ[last, _CellObj], "ERROR",
+                                (Apply[setContent] @ Values @ ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]); 
+                            "Ok"
+                        ]
+                        ,
+
+                    _,
+                        Echo["Undefined Function!"]; Null
+                ]
+            ] /@ a["tool_calls"] // First
+        ];
+
+        chat = GPTChatObject["You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell.", "ToolFunction"->basisChatFunction, "ToolHandler"->functionsHandler, "APIToken"->getToken, "Logger"->Function[x, Echo["FIREEEEE!!!!!!" <> chat["Hash"] ]; EventFire[chat, "Update", chat["Messages"] ] ] ];
+
+
+
+        With[{uid = CreateUUID[], c = chat},
+            AIChat`HashMap[uid] = c;
+            c["Hash"] = uid;
+
+            If[c["Shown"] // TrueQ,
+                WebUIClose[c["Socket"] ];
+                SetTimeout[WebUILocation["/gptchat?id="<>uid, client, "Target"->_, "Features"->"width=460, height=640, top=0, left=800"], 300];
+            ,
+                WebUILocation["/gptchat?id="<>uid, client, "Target"->_, "Features"->"width=460, height=640, top=0, left=800"];
+            ];
+
+            notebook["ChatBook"] = chat;
+            EventHandler[EventClone[notebook], {
+                "OnClose" -> Function[Null,
+                    notebook["ChatBook"] = .;
+                    AIChat`HashMap[uid] = .;
+                    If[c["Shown"] // TrueQ,
+                        WebUIClose[c["Socket"] ];
+                    ];
+                    Echo["AI Chat was destoryed"];
+                ]
+            }];
+
+            EventHandler[chat, {"Comment" -> Function[payload,
+                WebUISubmit[Global`Siriwave["Start", "canvas-palette-back"], client ];
+                Then[GPTChatCompletePromise[ chat, payload ], Function[Null,
+                    WebUISubmit[Global`Siriwave["Stop"], client ];
+                ] ]; 
+            ]}];
+        ];
+
+
+
+
+        chat
+    ]
+]
+
+
 getToken := SystemCredential["OPENAI_API_KEY"]
 
 checkToken := With[{
@@ -167,28 +420,30 @@ handle[data_Association] := Module[{}, With[{
         Return[Null];
     ];
 
-    If[Length[ chat["Messages"] ] < 2,
-        With[{spinner = Global`NotificationSpinner["Topic"->"OpenAI session", "Body"->"Starting... Please, wait"]},
-            EventFire[data["Messanger"], spinner, True];
-            Echo["Not initilized!"];
-            Then[GPTChatCompletePromise[chat], Function[Null,
-                Delete[spinner];
-                handle[data]
-            ] ];
-        ];
-        Return[Null, Module];
-    ];
 
     WebUISubmit[Global`Siriwave["Start", "canvas-palette-back"], data["Client"] ];
 
-    Then[makePromt[data], Function[promt,
-        Then[GPTChatCompletePromise[chat, promt], Function[Null, 
-            With[{message = Last[ chat["Messages"] ]["content"]},
-                parse[data, getNotebook[data], message];
-                WebUISubmit[Global`Siriwave["Stop"], data["Client"] ];
+    With[{assoc = Join[data, <|"Notebook" -> getNotebook[data]|> ]},
+        If[MatchQ[assoc["Notebook"]["ChatBook"], _GPTChatObject],
+            Echo["Reuse a chat!"];
+
+            If[!(assoc["Notebook"]["ChatBook"]["Shown"] // TrueQ),
+                WebUILocation["/gptchat?id="<>assoc["Notebook"]["ChatBook"]["Hash"], data["Client"], "Target"->_, "Features"->"width=460, height=640, top=0, left=800"];
             ];
-        ] ];
-    ] ];
+
+            Then[GPTChatCompletePromise[ assoc["Notebook"]["ChatBook"], makePromt[assoc] ], Function[Null,
+                WebUISubmit[Global`Siriwave["Stop"], data["Client"] ];
+                
+            ] ]; 
+        ,
+            Echo["Create a chat!"];
+            Then[GPTChatCompletePromise[ createChat[assoc], makePromt[assoc] ], Function[Null,
+                WebUISubmit[Global`Siriwave["Stop"], data["Client"] ];
+                
+            ] ];        
+        ]
+
+    ];
 
 ] ]
 

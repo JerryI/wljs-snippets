@@ -1,0 +1,23 @@
+Component[item_Association, chat_] := With[{
+  DateMessage = TextString[Round[Now - item["date"], 1]],
+  Content = item["content"]
+},
+  <li class="relative flex gap-x-4">
+  <div class="absolute left-0 top-0 flex w-6 justify-center">
+    <div class="w-px bg-gray-200"></div>
+  </div>
+  <svg class="h-6 w-6 mt-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+  </svg>
+  <div class="flex-auto rounded-md dark:bg-gray-700 bg-gray-100 p-3 ring-1 ring-inset dark:ring-gray-500 ring-gray-200">
+    <div class="flex justify-between gap-x-4">
+      <div class="py-0.5 text-xs leading-5"><span class="font-medium text-gray-900 dark:text-gray-300">You</span> </div>
+      <time class="flex-none py-0.5 text-xs leading-5"><DateMessage/> ago</time>
+    </div>
+    <p class="text-sm leading-6"><Content/></p>
+  </div>
+  </li>
+]
+
+
+Component

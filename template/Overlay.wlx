@@ -5,11 +5,17 @@ search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = Sn
             MapIndexed[If[Length[#1]==0, Nothing, #2[[1]]]&, StringCases[Values @ indices, __~~RegularExpression["[^\\w]"]~~str~~___]]
         }
     ]] /@ words]},
-        (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+        If[StringLength[s] > 10,
+            Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
+        ,
+            (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+        ]
+        
     ]
 ];
 
-open[_, quickTags_, ClickActions_, path_, controls_, modals_, messanger_, localControls_, typeWritter_, keyListener_, emptyPanel_, searchPanel_, fieldState_] := Module[{
+
+open[_, quickTags_, ClickActions_, path_, controls_, modals_, messanger_, localControls_, typeWritter_, keyListener_, emptyPanel_, aiPanel_, searchPanel_, fieldState_] := Module[{
     lastResults = Null, typed = False, 
     currentText = "",
     searchState = "Hidden",
@@ -47,7 +53,7 @@ With[{
 
     EventHandler[ClickActions, {"Click" -> Function[data,
         Echo[data];
-        EventFire[SnippetsEvents, data, <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
+        EventFire[SnippetsEvents, data, <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path, "Promt"->currentText|>];
         destroy;
     ]}];
 
@@ -79,7 +85,7 @@ With[{
                     If[Length[tagList] == 0, Return[]];
                     If[position < 1, Return[]];
                     Echo[tagList[[position]]];
-                    EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path|>];
+                    EventFire[SnippetsEvents, tagList[[position]], <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path, "Promt"->currentText|>];
                     destroy;
                 ];
             ,
@@ -160,6 +166,7 @@ With[{
     quickTags = {"newFile", "renameNotebook"},
     LocalControls = CreateUUID[],
     emptyPanel = CreateUUID[],
+    aiPanel = CreateUUID[],
     ClickActions = CreateUUID[],
     resultsPanel = CreateUUID[],
     typeWritter = CreateUUID[],
@@ -168,7 +175,7 @@ With[{
 },
     EventHandler[EventClone[Controls], {"open_snippets" -> Function[Null, EventFire[LocalControls, "Open", True]]}];
 
-    EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Path, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, searchPanel, fieldState]&)}];
+    EventHandler[LocalControls, {"Open" -> (open[#, quickTags, ClickActions, Path, Controls, Modals, Messanger, LocalControls, typeWritter, keyListener, emptyPanel, aiPanel, searchPanel, fieldState]&)}];
 
 <div class="relative grow rounded-md bg-gray-100 dark:bg-gray-700">
     <style>
@@ -191,7 +198,7 @@ With[{
         <WebUILazyLoad Event={LocalControls}>
             <div id="palette-list" class="absolute top-0 mt-10 right-0 left-0 w-full">
                <div class="mx-auto max-w-2xl transform divide-y divide-gray-500 dark:divine-gray-300 divide-opacity-10 overflow-hidden rounded-md bg-gray-100 bg-opacity-80 shadow-md  backdrop-blur backdrop-filter transition-all bg-d9 text-left text-gray-500 w-70 ring-1 ring-inset ring-gray-400 pb-1 dark:bg-gray-700">
-                  <ul class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto">
+                  <ul class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto sc-b">
                     <WebUILazyLoad Event={searchPanel}>
                         <SearchResults Data={WebUILazyLoadDataProvided}/>
                     </WebUILazyLoad>               

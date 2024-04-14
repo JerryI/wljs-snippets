@@ -30,6 +30,7 @@
     "url": "https://github.com/JerryI/wljs-snippets"
   },
   "dependencies": {
+    "party-js": "^2.2.0",
     "rollup": "^3.21.6",
     "siriwave": "^2.4.0"
   },
