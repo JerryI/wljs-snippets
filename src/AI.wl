@@ -179,23 +179,23 @@ checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
     ]
 ]
 
-restoreLanguage[lang_, content_] := Switch[lang,
-    StringMatchQ[lang, {"Wolfram", "Mathematica"} ~~ __, IgnoreCase -> True],
+restoreLanguage[lang_, content_] := Which[
+    StringMatchQ[lang, {"Wolfram", "Mathematica"} ~~ ___, IgnoreCase -> True],
     content,
-
-    StringMatchQ[lang, {"HTML", "XML"} ~~ __, IgnoreCase -> True],
+    
+    StringMatchQ[lang, {"HTML", "XML"} ~~ ___, IgnoreCase -> True],
     StringJoin[".html\n", content],
 
-    StringMatchQ[lang, {"Javascript", "JS"} ~~ __, IgnoreCase -> True],
+    StringMatchQ[lang, {"Javascript", "JS"} ~~ ___, IgnoreCase -> True],
     StringJoin[".js\n", content],
 
-    StringMatchQ[lang, {"Markdown", "MD"} ~~ __, IgnoreCase -> True],
+    StringMatchQ[lang, {"Markdown", "MD"} ~~ ___, IgnoreCase -> True],
     StringJoin[".md\n", content],
 
-    StringMatchQ[lang, {"Mermaid"} ~~ __, IgnoreCase -> True],
+    StringMatchQ[lang, {"Mermaid"} ~~ ___, IgnoreCase -> True],
     StringJoin[".mermaid\n", content],
 
-    _,
+    True,
     content
 ]
 
