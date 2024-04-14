@@ -164,16 +164,18 @@ trimContent[str_String] := With[{splitted = StringSplit[str, "\n"]},
 ]
 
 checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
-    If[StringMatchQ[splitted // First, "."~~WordCharacter..],
-        StringReplace[StringTrim[splitted // First], {
-            ".js" -> "Javascript",
-            ".md" -> "Markdown",
-            ".html" -> "HTML",
-            ".wlx" -> "HTML",
-            ".mermaid" -> "Mermaid Diagrams"
-        }]
-    ,
-        "Wolfram Language"
+    If[Length[splitted] === 0, "Wolfram Language",
+        If[StringMatchQ[splitted // First, "."~~WordCharacter..],
+            StringReplace[StringTrim[splitted // First], {
+                ".js" -> "Javascript",
+                ".md" -> "Markdown",
+                ".html" -> "HTML",
+                ".wlx" -> "HTML",
+                ".mermaid" -> "Mermaid Diagrams"
+            }]
+        ,
+            "Wolfram Language"
+        ] 
     ]
 ]
 
