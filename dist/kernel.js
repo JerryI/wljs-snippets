@@ -73,7 +73,9 @@ core.ChatRunMarkdownProcessor = async (args, env) => {
     await window.interpretate.shared.marked.load();
     marked = window.interpretate.shared.marked.default;
   }
-  console.error(env.element);
+  
+  if (env.element.nodeType !== 1) return;
+
   const list = env.element.querySelectorAll("p[data-type='1']");
   console.log(list);
   for (let i=0; i<list.length; ++i) {
