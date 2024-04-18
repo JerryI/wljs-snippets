@@ -1,0 +1,48 @@
+# Notes on Javascript cells
+
+1. Javascript cell has to return something. It goes line by line like if it was a function 
+
+```js
+const i = 1;
+const j = 2;
+
+return i + j;
+```
+
+the result `3` will be displayed in the output cell. If it returns DOM element, it will be rendered as a normal DOM element.
+No brackets are needed. The cell code content is an implicit anonymous JS function.
+
+2. Please, do not use document.body, it might destroy the iser interface, since you are in the notebook running in the browser.
+__To insert a DOM element__ firstly create it and then return it as if the cell content was an anonumous function 
+
+for example
+
+```js
+const element = document.createElement('span');
+element.innerText = "Hello World!"
+
+//do whatever you want
+
+// will display the created object to the output cell
+return element;
+```
+
+3. All variables defined in the cell are local, i.e. scoped. To access global variables use window object.
+
+4. Animation. If you use `requestAnimationFrame` or `setInterval`, please, assign each call of it to a variable, so that you can cancel it once a cell has been destroyed.
+Use property of the root context `ondestroy` for that as follows 
+
+```js
+let uid;
+//some rendering code...
+uid = requestAnimationFrame(render);
+//...
+
+this.ondestroy = () => {
+    cancelAnimationFrame(uid);
+}
+
+//...
+```
+
+this.ondestroy will be called in a case if a user decides to remove or reevaluate the javascript cell. 

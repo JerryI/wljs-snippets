@@ -56,6 +56,10 @@ With[{http = AppExtensions`HTTPHandler},
 ];
 
 GPTChatCompletePromise[args__, rules___Rule] := With[{p = Promise[], o = {args} // First},
+    Echo["MaxTokens: "<>ToString[o["MaxTokens"] ] ];
+    Echo["TokensTotal: "<>ToString[o["TotalTokens"] ] ];
+
+
     GPTChatCompleteAsync[args, Function[data,
         With[{},
             EventFire[o, "Complete", o["Messages"] ];
@@ -182,6 +186,9 @@ checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
 restoreLanguage[lang_, content_] := Which[
     StringMatchQ[lang, {"Wolfram", "Mathematica"} ~~ ___, IgnoreCase -> True],
     content,
+
+    StringMatchQ[lang, {"RevealJS", "Reveal", "Reveal.JS", "Reveal JS", "Slide"} ~~ ___, IgnoreCase -> True],
+    StringJoin[".slide\n", content],
     
     StringMatchQ[lang, {"HTML", "XML"} ~~ ___, IgnoreCase -> True],
     StringJoin[".html\n", content],
@@ -216,7 +223,7 @@ basisChatFunction[_] := {
     	"type" -> "function", 
     	"function" -> <|
     		"name" -> "cellGetLanguage", 
-    		"description" -> "gets the name of a programming language used in a current cell. ", 
+    		"description" -> "gets the name of a programming language used in a current cell selected by user. ", 
     		"parameters" -> <|
     			"type" -> "object", 
     			"properties" -> <||>
@@ -274,11 +281,14 @@ createChat[assoc_Association] := With[{
         functionsHandler,
         setContent,
         printCell,
-        last = notebook["FocusedCell"]
+        last
     },
 
         Print["Selected cell"];
+
+        last := notebook["FocusedCell"];
         Print[last];
+
         
 
         printCell[language_String, str_String] := With[{
@@ -296,7 +306,7 @@ createChat[assoc_Association] := With[{
         setContent[str_String] := (
             Echo["AI>>setContent"]; 
             WebUISubmit[FrontEditorSelected["SetDoc", restoreLanguage[checkLanguage[ last["Data"] ], str] ], client];
-            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>last["Hash"] ], client];
+            If[MatchQ[last, _CellObj], WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>last["Hash"] ], client] ];
         );
 
         functionsHandler[a_Association] := With[{},
@@ -315,10 +325,12 @@ createChat[assoc_Association] := With[{
                         ],
                     
                     "printCell",
-                        last = (Apply[printCell] @ Values @ ImportString[ImportString[
+                        With[{args = ImportString[ImportString[
 										call["function", "arguments"], 
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
-									]); 
+									]},
+                                    printCell[args["languageName"], args["content"] ]    
+                                ]; 
                         "Ok",
 
                     "cellSetContent",
@@ -337,8 +349,13 @@ createChat[assoc_Association] := With[{
             ] /@ a["tool_calls"] // First
         ];
 
-        chat = GPTChatObject["You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell.", "ToolFunction"->basisChatFunction, "ToolHandler"->functionsHandler, "APIToken"->getToken, "Logger"->Function[x, Echo["FIREEEEE!!!!!!" <> chat["Hash"] ]; EventFire[chat, "Update", chat["Messages"] ] ] ];
+        systemPromt = "You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
+        systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
+        systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
 
+        With[{promt = systemPromt},
+            chat = GPTChatObject[promt, "ToolFunction"->basisChatFunction, "ToolHandler"->functionsHandler, "APIToken"->getToken, "Logger"->Function[x, Echo["FIREEEEE!!!!!!" <> chat["Hash"] ]; EventFire[chat, "Update", chat["Messages"] ] ] ];
+        ];
 
 
         With[{uid = CreateUUID[], c = chat},

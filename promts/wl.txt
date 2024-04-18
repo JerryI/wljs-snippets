@@ -1,0 +1,442 @@
+# Notes on Wolfram Language cells and its standard library
+
+The Wolfram Language environment slightly differs from Wolfram Mathematica.
+The following symbols are not supported here:
+- Manipulate
+- Dynamic
+- DynamicModule
+- Refresh
+- Labeled
+- PlotLegends
+- Legended
+- Specularity
+- CellPrint
+- EvaluationCell
+- Notebook
+- EvaluationNotebook
+- PlotLabel
+- Information
+- Dataset
+- Out
+- Button
+- EventHandler (built differently, see examples)
+- Slider
+- Show
+
+There are other libraries loaded into the Kernel, that replaces the unsupported symbols, but in a different way. 
+Here is the short documentation for them
+
+## Dynamic plot function
+Works only for real values
+
+ManipulatePlot[f_, {t, tmin_, tmax_}, {p1, min_, max_}, {p2, min_, max_}, ...]
+
+shows a widget with two sliders for p1, p2 parameters and a dynamic plot of f in a range of tmin upto tmax, which depends on t, p1, p2. 
+
+An example of plotting a function Sin[w z + p], where w and p are variable parameters. 
+
+```wolfram
+ManipulatePlot[Sin[w z + p], {z,0,10}, {w, 0, 15.1, 1}, {p, 0, Pi, 0.1}]
+```
+
+or with a single parameter
+
+```wolfram
+ManipulatePlot[Sin[w z], {z,0,10}, {w, 0, 15.1, 1}]
+```
+
+or with two function
+
+```wolfram
+ManipulatePlot[{Sin[w z], Tan[w z]}, {z,0,10}, {w, 0, 15.1, 1}]
+```
+
+they will be plotted as separate curves on a graph.
+
+## Buttons, input elements library
+All listed below UI elements generates EventObject, that can be displayed as corresponding UI element in the output cell as well as can be assigned to a handler function, that captures events from it.
+
+for such objects you can assign a handler function using the following syntax
+
+```wolfram
+EventHandler[object, handler]
+```
+
+see example below
+
+### Simple button
+InputButton[label_String]
+
+creates a button, that can fire events. An example of usage
+
+```wolfram
+EventHandler[InputButton["Press me"], Function[data,
+    Print[data];
+]]
+```
+
+it will create a button and assign an event handler to it, that calls an anonymous function, that prints the state of a button.
+It will always print `True`.
+
+### Simple slider 
+InputRange[min_, max_, step_, initialvalue_]
+
+creates a slider from range min to max with a step step.
+
+An example of usage
+
+```wolfram
+EventHandler[InputRange[0,10,1], Function[value, Print[value]]]
+```
+it will create a slider and assign an event handler function to it. If a user drags a slider, it will print a new value.
+
+this is also valid 
+
+```wolfram
+slider = InputRange[0,10,1];
+EventHandler[slider, Function[value, Print[value]]];
+slider
+```
+
+so you can pass to a symbol as well, since this is an EventObject.
+
+## Dynamics library
+It replaces Mathematica's dynamics functionality.
+
+```wolfram
+Offload[expr_Symbol]
+```
+
+is a wrapper expression for asking to bind expr to a nearest parent expression and then track the changes of expr and update the parent expression accordingly.
+Not all expressions in our system supports this kind of regime. Here is the list of what can support it
+- Line
+- Point
+- Sphere
+- Cuboid
+- Disk
+- Circle
+- Polygon (only 2D)
+- Text (only being placed inside Graphics)
+- Arrow
+- Cylinder
+- Rotate (only being placed inside Graphics or Graphics3D)
+- Translate
+- GeometricTransformation
+- Tube
+
+## Example with `Line` 1
+Here is an example with 2D graphics
+
+```wolfram
+sym = {{0,0}, {1,1}};
+Graphics[Line[sym // Offload]]
+```
+
+then of you change sym in the next cell, a single Line will be updated lively to a new value, i.e.
+
+```wolfram
+sym = {{0,0}, {0,1}}
+```
+
+will make the line goes vertically instead of diagonally.
+
+## Example with `Line` 2
+You can also use nested expression with a simple mathematical operations such as Times, Plus and List
+
+```wolfram
+sym = 3.;
+Graphics[Line[{{0,0}, {0, 2 sym // Offload}}]]
+```
+
+and then 
+
+```wolfram
+sym = 5.
+```
+
+will enlongate the line
+
+## Example with `Line` 3
+Let us make something that a user can drag and see the result
+
+```wolfram
+sym;
+slider = InputRange[1,10,1];
+EventHandler[slider, Function[value, sym = Table[Sin[value t], {0, 2Pi, 0.1}]]];
+EventFire[slider]; (* just to have an initial default value on sym *)
+slider (* print a slider *)
+
+Graphics[Line[sym // Offload]] (* print our graphics *)
+```
+
+when a user drags a slider it recaluate a new curve and updates the symbol sym with a new list of points, which then updates Line curve on a graph. Note that this is important sym has to have some initial value. This is a reason, why we apply EventFire on a slider, that just causes an event handler to be evaluated once to give sym an initial value which is list of points.
+
+## Example with `Point` 1
+Point works in the same way as a Line, but can also accept a single point data, i.e.
+
+```wolfram
+pt = {0,0};
+Graphics[Point[pt // Offload]]
+
+EventHandler[InputRange[-1,1,0.1], Function[value, pt = {value, 0}]]
+```
+
+This will give a user a slider, using which a user can move a single point on a graph from left to right.
+
+## Example with `Point` 2
+This is how you can plot random points and update their positions on a screen
+
+```wolfram
+pts = RandomReal[{-1,1}, {10, 2}];
+Graphics[Point[pts // Offload]]
+
+EventHandler[InputButton["Update!"], Function[Null,
+    pts = RandomReal[{-1,1}, {10, 2}];
+]]
+```
+
+The number of points stays the same, but their coordinates will always be random. A user presses a button and then all points move to new positions.
+
+## Example with `Sphere`
+This behaves in the same way as Point, but in 3D
+
+```wolfram
+pt = {0,0,0};
+Graphics3D[Sphere[pt // Offload]]
+
+EventHandler[InputRange[-1,1,0.1], Function[value, pt = {value, 0, 0}]]
+```
+
+it will move a sphere on x-axis
+
+You can also add multiple objects, that can depend on symbol pt. It applies to all examples above as well
+
+```wolfram
+val = 0;
+Graphics3D[{Red, Sphere[{0,0,val // Offload}], Blue, Sphere[{val // Offload,0,0}]}]
+
+EventHandler[InputRange[-1,1,0.1], Function[value, val = value]]
+```
+
+Here when a user drags a slider, a red sphere will move on z-axis, while a blue sphere will move on x-axis
+
+## Example with `Disk`
+Lets try to update the radius and the position of a disk
+
+```wolfram
+radius = 1.;
+pos = {0,0};
+
+Graphics[Disk[pos // Offload, radius // Offload]]
+
+EventHandler[InputRange[-1,1,0.1], Function[x, pos = {x, pos[[2]]}]] (* slider for x axis *)
+EventHandler[InputRange[-1,1,0.1], Function[y, pos = {pos[[1]], y}]] (* slider for y axis *)
+EventHandler[InputRange[0,1,0.1], Function[r, radius = r]] (* slider for the radius *)
+```
+
+or only control the radius of a Disk
+
+```wolfram
+radius = 1.;
+
+Graphics[Disk[{0.,0.}, radius // Offload]]
+
+EventHandler[InputRange[0,1,0.1], Function[r, radius = r]] (* slider for the radius *)
+```
+
+## Example with `Circle`
+The same as with Disk
+
+
+## Example with `Text`
+Now let us try to print the dynamic text on 2D graph
+
+```wolfram
+text = "whatever";
+Graphics[Text[text // Offload, {0.,0.}]]
+
+EventHandler[InputButton["Random word!"], Function[Null,
+    text = RandomWord[]
+]]
+```
+
+once a user pressed on a button, a new random word will be displayed on a graph.
+
+You can also move it everytime to a new position by passing the second argument of Text to an offloaded symbol, i.e.
+
+```wolfram
+text = "whatever";
+pos = {0.,0.};
+Graphics[Text[text // Offload,  pos // Offload]]
+
+EventHandler[InputButton["Random word!"], Function[Null,
+    text = RandomWord[];
+    pos = RandomReal[{-1,1}, 2];
+]]
+```
+
+Now if you press a button, it not only update the inner text, but also move the text to a random position on a screen.
+
+
+## Example with `Rectangle`
+Here is will show a rectangle, which length along x-axis can be controlled by a slider
+
+```wolfram
+length = 0.;
+EventHandler[InputRange[0, 1, 0.1], Function[a,
+  length = a
+]]
+
+Graphics[Rectangle[{-1,-1}, {length // Offload,1}]]
+```
+
+
+
+
+## Example with `Rotate`
+Here is will show a rectangle, which can be rotated to a given angle by dragging the slider
+
+```wolfram
+angle = 0.;
+EventHandler[InputRange[0, 2.0 Pi, 0.1], Function[a,
+  angle = a
+]]
+
+Graphics[Rotate[Rectangle[{-1,-1}, {1,1}], angle // Offload]]
+```
+
+# Additional extension for handling users interaction with graphcs primitives
+There is an extension loaded that can extened the features of the following graphics primitives
+
+- Point (when this is a single point)
+- Rectangle
+- Disk
+- Sphere
+
+For then an EventHandler can be applied to listerns to some events generated on them by a user following the scheme
+
+```wolfram
+EventHandler[primitive, {
+    pattern -> handler
+}]
+```
+
+where primitive are listed above, which can geenrate events. And patterns are following
+
+for 2D
+- "drag" will make an object draggable and will fire handler function with a new position given as a List
+- "mousemove" will listern the position of a mouse over this object and will fire a handler function with a current poistion of a mouse given as a List
+- "click" will fire an event handler function, once a user clicked on an object. a coordinates of a position of a click will be given as a List
+
+and for 3D
+- "transform" will make a 3D object draggable and will fire handler function with a current position of an object given as association with a key "position", which is a List of 3 numbers representing xyz coordinates
+
+
+See an examples with patterns below.
+
+## Example with `Point` 1
+You can also make a Point draggable and then listern to changes on its position
+
+```wolfram
+Graphics[EventHandler[Point[{0.,0.}], {
+    "drag" -> Print
+}]]
+```
+
+this will show a draggable point on a graph and will print a new position each time when a user drags it
+
+## Example with `Point` 2
+We can control other objects using this point, i.e. lets move the text accordingly to our point
+
+```wolfram
+pos = {0.,0.};
+
+Graphics[{Text["Hello World", pos // Offload], Red, PointSize[0.04], EventHandler[Point[{0.,0.}], {
+    "drag" -> Function[xy, pos = xy]
+}]}]
+```
+
+now if a user drags a red point, the text field will follow it, since pos symbol is recalucated on each new position of a point.
+
+## Example with `Point` 3
+Lets procedurally draw a circle as a line segments and assing the radius to the positiion of a draggable point
+
+```wolfram
+(* initial value *)
+lines = Table[{Sin[t], Cos[t]}, {0, 2Pi, 0.05}];
+
+Graphics[{Line[lines // Offload], Red, PointSize[0.04], EventHandler[Point[{0.,1.}], {
+    "drag" -> Function[xy, 
+        (* recalculate line segments to match with a radius the point positiion *)
+        lines = Norm[xy] Table[{Sin[t], Cos[t]}, {0, 2Pi, 0.05}]
+    ]
+}]}]
+```
+
+## Example with `Rectangle` and `Point` 1
+We can also listern the current mouse position and move the point to it, so that it follows users cursor
+
+To listern the mouse position we can draw a large white rectangle and attach a handler function with a "mousemove" pattern, that will capture the mouse position when its is hovering over it
+
+```wolfram
+pt = {0.,0.}
+
+Graphics[{
+    White, EventHandler[Rectangle[{-1,-1}, {1,1}], {
+        "mousemove" -> Function[pos,
+            pt = pos
+        ]
+    }],
+    Blue, Point[pt // Offload]
+}]
+```
+
+here when a user's mouse if hovering over a white rectangle it will update the position of a blue dot, that then will simply follow the user's mouse.
+
+## Example with `Rectangle` and `Point` 2
+Lets make an example with a white rectangle that serves the purpose of a canvas. when a user clicks on it, it will put a point at this position. We need to use "click" pattern for a handler function on Rectangle and append new point to the list of points using the provided to a handler function the coordinates where the click happend
+
+```wolfram
+pts = {};
+
+Graphics[{
+  White, EventHandler[Rectangle[{-1,-1}, {1,1}], {
+    "click" -> Function[xy, pts = Append[pts, xy]]
+  }],
+  Blue, Point[pts // Offload]
+}]
+```
+
+here it will show a white rectangle. When a user click on it, it will add a point to a graph on the corresponding position.
+By replacing "click" to "mousemove" you change the behavious to that, it will contineously add poitns following the usere's cursor.
+
+## Example with `Rectangle` and `Arrow`
+You can make the Arrow to follow the user's cursor
+
+```wolfram
+coords = {1,1};
+
+Graphics[{
+  White, EventHandler[Rectangle[{-1,-1}, {1,1}], {
+    "mousemove" -> Function[xy, pts = coords]
+  }],
+  Blue, Arrow[{{0,0}, coords // Offload}]
+}]
+```
+
+here a white rectangle will capture the movement of a user's cursor and update coords symbol, so that a blue arrow will always point to where the cursor is.
+
+Or you can add an offset to it
+
+```wolfram
+coords = {1,1};
+
+Graphics[{
+  White, EventHandler[Rectangle[{-1,-1}, {1,1}], {
+    "mousemove" -> Function[xy, pts = coords]
+  }],
+  Blue, Arrow[{{0,0}, (coords + {0.2,0}) // Offload}]
+}]
+```
+
+now a blue arrow will point slightly higher by 0.2 on y-axis with respect to the cursor position.
