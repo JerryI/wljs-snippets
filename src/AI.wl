@@ -68,7 +68,8 @@ getParameter[key_] := With[{
             "AIAssistantEndpoint" -> "https://api.openai.com", 
             "AIAssistantModel" -> "gpt-4-turbo-preview", 
             "AIAssistantMaxTokens" -> 70000, 
-            "AIAssistantTemperature" -> 0.7
+            "AIAssistantTemperature" -> 0.7,
+            "AIAssistantInitialPrompt" -> True
         |>, settings],
 
         skey = key /. settingsKeyTable
