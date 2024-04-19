@@ -50,6 +50,34 @@ AIChatRenderer = "";
 
 chatWindow = ImportComponent[FileNameJoin[{$rootDir, "template", "Chat.wlx"}] ];
 
+AppExtensions`TemplateInjection["SettingsFooter"] = ImportComponent[FileNameJoin[{$rootDir, "template", "Settings.wlx"}] ];
+
+{loadSettings, storeSettings}        = ImportComponent["Frontend/Settings.wl"];
+
+settings = <||>;
+
+settingsKeyTable = {
+    "Endpoint" -> "AIAssistantEndpoint",
+    "Model" -> "AIAssistantModel",
+    "MaxTokens" -> "AIAssistantMaxTokens",
+    "Temperature" -> "AIAssistantTemperature"
+};
+
+getParameter[key_] := With[{
+        params = Join[<|
+            "AIAssistantEndpoint" -> "https://api.openai.com", 
+            "AIAssistantModel" -> "gpt-4-turbo-preview", 
+            "AIAssistantMaxTokens" -> 70000, 
+            "AIAssistantTemperature" -> 0.7
+        |>, settings],
+
+        skey = key /. settingsKeyTable
+    },
+
+    params[skey]
+]
+
+
 With[{http = AppExtensions`HTTPHandler},
     Echo[http];
     http["MessageHandler", "ChatWindow"] = AssocMatchQ[<|"Path" -> "/gptchat"|>] -> chatWindow;
@@ -284,6 +312,8 @@ createChat[assoc_Association] := With[{
         last
     },
 
+        loadSettings[settings];
+
         Print["Selected cell"];
 
         last := notebook["FocusedCell"];
@@ -349,14 +379,34 @@ createChat[assoc_Association] := With[{
             ] /@ a["tool_calls"] // First
         ];
 
-        systemPromt = "You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
-        systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
-        systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
+        initializeChat := (
+            systemPromt = "You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
+            If[getParameter["AIAssistantInitialPrompt"],
+                systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
+                systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
+            ];
 
-        With[{promt = systemPromt},
-            chat = GPTChatObject[promt, "ToolFunction"->basisChatFunction, "ToolHandler"->functionsHandler, "APIToken"->getToken, "Logger"->Function[x, Echo["FIREEEEE!!!!!!" <> chat["Hash"] ]; EventFire[chat, "Update", chat["Messages"] ] ] ];
-        ];
 
+            With[{promt = systemPromt},
+                chat = GPTChatObject[promt, 
+                    "ToolFunction"->basisChatFunction, 
+                    "ToolHandler"->functionsHandler, 
+                    "APIToken"->getToken, 
+
+                    "Endpoint" -> getParameter["Endpoint"],
+                    "Temperature" -> getParameter["Temperature"],
+                    "Model" -> getParameter["Model"],
+                    "MaxTokens" -> getParameter["MaxTokens"],
+
+                    "Logger"->Function[x, EventFire[chat, "Update", chat["Messages"] ] ] ]
+                ;
+            ];
+
+            notebook["ChatBook"] = chat;
+            chat
+        );
+
+        initializeChat;
 
         With[{uid = CreateUUID[], c = chat},
             AIChat`HashMap[uid] = c;
@@ -369,7 +419,7 @@ createChat[assoc_Association] := With[{
                 WebUILocation["/gptchat?id="<>uid, client, "Target"->_, "Features"->"width=460, height=640, top=0, left=800"];
             ];
 
-            notebook["ChatBook"] = chat;
+            
             EventHandler[EventClone[notebook], {
                 "OnClose" -> Function[Null,
                     notebook["ChatBook"] = .;
@@ -377,15 +427,29 @@ createChat[assoc_Association] := With[{
                     If[c["Shown"] // TrueQ,
                         WebUIClose[c["Socket"] ];
                     ];
+                    Delete[c];
                     Echo["AI Chat was destoryed"];
                 ]
             }];
 
             EventHandler[chat, {"Comment" -> Function[payload,
-                WebUISubmit[Global`Siriwave["Start", "canvas-palette-back"], client ];
-                Then[GPTChatCompletePromise[ chat, payload ], Function[Null,
-                    WebUISubmit[Global`Siriwave["Stop"], client ];
-                ] ]; 
+                If[StringMatchQ[ToLowerCase[payload], "reset chat"~~___],
+
+                    notebook["ChatBook"] = .;
+                    AIChat`HashMap[uid] = .;
+                    If[c["Shown"] // TrueQ,
+                        WebUIClose[c["Socket"] ];
+                    ];
+                    Delete[c];
+                    Echo["AI Chat was destoryed"];
+
+
+                ,
+                    WebUISubmit[Global`Siriwave["Start", "canvas-palette-back"], client ];
+                    Then[GPTChatCompletePromise[ chat, payload ], Function[Null,
+                        WebUISubmit[Global`Siriwave["Stop"], client ];
+                    ] ]; 
+                ];
             ]}];
         ];
 
