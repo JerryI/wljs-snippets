@@ -5,6 +5,9 @@ IfKeyExists[assoc_Association, list_List] := With[{},
     If[KeyExistsQ[assoc, #[[1]]], assoc[#[[1]]], #[[2]]] &/@ list
 ];
 
+parseInt[any_String] := ToExpression[any]
+parseInt[any_] := any 
+
 Component[OptionsPattern[]] := With[{
     update = CreateUUID[],
     settings = OptionValue["Settings"],
@@ -41,12 +44,12 @@ Component[OptionsPattern[]] := With[{
         ],
 
         "MaxTokens" -> Function[value,
-            onsave[<|"AIAssistantMaxTokens" -> value|>];
+            onsave[<|"AIAssistantMaxTokens" -> parseInt[value]|>];
             EventFire[log, "Saved", "Type 'Reset chat' in the AI chat window to see changes"];
         ],
 
         "Temperature" -> Function[value,
-            onsave[<|"AIAssistantTemperature" -> value|>];
+            onsave[<|"AIAssistantTemperature" -> parseInt[value]|>];
             EventFire[log, "Saved", "Type 'Reset chat' in the AI chat window to see changes"];
         ]
     }];
