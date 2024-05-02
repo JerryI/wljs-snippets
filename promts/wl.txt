@@ -5,6 +5,7 @@ The following symbols are not supported here:
 - Manipulate
 - Dynamic
 - DynamicModule
+- Animate
 - Refresh
 - Labeled
 - PlotLegends
@@ -19,7 +20,7 @@ The following symbols are not supported here:
 - Dataset
 - Out
 - Button
-- EventHandler (built differently, see examples)
+- EventHandler (built differently, see examples below)
 - Slider
 - Show
 
