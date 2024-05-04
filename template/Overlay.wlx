@@ -6,7 +6,12 @@ search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = Sn
         }
     ]] /@ words]},
         If[StringLength[s] > 10,
-            Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
+            If[StringLength[s] > 15,
+                {"InvokeAI"}
+            ,
+                Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
+            ]
+            
         ,
             If[StringLength[s] < 5,
                 (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
@@ -128,7 +133,7 @@ With[{
         If[AbsoluteTime[] - timer > 0.3,
             timer = AbsoluteTime[];
             With[{
-                results = If[StringLength[text] =!= 0, search[text], Keys @ SnippetsDatabase]
+                results = If[StringLength[text] =!= 0, search[text], {}]
             },
                     If[searchState === "Hidden",
                         searchState = "Shown";
@@ -167,7 +172,7 @@ With[{
     Path = OptionValue["Path"],
     Messanger = OptionValue["Messanger"],
     Modals = OptionValue["Modals"],
-    quickTags = {"newFile", "renameNotebook"},
+    quickTags = Join[{"newFile", "renameNotebook"}, Complement[(Keys @ SnippetsDatabaseIndices), {"newFile", "renameNotebook", "InvokeAI"}]],
     LocalControls = CreateUUID[],
     emptyPanel = CreateUUID[],
     aiPanel = CreateUUID[],
@@ -202,7 +207,7 @@ With[{
         <WebUILazyLoad Event={LocalControls}>
             <div id="palette-list" class="absolute top-0 mt-10 right-0 left-0 w-full">
                <div class="mx-auto max-w-2xl transform divide-y divide-gray-500 dark:divine-gray-300 divide-opacity-10 overflow-hidden rounded-md bg-gray-100 bg-opacity-80 shadow-md  backdrop-blur backdrop-filter transition-all bg-d9 text-left text-gray-500 w-70 ring-1 ring-inset ring-gray-400 pb-1 dark:bg-gray-700">
-                  <ul class="max-h-80 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto sc-b">
+                  <ul class="max-h-60 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto sc-b">
                     <WebUILazyLoad Event={searchPanel}>
                         <SearchResults Data={WebUILazyLoadDataProvided}/>
                     </WebUILazyLoad>               
