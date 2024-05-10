@@ -1,25 +1,28 @@
-search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = SnippetsDatabaseIndices},
+search[s_String] := With[{words = StringSplit[ToLowerCase[s], " "], indices = KeyDrop[SnippetsDatabaseIndices, {"InstallPackage", "InvokeAI"}]},
     With[{results = Flatten[Function[word, With[{str = word},
         {
             MapIndexed[If[Length[#1]==0, Nothing, #2[[1]]]&, StringCases[Values @ indices, str~~___]],
             MapIndexed[If[Length[#1]==0, Nothing, #2[[1]]]&, StringCases[Values @ indices, __~~RegularExpression["[^\\w]"]~~str~~___]]
         }
     ]] /@ words]},
-        If[StringLength[s] > 10,
-            If[StringLength[s] > 15,
-                {"InvokeAI"}
-            ,
-                Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
-            ]
-            
+        If[StringMatchQ[StringTrim[s], "https://github" ~~ ___], 
+            {"InstallPackage"}
         ,
-            If[StringLength[s] < 5,
-                (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+            If[StringLength[s] > 10,
+                If[StringLength[s] > 15,
+                    {"InvokeAI"}
+                ,
+                    Join[{"InvokeAI"}, (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]] // DeleteDuplicates
+                ]
+
             ,
-                Join[(Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]], {"InvokeAI"}] // DeleteDuplicates
-            ]   
+                If[StringLength[s] < 5,
+                    (Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]]
+                ,
+                    Join[(Keys @ indices)[[ Keys[Reverse[SortBy[GroupBy[results, Identity], Length]]] ]], {"InvokeAI"}] // DeleteDuplicates
+                ]   
+            ]
         ]
-        
     ]
 ];
 
@@ -87,9 +90,13 @@ With[{
             ,
             13,
                 If[position === 0 && StringLength[currentText] > 7, 
-                    Echo["Send data to AI"];
-                    EventFire[SnippetsEvents, "InvokeAI", <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path, "Promt"->currentText|>];
-                    destroy;
+                    If[!StringMatchQ[StringTrim[currentText], "https://github" ~~ ___],
+                        Echo["Send data to AI"];
+                        EventFire[SnippetsEvents, "InvokeAI", <|"Client"->client, "Controls"->controls, "Modals"->modals, "Messanger"->messanger, "Path"->path, "Promt"->currentText|>];
+                        destroy;
+                    ,
+                        Return[];
+                    ];  
                 ,
                     If[Length[tagList] == 0, Return[]];
                     If[position < 1, Return[]];
@@ -172,7 +179,7 @@ With[{
     Path = OptionValue["Path"],
     Messanger = OptionValue["Messanger"],
     Modals = OptionValue["Modals"],
-    quickTags = Join[{"newFile", "renameNotebook"}, Complement[(Keys @ SnippetsDatabaseIndices), {"newFile", "renameNotebook", "InvokeAI"}]],
+    quickTags = Join[{"newFile", "renameNotebook"}, Complement[(Keys @ SnippetsDatabaseIndices), {"newFile", "renameNotebook", "InvokeAI", "InstallPackage"}]],
     LocalControls = CreateUUID[],
     emptyPanel = CreateUUID[],
     aiPanel = CreateUUID[],

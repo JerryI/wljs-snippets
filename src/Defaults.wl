@@ -7,6 +7,13 @@ SnippetsCreateItem[
 ];
 
 SnippetsCreateItem[
+    "InstallPackage", 
+
+    "Template"->ImportComponent[FileNameJoin[{iTemplate, "InstallPackage.wlx"}] ], 
+    "Title"->"Install package from Github"
+];
+
+SnippetsCreateItem[
     "newFile", 
 
     "Template"->ImportComponent[FileNameJoin[{iTemplate, "File.wlx"}] ], 
