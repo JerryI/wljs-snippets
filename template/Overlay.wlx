@@ -236,6 +236,17 @@ With[{
             const field = document.getElementById("palette-field");
             const palette = document.getElementById('palette');
 
+            //fallback for the browser
+            if (!window.electronAPI) {
+                window.addEventListener("keydown", function (e) {
+                    if (e.ctrlKey && e.key == "p" || e.metaKey && e.key == "p") {
+                        server.emitt('<LocalControls/>', 'True', 'Open');
+                        e.preventDefault();
+                        return false;
+                    }
+                });
+            }
+
             let storage;
 
             this.on('Load', () => {
