@@ -468,7 +468,7 @@ checkToken := With[{
     token = getToken
 },
     If[StringQ[token],
-        If[StringLength[token] > 41,
+        If[StringLength[token] > 10,
             True
         ,
             False
@@ -485,7 +485,7 @@ handle[data_Association] := Module[{}, With[{
     Echo[chat];
 
     If[!checkToken, 
-        EventFire[data["Messanger"], "Warning", "OpenAI API Key was not found. Please, enter you valid one"];
+        EventFire[data["Messanger"], "Warning", "OpenAI API Key was not found. Please, enter a valid one"];
         With[{request = CreateUUID[]},
             EventHandler[request, {
                 "Success" -> Function[token,
