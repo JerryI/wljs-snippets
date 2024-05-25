@@ -381,7 +381,7 @@ createChat[assoc_Association] := With[{
         ];
 
         initializeChat := (
-            systemPromt = "You are chat bot in a notebook enveroment with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
+            systemPromt = "You are chat bot in a notebook enveroment (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
             If[getParameter["AIAssistantInitialPrompt"],
                 systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
                 systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
