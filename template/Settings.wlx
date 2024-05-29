@@ -16,7 +16,7 @@ Component[OptionsPattern[]] := With[{
 
     initialValues = IfKeyExists[OptionValue["Settings"], {
         {"AIAssistantEndpoint", "https://api.openai.com"}, 
-        {"AIAssistantModel", "gpt-4-turbo-preview"}, 
+        {"AIAssistantModel", "gpt-4o"}, 
         {"AIAssistantMaxTokens", 70000}, 
         {"AIAssistantTemperature", 0.7},
         {"AIAssistantInitialPrompt", True}

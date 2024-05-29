@@ -54,7 +54,7 @@ Null,\n        last = CellPrint[ToString[submit, StandardForm], \
 \"After\"->out];\n      ];\n      \n      With[{},\n        imported = \
 ImportByteArray[fileData, format, HeaderLines->headerLines];\n        \
 previewCell = Switch[Depth[imported],\n          3,\n            \
-CellPrint[ToString[InputTable[imported], StandardForm], \"After\"->last]\n    \
+CellPrint[ToString[TableView[imported], StandardForm], \"After\"->last]\n    \
       ,\n\n          2,\n            CellPrint[ToString[Take[imported, \
 Min[30, Length[imported]]], StandardForm] <> \"...\", \"After\"->last]\n      \
     ,\n\n          1,\n            With[{str = ToString[imported, \

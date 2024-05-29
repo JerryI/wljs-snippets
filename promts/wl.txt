@@ -130,7 +130,7 @@ Here is an example with 2D graphics
 
 ```wolfram
 sym = {{0,0}, {1,1}};
-Graphics[Line[sym // Offload]]
+Graphics[Line[sym // Offload], PlotRange->{{0,1}, {0,1}}]
 ```
 
 then of you change sym in the next cell, a single Line will be updated lively to a new value, i.e.
@@ -146,7 +146,7 @@ You can also use nested expression with a simple mathematical operations such as
 
 ```wolfram
 sym = 3.;
-Graphics[Line[{{0,0}, {0, 2 sym // Offload}}]]
+Graphics[Line[{{0,0}, {0, 2 sym // Offload}}], PlotRange->{{0,10}, {-1,1}}]
 ```
 
 and then 
@@ -177,7 +177,7 @@ Point works in the same way as a Line, but can also accept a single point data, 
 
 ```wolfram
 pt = {0,0};
-Graphics[Point[pt // Offload]]
+Graphics[Point[pt // Offload], PlotRange->{{-1,1}, {-1,1}}]
 
 EventHandler[InputRange[-1,1,0.1], Function[value, pt = {value, 0}]]
 ```
@@ -228,7 +228,7 @@ Lets try to update the radius and the position of a disk
 radius = 1.;
 pos = {0,0};
 
-Graphics[Disk[pos // Offload, radius // Offload]]
+Graphics[Disk[pos // Offload, radius // Offload], PlotRange->{{-1,1}, {-1,1}}]
 
 EventHandler[InputRange[-1,1,0.1], Function[x, pos = {x, pos[[2]]}]] (* slider for x axis *)
 EventHandler[InputRange[-1,1,0.1], Function[y, pos = {pos[[1]], y}]] (* slider for y axis *)
@@ -240,7 +240,7 @@ or only control the radius of a Disk
 ```wolfram
 radius = 1.;
 
-Graphics[Disk[{0.,0.}, radius // Offload]]
+Graphics[Disk[{0.,0.}, radius // Offload], PlotRange->{{-1,1}, {-1,1}}]
 
 EventHandler[InputRange[0,1,0.1], Function[r, radius = r]] (* slider for the radius *)
 ```
@@ -268,7 +268,7 @@ You can also move it everytime to a new position by passing the second argument 
 ```wolfram
 text = "whatever";
 pos = {0.,0.};
-Graphics[Text[text // Offload,  pos // Offload]]
+Graphics[Text[text // Offload,  pos // Offload], PlotRange->{{-1,1}, {-1,1}}]
 
 EventHandler[InputButton["Random word!"], Function[Null,
     text = RandomWord[];
@@ -288,7 +288,7 @@ EventHandler[InputRange[0, 1, 0.1], Function[a,
   length = a
 ]]
 
-Graphics[Rectangle[{-1,-1}, {length // Offload,1}]]
+Graphics[Rectangle[{-1,-1}, {length // Offload,1}], PlotRange->{{-1,1}, {-1,1}}]
 ```
 
 
@@ -303,7 +303,7 @@ EventHandler[InputRange[0, 2.0 Pi, 0.1], Function[a,
   angle = a
 ]]
 
-Graphics[Rotate[Rectangle[{-1,-1}, {1,1}], angle // Offload]]
+Graphics[Rotate[Rectangle[{-1,-1}, {1,1}], angle // Offload], PlotRange->{{-1,1}, {-1,1}}]
 ```
 
 # Additional extension for handling users interaction with graphcs primitives

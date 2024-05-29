@@ -22,7 +22,7 @@ BeginPackage["Notebook`Editor`Snippets`AI`", {
 }]
 
 PacletRepositories[{
-    Github -> "https://github.com/KirillBelovTest/GPTLink"
+    Github -> "https://github.com/JerryI/GPTLink"
 }, "Directory"-> ParentDirectory[DirectoryName[$InputFileName] ] ];
 
 Needs["KirillBelov`GPTLink`"];
@@ -66,7 +66,7 @@ settingsKeyTable = {
 getParameter[key_] := With[{
         params = Join[<|
             "AIAssistantEndpoint" -> "https://api.openai.com", 
-            "AIAssistantModel" -> "gpt-4-turbo-preview", 
+            "AIAssistantModel" -> "gpt-4o", 
             "AIAssistantMaxTokens" -> 70000, 
             "AIAssistantTemperature" -> 0.7,
             "AIAssistantInitialPrompt" -> True
@@ -189,14 +189,20 @@ Module[{rest = StringTrim[text]},
 ]
 
 trimContent[str_String] := With[{splitted = StringSplit[str, "\n"]},
-    If[StringMatchQ[splitted // First, "."~~WordCharacter..],
+    With[{content = If[StringMatchQ[splitted // First, "."~~WordCharacter..],
         StringRiffle[Rest[splitted], "\n"]
     ,
         str
+    ]},
+        If[StringLength[content] >  419 * 5,
+            StringTake[content, 419 * 4]<>" ... "<>StringTake[content, -Min[StringLength[content] - 419 * 4, 419] ] 
+        ,
+            content
+        ]
     ]
 ]
 
-checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
+checkLanguage[cell_CellObj] := If[InputCellQ[cell], With[{splitted = StringSplit[cell["Data"], "\n"]},
     If[Length[splitted] === 0, "Wolfram Language",
         If[StringMatchQ[splitted // First, "."~~WordCharacter..],
             StringReplace[StringTrim[splitted // First], {
@@ -209,6 +215,19 @@ checkLanguage[str_String] := With[{splitted = StringSplit[str, "\n"]},
         ,
             "Wolfram Language"
         ] 
+    ]
+],
+    (*find parent*)
+    With[{parent = CellObj`FindCell[cell["Notebook"], Sequence[_?InputCellQ, ___?OutputCellQ, cell] ]},
+        If[MatchQ[parent, _CellObj],
+            checkLanguage[parent]
+        ,
+            Echo["ERROR >> PARENT CELL NOT FOUND!!!"];
+            Echo[parent];
+            Echo[cell];
+
+            "Wolfram Language"
+        ]
     ]
 ]
 
@@ -239,8 +258,8 @@ basisChatFunction[_] := {
     <|
     	"type" -> "function", 
     	"function" -> <|
-    		"name" -> "cellGetContent", 
-    		"description" -> "get content of code in the current cell as a text string.  Returns ERROR if no cell is selected by user", 
+    		"name" -> "getCellList", 
+    		"description" -> "returns a flat list of cells in the notebook in the form [uid, type, language, hidden]. to get actual content use getCellContentById", 
     		"parameters" -> <|
     			"type" -> "object", 
     			"properties" -> <||>
@@ -251,59 +270,220 @@ basisChatFunction[_] := {
     <|
     	"type" -> "function", 
     	"function" -> <|
-    		"name" -> "cellGetLanguage", 
-    		"description" -> "gets the name of a programming language used in a current cell selected by user. ", 
+    		"name" -> "getFocusedCell", 
+    		"description" -> "returns an information of a cell focused by a user in a form [uid, type, language, hidden]. To get actual content use getCellContentById", 
     		"parameters" -> <|
     			"type" -> "object", 
     			"properties" -> <||>
     		|>
     	|>
-    |>,
+    |>, 
 
     <|
     	"type" -> "function", 
     	"function" -> <|
-    		"name" -> "cellSetContent", 
-    		"description" -> "set the entire content in the current cell to a given a string expression. Returns ERROR if no cell is selected by user, then try printCell function instead", 
+    		"name" -> "getSelectedText", 
+    		"description" -> "returns an selected code or text by a user as a string. Use setSelectedText to replace the selected content", 
     		"parameters" -> <|
     			"type" -> "object", 
-    			"properties" -> <|
-                    "expression" -> <|
-                        "type"-> "string",
-                        "description"-> "new code content"
-                    |>
-                |>
+    			"properties" -> <||>
     		|>
     	|>
-    |>,
+    |>,   
 
     <|
     	"type" -> "function", 
     	"function" -> <|
-    		"name" -> "printCell", 
-    		"description" -> "creates a new cell after the current one or at the end of the notebook with a code in language languageName and content given as a string in content argument", 
+    		"name" -> "setSelectedText", 
+    		"description" -> "replaces users selected text or code to a new string provided. Returns empty string", 
     		"parameters" -> <|
     			"type" -> "object", 
     			"properties" -> <|
-                    "languageName" -> <|
-                        "type"-> "string",
-                        "description"-> "name of a programming language used"
-                    |>,
-
                     "content" -> <|
                         "type"-> "string",
-                        "description"-> "content of a cell"
+                        "description"-> "new content"
+                    |> 
+                |>
+    		|>
+    	|>
+    |>,         
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "getCellContentById", 
+    		"description" -> "returns the content of a given cell by id in a form of a string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "uid" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell"
                     |>
                 |>
     		|>
     	|>
-    |>            
+    |>, 
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "setCellContentById", 
+    		"description" -> "sets the content of a given input cell by id in a form of a string. Output cells cannot be changed. Returns empty string.", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "uid" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell"
+                    |>,
+                    "content" -> <|
+                        "type"-> "string",
+                        "description"-> "content"
+                    |>                                       
+                |>
+    		|>
+    	|>
+    |>,    
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "createCell", 
+    		"description" -> "creates a new input cell after or before another cell specified by uid or adds it to the end of the notebook if argument \"after\" or \"before\" is not provided. Returns an uid of created cell", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "after" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell after it will be added"
+                    |>,
+                    "before" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell before it will be added"
+                    |>,                    
+                    "content" -> <|
+                        "type"-> "string",
+                        "description"-> "content"
+                    |>,
+                    "language" -> <|
+                        "type"-> "string",
+                        "description"-> "programming language used"
+                    |>                                                           
+                |>
+    		|>
+    	|>
+    |>,  
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "toggleCell", 
+    		"description" -> "show or hide an input cell by uid in the notebook. Output cells cannot be changed. Returns empty string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "uid" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell"
+                    |>                                                          
+                |>
+    		|>
+    	|>
+    |>,
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "deleteCell", 
+    		"description" -> "deletes any cell (input or output) by uid in the notebook. By deleting input cell, all next output cell will also be removed. Returns empty string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "uid" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell"
+                    |>                                                          
+                |>
+    		|>
+    	|>
+    |>,
+
+    
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "wolframAlphaRequest", 
+    		"description" -> "make textual request to WolframAlpha and returns result as formatted string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "request" -> <|
+                        "type"-> "string",
+                        "description"-> "request text"
+                    |>                                                          
+                |>
+    		|>
+    	|>
+    |>,
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "evaluateCell", 
+    		"description" -> "evaluates an input cell by uid in the notebook. Returns empty string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "uid" -> <|
+                        "type"-> "string",
+                        "description"-> "uid of a cell to be evaluated"
+                    |>                                                          
+                |>
+    		|>
+    	|>
+    |>          
 }
 
 
+wolframAlphaRequest[query_String] := ImportString[ExportString[
+ URLExecute[StringReplace[WolframAlpha[query, "URL"],   "/v1/query.jsp" -> "/v1/llm-api"] ], 
+  "Table",   CharacterEncoding -> "ASCII"
+ ],  "String"
+] // Quiet;
+
+commmandQuery = {};
+
+commmandQueryNext := With[{},
+    If[Length[commmandQuery] > 0 ,
+        Echo["commmandQueryNext >> next!"];
+        
+        With[{first = (commmandQuery // First)[]},
+            Then[first, Function[Null,
+                Echo["commmandQueryNext >> "<>ToString[first] ];
+                commmandQuery = Drop[commmandQuery, 1];
+                commmandQueryNext;
+            ] ];
+        ]
+    ]
+] 
+
+commmandQuery /: AppendTo[commmandQuery, func_] := With[{}, Module[{}, 
+    If[Length[commmandQuery] === 0,
+        commmandQuery = Append[commmandQuery, func];
+ 
+
+        commmandQueryNext;
+    ,
+        Echo["commmandQueryNext >> append to que"];
+        commmandQuery = Append[commmandQuery, func];
+    ]
+] ]
+
 createChat[assoc_Association] := With[{
     client = assoc["Client"],
-    notebook = assoc["Notebook"]
+    notebook = assoc["Notebook"],
+    globalControls = assoc["Controls"]
 },
     Module[{
         chat,
@@ -315,73 +495,237 @@ createChat[assoc_Association] := With[{
 
         loadSettings[settings];
 
-        Print["Selected cell"];
 
-        last := notebook["FocusedCell"];
-        Print[last];
-
+        focused := notebook["FocusedCell"];
+        Echo["Focused cell"];
+        Echo[focused];
         
 
-        printCell[language_String, str_String] := With[{
-            new = If[!MatchQ[last, _CellObj], 
-                            CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[language, str], "After"-> (___?OutputCellQ) ]
-                        ,
-                            CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[language, str], "After"->Sequence[last, ___?OutputCellQ] ]
-                        ]
-        },
-            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>new["Hash"] ], client];
+        removeQuotes[str_String] := If[StringTake[str, 1] === "\"", StringDrop[StringDrop[str, -1], 1], str ];
 
-            new
-        ];
-        
-        setContent[str_String] := (
-            Echo["AI>>setContent"]; 
-            WebUISubmit[FrontEditorSelected["SetDoc", restoreLanguage[checkLanguage[ last["Data"] ], str] ], client];
-            If[MatchQ[last, _CellObj], WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>last["Hash"] ], client] ];
-        );
-
-        functionsHandler[a_Association] := With[{},
-            Echo[a];
+        functionsHandler[a_Association, cbk_] := Module[{toolResults = {}},
+            Echo["AI requests:"];
+            (*Echo[a];*)
 
             Function[call,
-                Switch[call["function", "name"],
-                    "cellGetContent",
-                        If[!MatchQ[last, _CellObj], "ERROR",
-                            trimContent[ last["Data"] ]
-                        ],
+                With[{result = Switch[call["function", "name"],
 
-                    "cellGetLanguage",
-                        If[!MatchQ[last, _CellObj], "Wolfram Language",
-                            checkLanguage[ last["Data"] ]
-                        ],
-                    
-                    "printCell",
+                    "setSelectedText",
                         With[{args = ImportString[ImportString[
 										call["function", "arguments"], 
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
 									]},
-                                    printCell[args["languageName"], args["content"] ]    
-                                ]; 
-                        "Ok",
 
-                    "cellSetContent",
-                        If[!MatchQ[last, _CellObj], "ERROR",
-                                (Apply[setContent] @ Values @ ImportString[ImportString[
+                            AppendTo[commmandQuery, Function[Null,
+                                WebUISubmit[FrontEditorSelected["Set", args["content"] ], client];
+                                WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>focused["Hash"] ], client];
+                            ] ];
+
+                            AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, ""] ] ];
+                        ]                        
+                    ,
+
+                    "getSelectedText",
+                        With[{args = ImportString[ImportString[
 										call["function", "arguments"], 
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
-									]); 
-                            "Ok"
+									],
+                              promise = Promise[] 
+                            },
+
+                            AppendTo[commmandQuery, Function[Null, promise ] ];                   
+                               
+                            Then[WebUIFetch[FrontEditorSelected["Get"], client, "Format"->"JSON"], Function[result,
+                                If[!StringQ[result],
+                                    AppendTo[toolResults, "*ERROR: Nothing is selected*"];
+                                    EventFire[promise, Resolve, True];
+                                ,
+                                    If[StringLength[result] === 0,
+                                        AppendTo[toolResults, "*ERROR: Nothing is selected*"];
+                                        EventFire[promise, Resolve, True];                                    
+                                    ,
+                                        AppendTo[toolResults, result];
+                                        EventFire[promise, Resolve, True];                                    
+                                    ]
+                                ];
+                            ] ];
+
+                        ]                        
+                    ,                    
+
+                    "getCellList",
+                        AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, ExportString[Map[Function[cell, 
+                            {cell["Hash"], cell["Type"], checkLanguage[ cell ], TrueQ[cell["Props"]["Hidden"] ]}
+                        ], notebook["Cells"] ], "JSON"] ] ] ];
+                    ,
+
+                    "getFocusedCell",
+                        AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
+                            If[!MatchQ[focused, _CellObj], "ERROR: Nothing is focused",
+                                ExportString[{focused["Hash"], focused["Type"], checkLanguage[ focused ], TrueQ[focused["Props"]["Hidden"] ]}, "JSON"]
+                            ]
+                        ] ] ];
+                    ,
+
+                    "getCellContentById",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
+                                AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
+                                    If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
+                                        trimContent[ cell["Data"] ]
+                                    ]
+                                ] ] ];
+                            ] 
                         ]
-                        ,
+                    ,
+
+                    "setCellContentById",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
+                                AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
+                                    If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
+                                        EventFire[cell, "ChangeContent", restoreLanguage[checkLanguage[ cell ], args["content"] ] ];
+                                        WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>cell["Hash"] ], client];
+                                        ""
+                                    ]
+                                ] ] ];
+                            ] 
+                        ]
+                    ,
+
+                    "deleteCell",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
+                                AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
+                                    If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
+                                        Echo["AI Delete!!!"];
+
+                                        Delete[cell];
+                                        
+                                    
+                                    
+                                        ""
+                                    ]
+                                ] ] ];
+                            ] 
+                        ]
+
+
+                    ,                    
+
+                    "toggleCell",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
+                                If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
+                                    Echo["AI Toggle!!!"];
+
+
+                                        AppendTo[commmandQuery, Function[Null,
+                                            Block[{Global`$Client = client}, 
+                                                EventFire[globalControls, "ToggleCell", cell]
+                                            ]
+                                        ] ];      
+
+                                        AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, ""] ] ];                                  
+                                ]
+                            ] 
+                        ]
+
+
+                    ,
+
+                    "wolframAlphaRequest",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, wolframAlphaRequest[ args["request"] ] ] ] ];
+                        ]
+                    ,
+
+                    "evaluateCell",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
+                                If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
+                                    Echo["AI Evaluate!!!"];
+
+                                        AppendTo[commmandQuery, Function[Null,
+                                            Block[{Global`$Client = client}, 
+                                                EventFire[globalControls, "NotebookCellEvaluate", cell]
+                                            ]
+                                        ] ];
+                                        
+                                        AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, "" ] ] ];
+                                    
+                           
+                                ]
+                            ] 
+                        ]
+                    ,                    
+
+                    "createCell",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            If[TrueQ[ StringLength[ args["after"] ] > 5 ],
+                                With[{cell = CellObj`HashMap[ removeQuotes @ args["after"] ]},
+                                    If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id - after",
+                                        With[{new = CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[args["language"], args["content"] ], "After"->cell]},
+                                            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>new["Hash"] ], client];
+                                            AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, new["Hash"] ] ] ];
+                                        ]
+                                    ]
+                                ]
+                            ,
+                                If[TrueQ[ StringLength[ args["before"] ] > 5],
+                                    With[{cell = CellObj`HashMap[ removeQuotes @ args["before"] ]},
+                                        If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id - before",
+                                            With[{new = CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[args["language"], args["content"] ], "Before"->cell]},
+                                                WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>new["Hash"] ], client];
+                                                AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, new["Hash"] ] ] ];
+                                            ]
+                                        ]
+                                    ]
+                                ,
+                                    With[{new = CellObj["Notebook"->notebook, "Type"->"Input", "Data"->restoreLanguage[args["language"], args["content"] ] ]},
+                                            WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>new["Hash"] ], client];
+                                            AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, new["Hash"] ] ] ];
+                                    ]
+                                ]
+                            ]
+                        ]
+
+                    ,                    
 
                     _,
-                        Echo["Undefined Function!"]; Null
+                        Echo["Undefined Function!"]; AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, "ERROR: Undefined Function!" ] ] ];
+                ]},
+                    Echo["Send to AI the responce"];
+                    (*Echo[result];*)
                 ]
-            ] /@ a["tool_calls"] // First
+            ] /@ a["tool_calls"];
+
+            AppendTo[commmandQuery, Function[Null, cbk[toolResults] ] ];
         ];
 
         initializeChat := (
-            systemPromt = "You are chat bot in a notebook enveroment (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML and Markdown cells. Use cellGetLanguage function to check what language is used in the current cell. If a user ask you to show examples on code, please, PRINT IT - use printCell function and print the content to a notebook, instead of writting all code to the reply.";
+            systemPromt = "**The most important** You are chat bot in the notebook env (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML, Markdown, RevealJS (Slides) input cells. You can change or create all of them. If a user ask you to show examples on code, please, create a new cell with it. If a user asks to correct mistakes or edit something - apply changes directly. Print - means to print a cell to a notebook, not to a chat. You can't create and edit output cells, only read. You can create and edit any input cells. You can request a list of cells, where each item has uid field. Use it to get or change the content of a cell. Always read cells content before commenting on them. You shall only invoke the defined functions. **You should NEVER invent or use functions NOT defined or especially the multi_tool_use.parallel function. If you need to call multiple functions, you will call them one at a time **.";
             If[getParameter["AIAssistantInitialPrompt"],
                 systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
                 systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
@@ -442,6 +786,7 @@ createChat[assoc_Association] := With[{
                         WebUIClose[c["Socket"] ];
                     ];
                     Delete[c];
+                    WebUISubmit[Global`Siriwave["Stop"], client ];
                     Echo["AI Chat was destoryed"];
 
 

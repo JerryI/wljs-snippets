@@ -10,23 +10,44 @@ checkPos[item_, chat_] := With[{
   ]
 ]
 
-toolCall[item_, chat_, connected_:False] := With[{
+toolCall[item_, i_, chat_, connected_:False] := With[{
   avatar = URLEncode[StringJoin["https://i.pravatar.cc/100?u=", chat["Hash"]]],
-  Action = Switch[item[["tool_calls", 1, "function", "name"]],
-  "cellSetContent",
-    "updated the content of a cell",
+  Action = Switch[i[["function", "name"]],
+  "getCellList",
+    "checked the notebook structure",
 
-  "printCell",
-    "added new cell",
+  "getFocusedCell",
+    "get focused cell",
 
-  "cellGetContent",
-    "read the cell",
+  "setSelectedText",
+    "replaced selected text",
+
+  "getSelectedText",
+    "read selected text",
+
+  "getCellContentById",
+    "read a cell",
   
-  "cellGetLanguage",
-    "checked the language of a cell",
+  "setCellContentById",
+    "edited a cell",
+
+  "createCell",
+    "created a cell",    
+
+  "deleteCell",
+    "deleted a cell",
+
+  "wolframAlphaRequest",
+    "made a request to WolframAlpha",
+
+  "toggleCell",
+    "toggled a cell",
+
+  "evaluateCell",
+    "evaluated a cell",
 
   _,
-    "peformed magic"
+    "did some magic"
  ],
 
  DateMessage = TextString[Round[Now - item["date"], 1]],
@@ -44,6 +65,25 @@ toolCall[item_, chat_, connected_:False] := With[{
     </div>
     <p class="flex-auto py-0.5 text-xs leading-5"><span class="font-medium text-gray-900 dark:text-gray-300">AI </span><Action/>.</p>
     <time class="flex-none py-0.5 text-xs leading-5"><DateMessage/> ago</time>
+  </li>
+]
+
+stats[chat_] := With[{
+  avatar = URLEncode[StringJoin["https://i.pravatar.cc/100?u=", chat["Hash"]]],
+  Action = StringJoin["", ToString[chat["TotalTokens"]], " tokens"],
+
+ decorationStyle = If[True, "-top-6", ""] 
+},
+
+
+  <li class="relative flex gap-x-4">
+    <div class="absolute left-0 bottom-0 flex w-6 justify-center {decorationStyle}">
+      <div class="w-px bg-gray-200"></div>
+    </div>
+    <div class="relative flex h-6 w-6 flex-none items-center justify-center bg-transparent">
+      <div class="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300"></div>
+    </div>
+    <p class="flex-auto py-0.5 text-xs leading-5"><span class="font-medium text-gray-900 dark:text-gray-300">Stats </span><Action/></p>
   </li>
 ]
 
@@ -77,13 +117,14 @@ Component[item_Association, chat_] := With[{
   Content = item["content"]
 },
   If[Content === Null,
-    toolCall[item, chat]
+    Table[toolCall[item, i, chat], {i, item["tool_calls"]}] // StringRiffle
   ,
     If[TrueQ[(Length[item["tool_calls"]] > 0)],
       {
         comment[item, chat],
-        toolCall[item, chat, True]
-      } // StringRiffle
+        If[ListQ[item["tool_calls"]], Table[toolCall[item, i, chat, True], {i, item["tool_calls"]}], Nothing],
+        If[RandomInteger[{0,3}] === 2, stats[chat], Nothing]
+      } // Flatten // StringRiffle
     ,
       comment[item, chat]
     ]
