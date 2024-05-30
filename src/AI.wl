@@ -188,7 +188,7 @@ Module[{rest = StringTrim[text]},
 	]
 ]
 
-trimContent[str_String] := With[{splitted = StringSplit[str, "\n"]},
+trimContent[str_String] := With[{splitted = If[Length[#] == 0, {str}, #] &@ StringSplit[str, "\n"]},
     With[{content = If[StringMatchQ[splitted // First, "."~~WordCharacter..],
         StringRiffle[Rest[splitted], "\n"]
     ,
