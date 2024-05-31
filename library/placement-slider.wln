@@ -1,0 +1,197 @@
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$139], 
+   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
+/wljs_packages/wljs-snippets/library/placement-slider.wln"|>, 
+ "Cells" -> {<|"Data" -> ".md\n# Inline navigation gizmo slider\nA helper \
+tool for manipulation 1D parameters", "Display" -> "codemirror", 
+    "Hash" -> "e29ced19-cdb4-43f8-a744-0f06b02d2026", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> "# Inline navigation gizmo slider\nA helper tool for \
+manipulation 1D parameters", "Display" -> "markdown", 
+    "Hash" -> "7f46b5af-32f2-44ff-83cb-070e5fba44f9", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\n## Usage\n1. Select a number inside a graphics primitive \
+(for example)", "Display" -> "codemirror", 
+    "Hash" -> "22e0807c-f6eb-4ba9-864e-43f9a0b39b16", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> 
+     "## Usage\n1. Select a number inside a graphics primitive (for example)"\
+, "Display" -> "markdown", "Hash" -> "e3d77ad6-7ba1-4245-978c-ab785a16bda0", 
+    "Invisible" -> False, "MetaOnly" -> False, "Props" -> <||>, 
+    "State" -> "Idle", "Type" -> "Output", "UID" -> Null, 
+    "Notebook" -> "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\n2. Call this snippet from the palette menu using \
+`Cmd/Ctrl + P`\n3. A slider will appear on the selected place\n4. Evaluate \
+this cell\n5. Manipualte the parameter\n6. Once you are done, click on a mark \
+symbol", "Display" -> "codemirror", 
+    "Hash" -> "3acd054a-50be-4aec-b6dc-007fa784d547", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> "2. Call this snippet from the palette menu using `Cmd/Ctrl + \
+P`\n3. A slider will appear on the selected place\n4. Evaluate this cell\n5. \
+Manipualte the parameter\n6. Once you are done, click on a mark symbol", 
+    "Display" -> "markdown", "Hash" -> 
+     "7efa995a-8eb1-4b60-b242-71bdf638e2b5", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "2b237480-f572-4ee4-8c71-485b3a0180e9", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
+    "Hash" -> "9edd6e61-78ba-43d8-a7b9-f469bcf8f420", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, <|"Data" -> "__source code__", 
+    "Display" -> "markdown", "Hash" -> 
+     "723fa2be-7935-42c4-ada6-449394d864a8", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\nTemplate of a widget", "Display" -> "codemirror", 
+    "Hash" -> "346d758b-ba9e-4a88-ad45-1e0834093276", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> "Template of a widget", "Display" -> "markdown", 
+    "Hash" -> "5330d881-bd5a-45a0-9fcd-6529764ce630", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".action-once\n.wlx\ngizmoSider`Component[OptionsPattern[]] := \
+With[{UId = OptionValue[\"UId\"], BEvent = OptionValue[\"Button\"]},\n  {\n  \
+<span style=\"top: -0.25rem\" class=\"sm-controls flex relative \
+cursor-default rounded-md 0 pl-3 py-2 pr-2 text-left text-gray-500  \
+focus:outline-none focus:ring-2 focus:ring-teal-600 sm:text-xs sm:leading-6 \
+bg-gray-100 border-1 border-gray-800\">\n    <div class=\"relative flex \
+flex-grow items-stretch\" id=\"{UId}\">\n\n    </div>\n    <button \
+id=\"{UId}-button\" type=\"button\" class=\"relative -ml-px inline-flex \
+items-center px-2 text-sm hover:bg-gray-50\">\n      <svg class=\"h-5 w-5 \
+text-gray-500\" viewBox=\"0 0 20 20\" fill=\"currentColor\" \
+aria-hidden=\"true\">\n        <svg fill=\"currentColor\" \
+stroke-width=\"1.5\" class=\"w-5 h-5\" viewBox=\"0 0 24 24\"><path \
+d=\"M12,21h0a9,9,0,0,1-9-9H3a9,9,0,0,1,9-9h0a9,9,0,0,1,9,9h0A9,9,0,0,1,12,21Z\
+M8,11.5l3,3,5-5\" fill=\"none\" stroke=\"currentColor\"></path></svg>\n      \
+</svg>\n    </button>\n  </span>\n  ,\n    <script type=\"module\">\n      \
+const b = document.getElementById('<UId/>-button');\n      \
+b.addEventListener('click', () => {\n        server.kernel.emitt('<BEvent/>', \
+'True');\n      })\n    </script>\n  }\n]\n\nOptions[gizmoSider`Component] = \
+{\"UId\"->\"\", \"Button\"->\"\"};\n\ngizmoSider`View[object_, opts__] := \
+With[{id = CreateUUID[]},\n\tWLXEmbed[ gizmoSider`Component[\"UId\" -> id, \
+opts], \"SideEffect\"-> {AttachDOM[id], object} ]\n];", 
+    "Display" -> "codemirror", "Hash" -> 
+     "88b2f1fb-519a-4063-8870-20e37d94dfce", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\nLogic of a widget", "Display" -> "codemirror", 
+    "Hash" -> "0df3bf5a-6acf-4882-a540-e63c916ff438", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> "Logic of a widget", "Display" -> "markdown", 
+    "Hash" -> "3d5c92f8-ab18-4734-adf0-c7872ac9b53b", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".action-evaluate\n\nModule[{init = 0.5, input = \
+FrontFetch[FrontEditorSelected[\"Get\"]], result},\n  If[StringLength[input] \
+=== 0, Print[\"Assumming 1...\"],\n    init = ToExpression[input, \
+InputForm];\n    If[!NumberQ[init], Notify[\"Selected expression has to be a \
+number\", \"Topic\"->\"Warning\"]; Return[$Failed]];\n  ];\n\n  With[{event = \
+CreateUUID[], marker = MetaMarker[CreateUUID[]], window = CurrentWindow[], \
+min = 0.4 init, max = 1.6 init},\n\tLeakyModule[{variable = init},\n\n      \
+EventHandler[event, Function[Null,\n        \
+FrontSubmit[ViewBox`OuterExpression[ToString[variable, InputForm]], marker, \
+\"Window\"->window];\n        Notify[\"Done!\", \"Topic\"->\"Gizmo\"];\n      \
+]];\n\n\n        With[{ev = EventHandler[InputRange[min, max, (max-min)/60.0, \
+init], Function[value, variable = value]]},\n          With[{wrapper = \
+gizmoSider`View[ev[[1]][\"View\"], \"Button\"->event] // \
+CreateFrontEndObject},\n    \t\tWith[{box = Interpretation[{wrapper, marker} \
+// CreateFrontEndObject, Offload[variable]]},\n      \n              \
+FrontSubmit[FrontEditorSelected[\"Set\", ToString[box, StandardForm]]];\n     \
+     ]\n         ]\n        ]\n\t]\n  ];\n    \n \n]", 
+    "Display" -> "codemirror", "Hash" -> 
+     "67cc558b-97a6-4055-aeee-f3f649d9f14b", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "6e796e14-e8ed-48fc-ac5c-30881891b321", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".md\n__icon snippet template__", "Display" -> "codemirror", 
+    "Hash" -> "6eae04b0-e325-4c68-8f86-0b0f11c9894f", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> "__icon snippet template__", "Display" -> "markdown", 
+    "Hash" -> "5f81daa1-2d03-4436-8070-0558c4f33561", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>, 
+   <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
+OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
+OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
+tabindex=\"-1\" tag=\"{UTag}\" class=\"nooline rounded-sm group flex \
+cursor-default select-none items-center rounded-md px-2 py-1 \
+focus:bg-teal-500/25\">\n              <svg class=\"h-5 w-5 flex-none \
+text-gray-900  dark:text-gray-400 text-opacity-40\" fill=\"currentColor\" \
+viewBox=\"-2 0 29 24\"><path d=\"M16.1924 5.65683C16.5829 5.2663 16.5829 \
+4.63314 16.1924 4.24261L13.364 1.41419C12.5829 0.633139 11.3166 0.633137 \
+10.5355 1.41419L7.70711 4.24261C7.31658 4.63314 7.31658 5.2663 7.70711 \
+5.65683C8.09763 6.04735 8.73079 6.04735 9.12132 5.65683L11 \
+3.77812V11.0503H3.72784L5.60655 9.17157C5.99707 8.78104 5.99707 8.14788 \
+5.60655 7.75735C5.21602 7.36683 4.58286 7.36683 4.19234 7.75735L1.36391 \
+10.5858C0.582863 11.3668 0.582859 12.6332 1.36391 13.4142L4.19234 \
+16.2426C4.58286 16.6332 5.21603 16.6332 5.60655 16.2426C5.99707 15.8521 \
+5.99707 15.219 5.60655 14.8284L3.8284 13.0503H11V20.2219L9.12132 \
+18.3432C8.73079 17.9526 8.09763 17.9526 7.7071 18.3432C7.31658 18.7337 \
+7.31658 19.3669 7.7071 19.7574L10.5355 22.5858C11.3166 23.3669 12.5829 \
+23.3669 13.364 22.5858L16.1924 19.7574C16.5829 19.3669 16.5829 18.7337 \
+16.1924 18.3432C15.8019 17.9526 15.1687 17.9526 14.7782 18.3432L13 \
+20.1213V13.0503H20.071L18.2929 14.8284C17.9024 15.219 17.9024 15.8521 18.2929 \
+16.2426C18.6834 16.6332 19.3166 16.6332 19.7071 16.2426L22.5355 \
+13.4142C23.3166 12.6332 23.3166 11.3668 22.5355 10.5858L19.7071 \
+7.75735C19.3166 7.36683 18.6834 7.36683 18.2929 7.75735C17.9024 8.14788 \
+17.9024 8.78104 18.2929 9.17157L20.1716 11.0503H13V3.87867L14.7782 \
+5.65683C15.1687 6.04735 15.8019 6.04735 16.1924 5.65683Z\" \
+fill=\"currentColor\"></path></svg>\n              <span class=\"ml-3 \
+flex-auto truncate\"><Title/></span><span class=\"ml-3 flex-none text-xs \
+font-semibold text-gray-500\">\n                <kbd \
+class=\"font-sans\"><Kbd/></kbd>\n                <button class=\"p-0.5 \
+rounded hover:bg-gray-100 dark:hover:bg-gray-200\" btag=\"{Btn}\">\n          \
+        <svg class=\"w-4 h-4 text-gray-400\" viewBox=\"0 0 24 24\" \
+fill=\"none\">\n                    <path fill-rule=\"evenodd\" \
+clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
+17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 \
+6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 \
+1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 \
+22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 7.75C11.3787 7.75 10.875 8.25368 \
+10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 9.625C9.71079 9.625 9.375 \
+9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 6.25C13.4497 6.25 14.625 \
+7.42525 14.625 8.875C14.625 9.83834 14.1056 10.6796 13.3353 11.1354C13.1385 \
+11.2518 12.9761 11.3789 12.8703 11.5036C12.7675 11.6246 12.75 11.7036 12.75 \
+11.75V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 \
+11.25 13V11.75C11.25 11.2441 11.4715 10.8336 11.7266 10.533C11.9786 10.236 \
+12.2929 10.0092 12.5715 9.84439C12.9044 9.64739 13.125 9.28655 13.125 \
+8.875C13.125 8.25368 12.6213 7.75 12 7.75ZM12 17C12.5523 17 13 16.5523 13 \
+16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 \
+17 12 17Z\" fill=\"currentColor\"/>\n                  </svg>                 \
+ \n                </button>\n              </span>\n    </li>    \
+\n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
+\"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
+    "Display" -> "codemirror", "Hash" -> 
+     "4dc2c2e9-21ed-43bc-ae04-6a28030ce667", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "9257b292-e9dc-4513-87de-5053eda25475"|>}, "serializer" -> "jsfn4"|>
