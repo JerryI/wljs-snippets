@@ -507,8 +507,8 @@ createChat[assoc_Association] := With[{
         removeQuotes[str_String] := If[StringTake[str, 1] === "\"", StringDrop[StringDrop[str, -1], 1], str ];
 
         functionsHandler[a_Association, cbk_] := Module[{toolResults = {}},
-            Echo["AI requests:"];
-            Echo[a];
+            Echo["AI request >>"];
+            Echo[Print[a] ];
 
             Function[call,
                 With[{result = Switch[call["function", "name"],
@@ -719,12 +719,17 @@ createChat[assoc_Association] := With[{
                     _,
                         Echo["Undefined Function!"]; AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, "ERROR: Undefined Function!" ] ] ];
                 ]},
-                    Echo["Send to AI the responce"];
-                    Echo[result];
+                    
+                    
                 ]
             ] /@ a["tool_calls"];
 
-            AppendTo[commmandQuery, Function[Null, cbk[toolResults] ] ];
+            AppendTo[commmandQuery, Function[Null, 
+                Echo["Send to AI the responce >>"];
+                Print[toolResults];
+
+                cbk[toolResults] 
+            ] ];
         ];
 
         initializeChat := (
