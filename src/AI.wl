@@ -460,7 +460,7 @@ commmandQueryNext := With[{},
         
         With[{first = (commmandQuery // First)[]},
             Then[first, Function[Null,
-                Echo["commmandQueryNext >> "<>ToString[first] ];
+                Echo["commmandQueryNext >> drop"];
                 commmandQuery = Drop[commmandQuery, 1];
                 commmandQueryNext;
             ] ];
@@ -499,13 +499,16 @@ createChat[assoc_Association] := With[{
         focused := notebook["FocusedCell"];
         Echo["Focused cell"];
         Echo[focused];
+
+        Echo["Notebook:"];
+        Echo[notebook];
         
 
         removeQuotes[str_String] := If[StringTake[str, 1] === "\"", StringDrop[StringDrop[str, -1], 1], str ];
 
         functionsHandler[a_Association, cbk_] := Module[{toolResults = {}},
             Echo["AI requests:"];
-            (*Echo[a];*)
+            Echo[a];
 
             Function[call,
                 With[{result = Switch[call["function", "name"],
@@ -717,7 +720,7 @@ createChat[assoc_Association] := With[{
                         Echo["Undefined Function!"]; AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, "ERROR: Undefined Function!" ] ] ];
                 ]},
                     Echo["Send to AI the responce"];
-                    (*Echo[result];*)
+                    Echo[result];
                 ]
             ] /@ a["tool_calls"];
 
