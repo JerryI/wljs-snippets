@@ -55,6 +55,7 @@ App[request_] := With[{
 
     <html class="h-full"> 
         <Head Title={"AI Chat"} Settings={settings}>
+            <meta charset="utf-8"/>
             <WLJSHeader List={ExtensionsJS}/>  
             <WLJSTransportScript TwoKernels={False} Port={$Env["ws"]}/>     
             <WebUIInitializationScript/>
