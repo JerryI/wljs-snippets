@@ -719,7 +719,7 @@ createChat[assoc_Association] := With[{
                     _,
                         Echo["Undefined Function!"]; AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, "ERROR: Undefined Function!" ] ] ];
                 ]},
-                    
+                    1+1
                     
                 ]
             ] /@ a["tool_calls"];
