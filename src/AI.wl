@@ -490,6 +490,7 @@ createChat[assoc_Association] := With[{
         functionsHandler,
         setContent,
         printCell,
+        encodingError,
         last
     },
 
@@ -502,6 +503,16 @@ createChat[assoc_Association] := With[{
 
         Echo["Notebook:"];
         Echo[notebook];
+
+        encodingError := (
+            chat["Messages"] = Append[chat["Messages"], <|
+                                    "content" -> "Encoding error! <b>Cannot interprete the request</b>. Please reset the chat by sending <code>reset chat</code>",
+                                    "role" -> "watchdog",
+                                    "date" -> Now
+                                |>];                            
+
+            EventFire[chat, "Update", chat["Messages"] ];
+        );
         
 
         removeQuotes[str_String] := If[StringTake[str, 1] === "\"", StringDrop[StringDrop[str, -1], 1], str ];
@@ -519,6 +530,11 @@ createChat[assoc_Association] := With[{
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
 									]},
 
+                            If[FailureQ[args], 
+                                encodingError;
+                                Return[];
+                            ];
+
                             AppendTo[commmandQuery, Function[Null,
                                 WebUISubmit[FrontEditorSelected["Set", args["content"] ], client];
                                 WebUISubmit[Global`SiriwaveMagicRun[ "frame-"<>focused["Hash"] ], client];
@@ -535,6 +551,11 @@ createChat[assoc_Association] := With[{
 									],
                               promise = Promise[] 
                             },
+
+                            If[FailureQ[args], 
+                                encodingError;
+                                Return[];
+                            ];
 
                             AppendTo[commmandQuery, Function[Null, promise ] ];                   
                                
@@ -590,6 +611,12 @@ createChat[assoc_Association] := With[{
 										call["function", "arguments"], 
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
 									]},
+                            
+                            If[FailureQ[args], 
+                                encodingError;
+                                Return[];
+                            ];
+
                             With[{cell = CellObj`HashMap[ removeQuotes @ args["uid"] ]},
                                 AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
                                     If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id",
@@ -686,6 +713,12 @@ createChat[assoc_Association] := With[{
 										call["function", "arguments"], 
 										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
 									]},
+
+                            If[FailureQ[args], 
+                                encodingError;
+                                Return[];
+                            ];
+
                             If[TrueQ[ StringLength[ args["after"] ] > 5 ],
                                 With[{cell = CellObj`HashMap[ removeQuotes @ args["after"] ]},
                                     If[!MatchQ[cell, _CellObj], "ERROR: Not found by given id - after",
@@ -733,7 +766,7 @@ createChat[assoc_Association] := With[{
         ];
 
         initializeChat := (
-            systemPromt = "**The most important** You are chat bot in the notebook env (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML, Markdown, RevealJS (Slides) input cells. You can change or create all of them. If a user ask you to show examples on code, please, create a new cell with it. If a user asks to correct mistakes or edit something - apply changes directly. Print - means to print a cell to a notebook, not to a chat. You can't create and edit output cells, only read. You can create and edit any input cells. You can request a list of cells, where each item has uid field. Use it to get or change the content of a cell. Always read cells content before commenting on them. You shall only invoke the defined functions. **You should NEVER invent or use functions NOT defined or especially the multi_tool_use.parallel function. If you need to call multiple functions, you will call them one at a time **.";
+            systemPromt = "**The most important** You are chat bot in the notebook env (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML, Markdown, RevealJS (Slides) input cells. You can change or create all of them. If a user ask you to show examples on code, please, create a new cell with it. If a user asks to correct mistakes or edit something - apply changes directly. Print - means to print a cell to a notebook, not to a chat. You can't create and edit output cells, only read. You can create and edit any input cells. You can request a list of cells, where each item has uid field. Use it to get or change the content of a cell. Always read cells content before commenting on them. You shall only invoke the defined functions. **You should NEVER invent or use functions NOT defined or especially the multi_tool_use.parallel function. If you need to call multiple functions, you will call them one at a time **. **Use only English when creating or modifying cells**";
             If[getParameter["AIAssistantInitialPrompt"],
                 systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
                 systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];

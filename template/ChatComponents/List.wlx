@@ -1,5 +1,6 @@
 assistant  = ImportComponent["assistant.wlx"];
 user       = ImportComponent["user.wlx"];
+watchdog       = ImportComponent["watchdog.wlx"];
 
 Global`ChatRunMarkdownProcessor(*`*);
 
@@ -10,6 +11,8 @@ printMessages[item_, chat_] := Switch[item["role"],
 "user",
     user[item, chat],
 
+"watchdog",
+    watchdog[item, chat],
 _,
     ""
 ]
