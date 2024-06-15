@@ -6,6 +6,8 @@ core.SiriwaveMagicRun = async (args, env) => {
   const uid = interpretate(args[0], env);
   const doc = document.getElementById(uid);
 
+  if (!party) party = (await import('party-js')).default;
+
   party.sparkles(doc, {
     // Specify further (optional) configuration here.
     count: party.variation.range(10, 60),
