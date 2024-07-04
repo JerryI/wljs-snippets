@@ -1,62 +1,100 @@
-<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$82], 
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$56], 
    "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
 /wljs_packages/wljs-snippets/library/specialchars.wln"|>, 
- "Cells" -> {<|"Data" -> ".md\n# Glyphs toolbar\nSpecial characters", 
+ "Cells" -> 
+  {<|"Data" -> 
+     ".md\n# Special characters\nInsert Greek letter, math, colors", 
     "Display" -> "codemirror", "Hash" -> 
-     "fcd0b4da-bbe5-4294-b97f-2d9c17991c09", "Invisible" -> False, 
+     "2e62e1fa-fd07-4083-a214-5cb4ba38244e", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
-   <|"Data" -> "# Glyphs toolbar\nSpecial characters", 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
+   <|"Data" -> "># Special characters\nInsert Greek letter, math, colors", 
     "Display" -> "markdown", "Hash" -> 
-     "866c79f4-7f28-4f66-958c-1e77f4cbcd2d", "Invisible" -> False, 
+     "a3094bb8-a749-484b-a8ea-f640bbf7beef", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "ff584725-ac8c-4567-b6fc-7d3d7a2fa39f", "Invisible" -> False, 
+    "Hash" -> "b2726bb6-d364-4ca1-8a03-ba55c21dbdbd", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, <|"Data" -> "__source code__", 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "56ec8e9b-3b7e-4d7e-83fe-6965acc0714f", "Invisible" -> False, 
+     "9d304db5-b447-45b8-865f-a86711e3cb95", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".action-once\n.wlx\n\nMacroToolbar`Button[Child_, \
-OptionsPattern[]] := With[{\n  UId = CreateUUID[],\n  Event = \
-OptionValue[\"Event\"],\n  Pattern = OptionValue[\"Pattern\"]\n},\n  {\n    \
-<button id=\"{UId}\" class=\"hover:bg-gray-100 p-1 rounded\">\n      \
-<Child/>\n    </button>\n  ,\n    <script type=\"module\">\n      const uid = \
-'<UId/>';\n      document.getElementById(uid).addEventListener('click', () => \
-{\n        server.kernel.emitt('<Event/>', 'True', '<Pattern/>');\n      })\n \
-   </script>\n  }\n]\n\nOptions[MacroToolbar`Button] = {\"Event\"->\"\", \
-\"Pattern\"->\"\"};\n\nMacroToolbar`Greek[Child_, OptionsPattern[]] := \
-With[{\n  UId = CreateUUID[],\n  Event = OptionValue[\"Event\"],\n  Pattern = \
+OptionsPattern[]] := With[{\n  UId = CreateUUID[],\n  Title = \
+OptionValue[\"Title\"],\n  Event = OptionValue[\"Event\"],\n  Pattern = \
+OptionValue[\"Pattern\"]\n},\n  {\n    <button title=\"{Title}\" id=\"{UId}\" \
+class=\"hover:bg-gray-100 p-1 rounded\">\n      <Child/>\n    </button>\n  \
+,\n    <script type=\"module\">\n      const uid = '<UId/>';\n      \
+document.getElementById(uid).addEventListener('click', () => {\n        \
+server.kernel.emitt('<Event/>', 'True', '<Pattern/>');\n      })\n    \
+</script>\n  }\n]\n\nOptions[MacroToolbar`Button] = {\"Event\"->\"\", \
+\"Pattern\"->\"\", \"Title\"->\"\"};\n\nMacroToolbar`Color[Child_, \
+OptionsPattern[]] := With[{\n  UId = CreateUUID[],\n  Title = \
+OptionValue[\"Title\"],\n  Event = OptionValue[\"Event\"],\n  Pattern = \
 OptionValue[\"Pattern\"],\n  Letters = {\"\\\\[Alpha]\", \"\\\\[Beta]\", \
 \"\\\\[Gamma]\", \"\\\\[Delta]\", \"\\\\[Epsilon]\", \"\\\\[Zeta]\", \
 \"\\\\[Eta]\", \"\\\\[Theta]\", \"\\\\[Iota]\", \"\\\\[Kappa]\", \
 \"\\\\[Lambda]\", \"\\\\[Mu]\", \"\\\\[Nu]\", \"\\\\[Xi]\", \
 \"\\\\[Omicron]\", \"\\\\[Pi]\", \"\\\\[Rho]\", \"\\\\[Sigma]\", \
 \"\\\\[Tau]\", \"\\\\[Upsilon]\", \"\\\\[Phi]\", \"\\\\[Chi]\", \
-\"\\\\[Psi]\", \"\\\\[Omega]\"}\n},\nWith[{\n  GreekList = Table[With[{\n    \
-HTMLEntity = StringJoin[\"&\", ToLowerCase[StringDrop[StringDrop[Item, 2], \
--1]], \";\"]\n  },\n    <button class=\"w-5 h-5 rounded\" \
-name=\"{Item}\"><HTMLEntity/></button>\n  ], {Item, Letters}]\n},\n  {\n<div \
-class=\"relative\">\n    <button id=\"{UId}\" class=\"hover:bg-gray-100 p-1 \
-rounded\">\n      <Child/>\n    </button>\n  <div id=\"{UId}-fpicker\" \
-class=\"absolute left-0 z-10 mt-2 origin-top-right backdrop-blur rounded-md \
-ring-1 ring-black ring-opacity-5 focus:outline-none hidden\" role=\"menu\" \
-aria-orientation=\"vertical\" aria-labelledby=\"menu-button\" \
-tabindex=\"-1\">\n    <div class=\"flex flex-row flex-wrap gap-x-2 gap-2 \
-p-2\" role=\"none\" style=\"\n    width: 11rem;\n    position: relative;\n    \
-height: 10%;\n    flex-wrap: wrap;\n\">\n      \n      <GreekList/>\n    \
-</div>\n  </div>\n </div> \n  ,\n    <script type=\"module\">\n      const \
-uid = '<UId/>';\n      const picker = document.getElementById(uid + \
-'-fpicker');\n      let state = false;\n\n    \n\n      let close;\n      \n  \
-    close = () => {\n        if (!state) return;\n        state = false;\n    \
-    picker.classList.add('hidden');\n        \
-window.removeEventListener('click', close);\n      }\n      \n      const \
+\"\\\\[Psi]\", \"\\\\[Omega]\"}\n},\nWith[{\n  \n},\n  {\n<div \
+class=\"relative\">\n    <button title=\"{Title}\" id=\"{UId}\" \
+class=\"hover:bg-gray-100 p-1 rounded\">\n      <Child/>\n    </button>\n  \
+<div id=\"{UId}-cpicker\" class=\"absolute left-0 z-10 mt-2 origin-top-right \
+backdrop-blur rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none \
+hidden\" role=\"menu\" aria-orientation=\"vertical\" \
+aria-labelledby=\"menu-button\" tabindex=\"-1\">\n    <div class=\"flex \
+flex-row flex-wrap gap-x-2 gap-2 p-2\" role=\"none\" style=\"\n    position: \
+relative;\n    height: 10%;\n    flex-wrap: wrap;\n\">\n      <input \
+type=\"color\" value=\"#e66465\" />\n      \n    </div>\n  </div>\n </div> \n \
+ ,\n    <script type=\"module\">\n      const uid = '<UId/>';\n      const \
+picker = document.getElementById(uid + '-cpicker');\n      let state = \
+false;\n\n    \n\n      let close;\n      \n      close = () => {\n        if \
+(!state) return;\n        state = false;\n        \
+picker.classList.add('hidden');\n        window.removeEventListener('click', \
+close);\n      }\n      \n      const color = \
+picker.getElementsByTagName('input')[0];\n      \
+color.addEventListener(\"change\", (event) => {\n        \
+server.kernel.emitt('<Event/>', '\"' + event.target.value + '\"', \
+'<Pattern/>');\n      }, false);\n      \n      \
+document.getElementById(uid).addEventListener('click', () => {\n        \
+console.log('clicked');\n        \n        \
+picker.classList.remove('hidden');\n        console.log(picker.classList);\n  \
+      state = true; \n        setTimeout(() => \
+window.addEventListener('click', close), 30);\n      })\n    </script>\n  \
+}\n] ]\n\nOptions[MacroToolbar`Color] = {\"Event\"->\"\", \"Pattern\"->\"\", \
+\"Title\"->\"\"};\n\nMacroToolbar`Greek[Child_, OptionsPattern[]] := With[{\n \
+ UId = CreateUUID[],\n  Title = OptionValue[\"Title\"],\n  Event = \
+OptionValue[\"Event\"],\n  Pattern = OptionValue[\"Pattern\"],\n  Letters = \
+{\"\\\\[Alpha]\", \"\\\\[Beta]\", \"\\\\[Gamma]\", \"\\\\[Delta]\", \
+\"\\\\[Epsilon]\", \"\\\\[Zeta]\", \"\\\\[Eta]\", \"\\\\[Theta]\", \
+\"\\\\[Iota]\", \"\\\\[Kappa]\", \"\\\\[Lambda]\", \"\\\\[Mu]\", \
+\"\\\\[Nu]\", \"\\\\[Xi]\", \"\\\\[Omicron]\", \"\\\\[Pi]\", \"\\\\[Rho]\", \
+\"\\\\[Sigma]\", \"\\\\[Tau]\", \"\\\\[Upsilon]\", \"\\\\[Phi]\", \
+\"\\\\[Chi]\", \"\\\\[Psi]\", \"\\\\[Omega]\"}\n},\nWith[{\n  GreekList = \
+Table[With[{\n    HTMLEntity = StringJoin[\"&\", \
+ToLowerCase[StringDrop[StringDrop[Item, 2], -1]], \";\"]\n  },\n    <button \
+class=\"w-5 h-5 rounded\" name=\"{Item}\"><HTMLEntity/></button>\n  ], {Item, \
+Letters}]\n},\n  {\n<div class=\"relative\">\n    <button title=\"{Title}\" \
+id=\"{UId}\" class=\"hover:bg-gray-100 p-1 rounded\">\n      <Child/>\n    \
+</button>\n  <div id=\"{UId}-fpicker\" class=\"absolute left-0 z-10 mt-2 \
+origin-top-right backdrop-blur rounded-md ring-1 ring-black ring-opacity-5 \
+focus:outline-none hidden\" role=\"menu\" aria-orientation=\"vertical\" \
+aria-labelledby=\"menu-button\" tabindex=\"-1\">\n    <div class=\"flex \
+flex-row flex-wrap gap-x-2 gap-2 p-2\" role=\"none\" style=\"\n    width: \
+11rem;\n    position: relative;\n    height: 10%;\n    flex-wrap: \
+wrap;\n\">\n      \n      <GreekList/>\n    </div>\n  </div>\n </div> \n  ,\n \
+   <script type=\"module\">\n      const uid = '<UId/>';\n      const picker \
+= document.getElementById(uid + '-fpicker');\n      let state = false;\n\n    \
+\n\n      let close;\n      \n      close = () => {\n        if (!state) \
+return;\n        state = false;\n        picker.classList.add('hidden');\n    \
+    window.removeEventListener('click', close);\n      }\n      \n      const \
 list = picker.getElementsByTagName('button');\n      for (let i=0; \
 i<list.length; ++i) {\n        const el = list[i];\n        const value = \
 el.name;\n        el.addEventListener('click', () => {\n          \
@@ -67,40 +105,83 @@ console.log('clicked');\n        \n        \
 picker.classList.remove('hidden');\n        console.log(picker.classList);\n  \
       state = true; \n        setTimeout(() => \
 window.addEventListener('click', close), 30);\n      })\n    </script>\n  \
-}\n] ]\n\nOptions[MacroToolbar`Greek] = {\"Event\"->\"\", \
-\"Pattern\"->\"\"};\n\nMacroToolbar`format[\"Wolfram\", \"Superscript\", _, \
-piece_String, win_] := With[{\n  s = StringJoin[\"(*SpB[*)Power[\", piece, \
-\"(*|*),(*|*)\",  \"_\", \"](*]SpB*)\"]\n},\n  \
+}\n] ]\n\nOptions[MacroToolbar`Greek] = {\"Event\"->\"\", \"Pattern\"->\"\", \
+\"Title\"->\"\"};\n\nMacroToolbar`format[\"Wolfram\", \"Superscript\", _, \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*SpB[*)Power[\", \
+If[StringLength[piece]==0, \"_\", piece], \"(*|*),(*|*)\",  \"_\", \
+\"](*]SpB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \
+\"ConjugateTranspose\", _, piece_String, win_] := With[{\n  s = \
+StringJoin[\"(*BB[*)(ConjugateTranspose[\",If[StringLength[piece]==0, \"_\", \
+piece],\"])(*,*)(*\\\"1:eJxTTMoPSmNmYGAo5gcSAUX5ZZkpqSn+BSWZ+XnFaYwgCRYg4ZGfk\
+wLh8QCJkKLEvOKC/OJUp/yKYA6ggFpKYnp6apF1GhNMQ1BpTmowWGdqYkqwEJDhnJ+XVZqeWJIK14\
+2mmhXIcC1LzSsBC/mV5uQAAMyPJpk=\\\"*)(*]BB*)\"]\n},\n  \
 FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Transpose\", _, \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*BB[*)(Transpose[\", \
+If[StringLength[piece]==0, \"_\", piece], \
+\"])(*,*)(*\\\"1:eJxTTMoPSmNmYGAo5gcSAUX5ZZkpqSn+BSWZ+XnFaYwgCRYg4ZGfkwLh8QCJ\
+kKLEvOKC/OJUp/yKYJBoSBoTTGVQaU5qMFhLamJKMCeyajRFrECGa1lqXglYyK80JwcAFSsgcg==\
+\\\"*)(*]BB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
 \"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Subscript\", _, \
 piece_String, win_] := With[{\n  s = StringJoin[\"(*SbB[*)Subscript[\", \
-piece, \"(*|*),(*|*)\",  \"_\", \"](*]SbB*)\"]\n},\n  \
-FrontSubmit[FrontEditorSelected[\"Set\", s], \"Window\"->win]\n] \
-\n\nMacroToolbar`format[\"Wolfram\", \"Fraction\", _, piece_String, win_] := \
-With[{\n  s = StringJoin[\"(*FB[*)((\", piece, \")(*,*)/(*,*)(\", \"_\", \
+If[StringLength[piece]==0, \"_\", piece], \"(*|*),(*|*)\",  \"_\", \
+\"](*]SbB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n] \n\nMacroToolbar`format[\"Wolfram\", \"Fraction\", _, \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*FB[*)((\", \
+If[StringLength[piece]==0, \"_\", piece], \")(*,*)/(*,*)(\", \"_\", \
 \"))(*]FB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
 \"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Root\", _, \
-piece_String, win_] := With[{\n  s = StringJoin[\"(*SqB[*)Sqrt[\", piece, \
-\"](*]SqB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
-\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Greek\", \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*SqB[*)Sqrt[\", \
+If[StringLength[piece]==0, \"_\", piece], \"](*]SqB*)\"]\n},\n  \
+FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Integral\", _, \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*TB[*)Integrate[(*|*)\", \
+If[StringLength[piece]==0, \"_\", piece],\"(*|*), \
+(*|*)x(*|*)](*|*)(*1:eJxTTMoPSmNiYGAo5gESnnklqelFiSWpTvkVmYwgUVYg4ZaYU5wKAMfB\
+CcU=*)(*]TB*)\"]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"IntegralBound\", _, \
+piece_String, win_] := With[{\n  s = \
+StringJoin[\"(*TB[*)Integrate[(*|*)\",If[StringLength[piece]==0, \"_\", \
+piece],\"(*|*), \
+{(*|*)x(*|*),(*|*)xmin(*|*),(*|*)xmax(*|*)}](*|*)(*1:eJxTTMoPSmNiYGAo5gESnnkl\
+qelFiSWpTvkVmYwgURYgEVJUmgoAvmMJeQ==*)(*]TB*)\"]\n},\n  \
+FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Sum\", _, \
+piece_String, win_] := With[{\n  s = \
+StringJoin[\"(*TB[*)Sum[(*|*)\",If[StringLength[piece]==0, \"_\", \
+piece],\"(*|*), \
+{(*|*)x(*|*),(*|*)xmin(*|*),(*|*)xmax(*|*)}](*|*)(*1:eJxTTMoPSmNiYGAoZgMSwaW5\
+TvkVmYwgPguQCCkqTQUAeAcHBQ==*)(*]TB*)\"]\n},\n  \
+FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\n\nMacroToolbar`format[\"Wolfram\", \"Piecewise\", _, \
+piece_String, win_] := With[{\n  s = StringJoin[\"(*TB[*)Piecewise[{{(*|*)\", \
+If[StringLength[piece]==0, \"_\", piece], \"(*|*),(*|*)x > \
+0(*|*)},{(*|*)0(*|*),(*|*)True(*|*)}}](*|*)(*1:eJxTTMoPSmNkYGAo5gESAZmpyanlmc\
+WpTvkVmUxAAQBzVQdd*)(*]TB*)\"]\n},\n  \
+FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\n\nMacroToolbar`format[\"Wolfram\", \"Greek\", \
 letter_String, piece_String, win_] := With[{\n  s = letter\n},\n  \
 FrontSubmit[FrontEditorSelected[\"Set\", s], \
+\"Window\"->win]\n]\n\nMacroToolbar`format[\"Wolfram\", \"Color\", \
+color_String, piece_String, win_] := With[{\n  s = ToString[RGBColor[color], \
+StandardForm]\n},\n  FrontSubmit[FrontEditorSelected[\"Set\", s], \
 \"Window\"->win]\n]\n\nMacroToolbar`dummy := <div></div>", 
     "Display" -> "codemirror", "Hash" -> 
-     "c6d6d8d2-ed35-4bd3-b8de-ecaa22801707", "Invisible" -> False, 
+     "9e211bd5-44fa-4b77-9fd4-f5047c42aa00", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> "", "Display" -> "codemirror", 
-    "Hash" -> "b5cebf35-26af-4d09-bec8-336872ced490", "Invisible" -> False, 
+    "Hash" -> "9640a9d1-7a2f-482f-b3e2-94d33d7ba311", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> "", "Display" -> "codemirror", 
-    "Hash" -> "8d6c9d5d-ab69-4ef7-b661-83350b0aeb6a", "Invisible" -> False, 
+    "Hash" -> "dba3994e-9ed7-48f5-844c-65f12686e851", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".action-once\n\nMacroToolbar`format[\"Markdown\" | \"HTML\", \
 \"Superscript\", _, piece_String, win_] := With[{\n  s = \
 StringJoin[\"<sup>\", piece, \"</sup>\"]\n},\n  \
@@ -140,34 +221,36 @@ MacroToolbar`format[\"Wolfram\", style, data, StringTake[text, cursor + \
 \"Topic\"->\"Warning\"],\n\n      True,\n      \
 MacroToolbar`format[\"Wolfram\", style, data, StringTake[text, cursor + \
 {1,0}], window]\n    ];\n  ]\n]]", "Display" -> "codemirror", 
-    "Hash" -> "927143de-8825-4f78-a64c-81e9d3bb90d4", "Invisible" -> False, 
+    "Hash" -> "7c371582-361a-4961-a690-337580186561", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> "", "Display" -> "codemirror", 
-    "Hash" -> "e5561038-7ef1-4010-9283-269fecf9a5ef", "Invisible" -> False, 
+    "Hash" -> "d96734bf-c378-44dd-b8eb-6ad2cffa35e7", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".md\nActual widget", "Display" -> "codemirror", 
-    "Hash" -> "14969fe9-644a-4c55-8333-55eca40b2361", "Invisible" -> False, 
+    "Hash" -> "be2563d6-b8f2-463b-8f45-30cf8373cd30", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, <|"Data" -> "Actual widget", 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, <|"Data" -> "Actual widget", 
     "Display" -> "markdown", "Hash" -> 
-     "4e591f6f-a937-482b-9f74-d9ec7d1cded1", "Invisible" -> False, 
+     "cb95889f-1dc5-44be-81b7-f5efe076097e", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".action-evaluate-export\n.wlx\n\nWith[{\n  \
 FormattingToolbarButton = MacroToolbar`Button, \n  \
-FormattingToolbarColorSelector = MacroToolbar`Greek,\n  act = CreateUUID[],\n \
+FormattingToolbarLetterSelector = MacroToolbar`Greek,\n  \
+FormattingToolbarColorSelector = MacroToolbar`Color,\n  act = CreateUUID[],\n \
  parent = EvaluationCell[],\n  win = CurrentWindow[]\n},\n\nEventHandler[act, \
 {\n  \"Close\" -> Function[Null,\n    Delete[parent]\n  ],\n\n  s_String :> \
 Function[data, MacroToolbar`apply[s, data, win]]\n}];\n\n<div class=\"flex \
-flex-row\">\n<ul class=\"flex flex-row pr-1\">\n  <li>\n    \
-<FormattingToolbarButton Event={act} Pattern={\"Superscript\"}>\n      <svg \
-class=\"w-5 h-5 text-gray-500 hover:text-teal-600\" viewBox=\"0 0 24 24\" \
+flex-row\">\n<ul class=\"p-0 flex flex-row pr-1\">\n  <li \
+class=\"list-none\">\n    <FormattingToolbarButton Event={act} \
+Title={\"Power\"} Pattern={\"Superscript\"}>\n      <svg class=\"w-5 h-5 \
+text-gray-500 hover:text-teal-600\" viewBox=\"0 0 24 24\" \
 fill=\"none\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" \
 d=\"M17.3181 6.04842C17.6174 5.75945 18.1021 5.79767 18.3524 6.12997C18.5536 \
 6.39707 18.5353 6.76978 18.3088 7.01579L15.2643 10.3227C14.9955 10.6147 \
@@ -184,9 +267,10 @@ d=\"M17.3181 6.04842C17.6174 5.75945 18.1021 5.79767 18.3524 6.12997C18.5536 \
 18.331L9.84537 14L13.7433 9.66896C14.1128 9.25845 14.0795 8.62616 13.669 \
 8.25671C13.2585 7.88725 12.6262 7.92053 12.2567 8.33104L8.50001 \
 12.5052L4.7433 8.33104Z\" fill=\"currentColor\"/>\n</svg>\n    \
-</FormattingToolbarButton>\n  </li>   \n  <li>\n    <FormattingToolbarButton \
-Event={act} Pattern={\"Subscript\"}>\n      <svg class=\"w-5 h-5 \
-text-gray-500 hover:text-teal-600\" viewBox=\"0 0 24 24\" fill=\"none\"><path \
+</FormattingToolbarButton>\n  </li>   \n  <li class=\"list-none\">\n    \
+<FormattingToolbarButton Event={act} Title={\"Subscript\"} \
+Pattern={\"Subscript\"}>\n      <svg class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\" viewBox=\"0 0 24 24\" fill=\"none\"><path \
 fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M4.7433 5.33104C4.37384 \
 4.92053 3.74155 4.88726 3.33104 5.25671C2.92053 5.62617 2.88726 6.25846 \
 3.25671 6.66897L7.15465 11L3.25671 15.331C2.88726 15.7416 2.92053 16.3738 \
@@ -202,8 +286,9 @@ fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M4.7433 5.33104C4.37384 \
 13.965 19.95 12.9267C18.9769 11.6348 17.0925 11.4862 15.929 12.6096L15.3054 \
 13.2116C14.9081 13.5953 14.897 14.2283 15.2806 14.6256C15.6642 15.023 16.2973 \
 15.0341 16.6946 14.6505L17.3181 14.0484Z\" fill=\"currentColor\"/>\n</svg>\n  \
-  </FormattingToolbarButton>\n  </li>    \n<li>\n    <FormattingToolbarButton \
-Event={act} Pattern={\"Fraction\"}>\n      <svg class=\"w-5 h-5 text-gray-500 \
+  </FormattingToolbarButton>\n  </li>    \n<li class=\"list-none\">\n    \
+<FormattingToolbarButton Event={act} Title={\"Fraction\"} \
+Pattern={\"Fraction\"}>\n      <svg class=\"w-5 h-5 text-gray-500 \
 hover:text-teal-600\" fill=\"currentColor\" viewBox=\"-8 0 32 32\">\n<path \
 d=\"M14.84 16.84h-14c-0.48 0-0.84-0.36-0.84-0.84s0.36-0.84 0.84-0.84h14c0.48 \
 0 0.84 0.36 0.84 0.84s-0.36 0.84-0.84 0.84zM7.84 12.56c-1.36 \
@@ -213,51 +298,116 @@ d=\"M14.84 16.84h-14c-0.48 0-0.84-0.36-0.84-0.84s0.36-0.84 0.84-0.84h14c0.48 \
 0-2.48-1.12-2.48-2.48s1.12-2.48 2.48-2.48 2.48 1.12 2.48 2.48c0 1.4-1.12 \
 2.48-2.48 2.48zM7.84 21.12c-0.44 0-0.8 0.36-0.8 0.8s0.36 0.8 0.8 0.8 0.8-0.36 \
 0.8-0.8-0.36-0.8-0.8-0.8z\"></path>\n</svg>\n    </FormattingToolbarButton>\n \
- </li> \n\n<li>\n    <FormattingToolbarButton Event={act} \
-Pattern={\"Root\"}>\n      <svg class=\"w-5 h-5 text-gray-500 \
-hover:text-teal-600\" viewBox=\"0 0 24 24\" ><path \
+ </li> \n\n<li class=\"list-none\">\n    <FormattingToolbarButton Event={act} \
+Title={\"Square root\"} Pattern={\"Root\"}>\n      <svg class=\"w-5 h-5 \
+text-gray-500 hover:text-teal-600\" viewBox=\"0 0 24 24\" ><path \
 d=\"M3,12H4.31a1,1,0,0,1,.93.65L8,20,10.85,4.82a1,1,0,0,1,1-.82H21\" \
 stroke=\"currentColor\" style=\"fill: none; stroke-linecap: round; \
 stroke-linejoin: round; stroke-width: 2;\"></path></svg>\n    \
-</FormattingToolbarButton>\n  </li>   \n</ul>\n<ul class=\"flex flex-row\"> \
-\n  <li>\n    <FormattingToolbarColorSelector Event={act} \
+</FormattingToolbarButton>\n  </li>   \n</ul>\n\n<ul class=\"p-0 flex \
+flex-row pr-1\">\n<li class=\"list-none\">\n    <FormattingToolbarButton \
+Event={act} Title={\"Transpose\"} Pattern={\"Transpose\"}>\n      <div \
+class=\"w-5 h-5 text-gray-500 hover:text-teal-600\"><sup>T</sup></div>\n    \
+</FormattingToolbarButton>\n  </li> \n<li class=\"list-none\">\n    \
+<FormattingToolbarButton Event={act} Title={\"Conjugate transpose\"} \
+Pattern={\"ConjugateTranspose\"}>\n      <div class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\"><sup>&dagger;</sup></div>\n    \
+</FormattingToolbarButton>\n  </li>  \n</ul>\n\n<ul class=\"p-0 flex flex-row \
+pr-1\">\n<li class=\"list-none\">\n    <FormattingToolbarButton Event={act} \
+Title={\"Indefinite Integral\"} Pattern={\"Integral\"}>\n      <svg \
+fill=\"currentColor\" viewBox=\"0 0 24 24\" class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\"><path stroke=\"currentColor\" \
+d=\"M5,19l.38.76a2.24,2.24,0,0,0,2,1.24h0a2.24,2.24,0,0,0,2.13-1.53L12,12l2.4\
+9-7.47A2.24,2.24,0,0,1,16.62,3h0a2.24,2.24,0,0,1,2,1.24L19,5\" style=\"fill: \
+none; stroke-linecap: round; stroke-linejoin: round; stroke-width: \
+2;\"></path></svg>\n    </FormattingToolbarButton>\n  </li>\n<li \
+class=\"list-none\">\n    <FormattingToolbarButton Event={act} \
+Title={\"Integral\"} Pattern={\"IntegralBound\"}>\n     <svg \
+fill=\"currentColor\" viewBox=\"0 0 24 24\" class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\"><path stroke=\"currentColor\" d=\"M 5 19 l 0.38 0.76 a \
+2.24 2.24 0 0 0 2 1.24 h 0 a 2.24 2.24 0 0 0 2.13 -1.53 L 12 12 l 2.49 -7.47 \
+A 2.24 2.24 0 0 1 16.62 3 h 0 a 2.24 2.24 0 0 1 2 1.24 L 19 5 M 18 8 L 20 10 \
+M 20 8 L 18 10 M 15 18 L 17 20 M 17 18 L 15 20\" style=\"fill: none; \
+stroke-linecap: round; stroke-linejoin: round; stroke-width: \
+2;\"></path></svg>\n    </FormattingToolbarButton>\n  </li>  \n<li \
+class=\"list-none\">\n    <FormattingToolbarButton Event={act} \
+Title={\"Sum\"} Pattern={\"Sum\"}>\n      <svg fill=\"currentColor\" \
+class=\"w-5 h-5 text-gray-500 hover:text-teal-600\"  viewBox=\"0 0 56 \
+56\"><path d=\"M 17.4531 53.7695 L 39.3906 53.7695 C 40.6094 53.7695 41.5234 \
+52.9961 41.5234 51.8008 C 41.5234 50.6055 40.6094 49.8086 39.3906 49.8086 L \
+19.3984 49.8086 L 19.3984 49.5977 L 32.3828 30.0039 C 32.9922 29.0664 33.2500 \
+28.5742 33.2500 27.8008 C 33.2500 26.9571 32.8515 26.2305 32.0547 25.0586 L \
+19.4218 6.4024 L 19.4218 6.1914 L 39.4140 6.1914 C 40.6328 6.1914 41.5469 \
+5.4180 41.5469 4.2227 C 41.5469 3.0273 40.6328 2.2305 39.4140 2.2305 L \
+17.4766 2.2305 C 15.7187 2.2305 14.4766 3.3320 14.4766 4.9492 C 14.4766 \
+5.8633 14.7109 6.5195 15.3672 7.5039 L 28.9140 27.6367 L 28.9140 27.8945 L \
+15.3437 48.4961 C 14.6875 49.4805 14.4531 50.1367 14.4531 51.0508 C 14.4531 \
+52.6445 15.7187 53.7695 17.4531 53.7695 Z\"/></svg>\n    \
+</FormattingToolbarButton>\n  </li>\n<li class=\"list-none\">\n    \
+<FormattingToolbarButton Title={\"Piecewise function\"} Event={act} \
+Pattern={\"Piecewise\"}>\n     <svg class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\" viewBox=\"0 0 24 24\" fill=\"none\">\n<path d=\"M14 \
+21C12.8954 21 12 20.1046 12 19V15.3255C12 14.8363 12 14.5917 11.9447 \
+14.3615C11.8957 14.1575 11.8149 13.9624 11.7053 13.7834C11.5816 13.5816 \
+11.4086 13.4086 11.0627 13.0627L10 12L11.0627 10.9373C11.4086 10.5914 11.5816 \
+10.4184 11.7053 10.2166C11.8149 10.0376 11.8957 9.84254 11.9447 9.63846C12 \
+9.40829 12 9.1637 12 8.67452V5C12 3.89543 12.8954 3 14 3\" \
+stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" \
+stroke-linejoin=\"round\"/>\n</svg>\n    </FormattingToolbarButton>\n  </li>  \
+\n</ul>\n  \n<ul class=\"p-0 flex flex-row\"> \n  <li class=\"list-none\">\n  \
+  <FormattingToolbarLetterSelector Title={\"Greek letters\"} Event={act} \
 Pattern={\"Greek\"}>\n     \n        <svg class=\"w-5 h-5 text-gray-500 \
 hover:text-teal-600\" viewBox=\"0 0 32 32\">\n  <path fill=\"currentColor\" \
 d=\"M22.7373,25A14.3093,14.3093,0,0,0,27,15C27,8.42,22.58,4,16,4S5,8.42,5,15A\
 14.3093,14.3093,0,0,0,9.2627,25H4v2h8V24.7617A12.5683,12.5683,0,0,1,7,15c0-5.\
 4673,3.5327-9,9-9s9,3.5327,9,9a12.5683,12.5683,0,0,1-5,9.7617V27h8V25Z\"/>\n<\
-/svg>\n    </FormattingToolbarColorSelector>\n  </li>  \n</ul> \n  <div \
+/svg>\n    </FormattingToolbarLetterSelector>\n  </li>  \n</ul> \n\n<ul \
+class=\"p-0 flex flex-row\"> \n  <li class=\"list-none\">\n    \
+<FormattingToolbarColorSelector Title={\"Color Picker\"} Event={act} \
+Pattern={\"Color\"}>\n        <svg class=\"w-5 h-5 text-gray-500 \
+hover:text-teal-600\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M6.5 \
+21H20.4706C20.763 21 21.0002 20.7631 21.0002 20.4707L21 14.5293M7.98047 \
+20.6713L20.6421 14.7671C20.9071 14.6435 21.0217 14.3285 20.8981 \
+14.0635L18.3872 8.6792C18.2636 8.41421 17.9486 8.29914 17.6836 \
+8.42271L12.0303 11.0591M9.88182 18.4048C9.38152 20.2719 7.46235 21.38 5.59521 \
+20.8797C3.72808 20.3794 2.61982 18.4604 3.12011 16.5933L6.73596 \
+3.09863C6.81163 2.81621 7.10168 2.64855 7.3841 2.72422L13.1231 \
+4.26171C13.4055 4.33738 13.5731 4.6276 13.4974 4.91002L9.88182 18.4048ZM6.5 \
+17.6001H6.502L6.50195 17.6021L6.5 17.6021V17.6001Z\" stroke=\"currentColor\" \
+stroke-width=\"2\" stroke-linecap=\"round\" \
+stroke-linejoin=\"round\"></path></svg>\n    \
+</FormattingToolbarColorSelector>\n  </li>  \n \n  \n</ul> \n  \n  <div \
 class=\"ml-auto\">\n    <FormattingToolbarButton Event={act} \
-Pattern={\"Close\"}>\n      <svg class=\"w-4 h-4 text-gray-500 \
-hover:text-red-300\" viewBox=\"0 0 24 24\" fill=\"none\">\n        <path \
-d=\"M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001\" \
+Title={\"Close\"} Pattern={\"Close\"}>\n      <svg class=\"w-4 h-4 \
+text-gray-500 hover:text-red-300\" viewBox=\"0 0 24 24\" fill=\"none\">\n     \
+   <path d=\"M21 21L12 12M12 12L3 3M12 12L21.0001 3M12 12L3 21.0001\" \
 stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" \
 stroke-linejoin=\"round\"/>\n      </svg>\n    </FormattingToolbarButton>\n  \
 </div>\n</div>\n]\n", "Display" -> "codemirror", 
-    "Hash" -> "107b7820-08bf-464f-b713-61b56ee30709", "Invisible" -> False, 
+    "Hash" -> "79e8ca78-93fb-4380-bdfd-547012718f5f", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "40bd8c0b-897a-4596-a2a2-ef862922b6f9", "Invisible" -> False, 
+    "Hash" -> "638a8021-d43e-407f-9e62-aececfed19bb", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "cf63d052-8aa3-43e1-ab8c-89a3571e354f", "Invisible" -> False, 
+    "Hash" -> "140e1256-2333-4007-a2dd-a38289775ba6", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, <|"Data" -> "__template__", 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, <|"Data" -> "__template__", 
     "Display" -> "markdown", "Hash" -> 
-     "c8450e16-63b3-4d37-af57-555bcea43cc5", "Invisible" -> False, 
+     "335227a9-7fb5-4537-b554-568d95d2af30", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
-tabindex=\"-1\" tag=\"{UTag}\" class=\"nooline rounded-sm group flex \
-cursor-default select-none items-center rounded-md px-2 py-1 \
+tabindex=\"-1\" tag=\"{UTag}\" class=\"list-none nooline rounded-sm group \
+flex cursor-default select-none items-center rounded-md px-2 py-1 \
 focus:bg-teal-500/25\">\n             <svg class=\"h-4 ml-1  w-4 flex-none \
 text-gray-900  dark:text-gray-400 text-opacity-40\" fill=\"none\" viewBox=\"1 \
 1 23 23\"><path d=\"M3 5L13 15M13 5L3 15M21 19.0001H17C17 17.5001 17.44 \
@@ -291,12 +441,12 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "def7fc88-33e7-4422-8d11-bcc673674ac3", "Invisible" -> False, 
+     "870e51d3-d16f-4da8-944c-8ef8cb64c7b8", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>, 
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "4fd6345c-5d45-4c65-9f4a-31c1fdf4af9c", "Invisible" -> False, 
+    "Hash" -> "d68cc39c-2139-4d32-96c9-6eb1b3622c04", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "bf54a0ff-bf24-4699-8a95-88365ba6aa68"|>}, "serializer" -> "jsfn4"|>
+     "9c8b0c59-b525-457d-8dcf-374f66e8983b"|>}, "serializer" -> "jsfn4"|>

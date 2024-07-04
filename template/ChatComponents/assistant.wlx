@@ -56,7 +56,7 @@ toolCall[item_, i_, chat_, connected_:False] := With[{
 },
   Echo[{item, checkPos[item, chat], decorationStyle}];
 
-  <li class="relative flex gap-x-4">
+  <li class="list-none relative flex gap-x-4">
     <div class="absolute left-0 bottom-0 flex w-6 justify-center {decorationStyle}">
       <div class="w-px bg-gray-200"></div>
     </div>
@@ -76,7 +76,7 @@ stats[chat_] := With[{
 },
 
 
-  <li class="relative flex gap-x-4">
+  <li class="list-none relative flex gap-x-4">
     <div class="absolute left-0 bottom-0 flex w-6 justify-center {decorationStyle}">
       <div class="w-px bg-gray-200"></div>
     </div>
@@ -97,7 +97,7 @@ comment[item_, chat_, connected_:False] := With[{
 },
   Echo[{item, checkPos[item, chat], decorationStyle}];
 
-  <li class="relative flex gap-x-4">
+  <li class="list-none relative flex gap-x-4">
     <div class="absolute left-0 bottom-0 flex w-6 justify-center {decorationStyle}">
       <div class="w-px bg-gray-200"></div>
     </div>

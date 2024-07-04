@@ -54,7 +54,7 @@ Component[OptionsPattern[]] := With[{
         ]
     }];
 
-    <li class="px-0 py-4 sm:px-0">
+    <li class="list-none px-0 py-4 sm:px-0">
         <div class="px-4 sm:px-0 pb-3 border-b border-gray-100">
             <h3 class="text-base font-semibold leading-7 text-gray-900 dark:text-gray-300">Snippets</h3>
             <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500 dark:text-gray-500"></p>

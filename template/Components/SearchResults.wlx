@@ -5,7 +5,7 @@ Component[OptionsPattern[]] := With[{
     With[{
         Results = Table[SnippetsDatabase[Item, "Template"], {Item, Data}]
     },
-        <ul class="max-h-96 overflow-y-auto pt-1 text-sm text-gray-700 dark:text-gray-400 px-1">
+        <ul class="p-0 max-h-96 overflow-y-auto pt-1 text-sm text-gray-700 dark:text-gray-400 px-1">
             <Results/>
         </ul>    
     ]

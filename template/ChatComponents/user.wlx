@@ -2,7 +2,7 @@ Component[item_Association, chat_] := With[{
   DateMessage = TextString[Round[Now - item["date"], 1]],
   Content = item["content"]
 },
-  <li class="relative flex gap-x-4">
+  <li class="list-none relative flex gap-x-4">
   <div class="absolute left-0 top-0 flex w-6 justify-center">
     <div class="w-px bg-gray-200"></div>
   </div>

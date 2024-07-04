@@ -216,7 +216,7 @@ With[{
         <WebUILazyLoad Event={LocalControls}>
             <div id="palette-list" class="absolute top-0 mt-10 right-0 left-0 w-full">
                <div class="mx-auto max-w-2xl transform divide-y divide-gray-500 dark:divine-gray-300 divide-opacity-10 overflow-hidden rounded-md bg-gray-100 bg-opacity-80 shadow-md  backdrop-blur backdrop-filter transition-all bg-d9 text-left text-gray-500 w-70 ring-1 ring-inset ring-gray-400 pb-1 dark:bg-gray-700">
-                  <ul class="max-h-60 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto sc-b">
+                  <ul class="p-0 max-h-60 scroll-py-2 divide-y divide-gray-500 divide-opacity-10 overflow-y-auto sc-b">
                     <WebUILazyLoad Event={searchPanel}>
                         <SearchResults Data={WebUILazyLoadDataProvided}/>
                     </WebUILazyLoad>               

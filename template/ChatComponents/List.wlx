@@ -75,7 +75,7 @@ With[{
 },
  {
     <div id="chat-list" class="px-4 py-2 h-full sc-b overflow-y-auto scroll-snap-y-container scroll-smooth text-gray-500 dark:text-gray-400">
-        <ul role="list" class="space-y-6">
+        <ul role="list" class="p-0 space-y-6">
             <ChatList/>
             <WebUIContainer Event={controller}>
             	    <WebUIContainerChild/>
