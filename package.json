@@ -10,7 +10,7 @@
   "wljs-meta": {
     "frontend": "src/Frontend.wl",
     "js": "dist/kernel.js",
-    "priority": 9999999,
+    "priority": 99999,
     "category": "Notebook Extensions",
     "menu": [
       {
