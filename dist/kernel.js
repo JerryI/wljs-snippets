@@ -1,5 +1,19 @@
 let siri;
 let siriInstance  = false;
+let party;
+
+core.SiriwaveMagicRun = async (args, env) => {
+  const uid = interpretate(args[0], env);
+  const doc = document.getElementById(uid);
+
+  if (!party) party = (await import('./index-ea99828b.js').then(function (n) { return n.i; })).default;
+
+  party.sparkles(doc, {
+    // Specify further (optional) configuration here.
+    count: party.variation.range(10, 60),
+    speed: party.variation.range(50, 300),
+  });
+};
 
 core.Siriwave = async (args, env) => {
   const op = await interpretate(args[0], env);
@@ -7,6 +21,7 @@ core.Siriwave = async (args, env) => {
   const doc = document.getElementById(id);
 
   if (!siri) siri = (await import('./siriwave.esm-80419990.js')).default;
+  if (!party) party = (await import('./index-ea99828b.js').then(function (n) { return n.i; })).default;
 
   switch(op) {
     case 'Start':
@@ -43,4 +58,31 @@ core.ReadClipboardExtended = async (args, env) => {
     const type = item.types[0];
     return [type, Array.from(data)];
   }
+};
+
+let marked;
+
+function unicodeToChar(text) {
+  return text.replace(/\\:[\da-f]{4}/gi, 
+         function (match) {
+              return String.fromCharCode(parseInt(match.replace(/\\:/g, ''), 16));
+         });
+}
+
+
+core.ChatRunMarkdownProcessor = async (args, env) => {
+  if (!marked) {
+    await window.interpretate.shared.marked.load();
+    marked = window.interpretate.shared.marked.default;
+  }
+  
+  if (env.element.nodeType !== 1) return;
+
+  const list = env.element.querySelectorAll("p[data-type='1']");
+  console.log(list);
+  for (let i=0; i<list.length; ++i) {
+    const e = list[i];
+    e.innerHTML = marked.parse(unicodeToChar(e.innerHTML));
+  }
+  
 };

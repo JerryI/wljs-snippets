@@ -99,7 +99,7 @@ Parse[a_Association, path_] := With[{cells = groupCells[ a["Cells"] ]},
         With[{t = cells[".md"] // First},
             If[!StringMatchQ[t["Data"], ".md\n"~~__], Echo["Snippets >> Library >> Title is missing!"]; Return[$Failed] ];
             {title, decription} = StringCases[t["Data"], RegularExpression[".md\n[#| ]*([^\n]*)\n?(.*)?"]:> {"$1", "$2"}] // First;
-        ];
+        ] // Quiet;
 
         If[KeyExistsQ[cells, ".template"], template = StringDrop[First[ cells[".template"] ]["Data"], 15] ];
 

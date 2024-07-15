@@ -1,0 +1,89 @@
+Head        := ImportComponent["Components/Head.wlx"];
+
+Notifications  = ImportComponent["Components/Notifications/Notifications.wlx"];
+
+Alert           = ImportComponent["Components/Alert.wlx"];
+Modals           = ImportComponent["Components/Modals/Modals.wlx"];
+
+SendForm   = ImportComponent["ChatComponents/SendForm.wlx"];
+ChatLayout           = ImportComponent["ChatComponents/List.wlx"];
+
+ExtensionsJS = (StringJoin["/", FileNameToURLPath[#]]) &/@ WLJS`PM`Includes["js"];
+ExtensionsStyles = With[{Path = StringJoin["/", FileNameToURLPath[#]]},
+  <link rel="stylesheet" href="{Path}"/> 
+] &/@ WLJS`PM`Includes["styles"] // ToStringRiffle;
+
+{loadSettings, storeSettings}        = ImportComponent["Frontend/Settings.wl"];
+
+settings = <||>;
+loadSettings[settings];
+
+addListeners[cli_, chat_] := With[{socket = EventClone[cli]},
+    EventHandler[socket, {"Closed" -> Function[Null,
+        EventRemove[socket];
+        chat["Shown"] = False;
+    ]}];
+]
+
+App[request_] := With[{
+        secret = CreateUUID[], 
+        GlobalControls  = CreateUUID[],
+        LocalControls   = CreateUUID[],
+        ModalController = CreateUUID[],
+        GlobalMessanger = CreateUUID[],
+        chat        = AIChat`HashMap[request["Query", "id"]] (*`*),
+        GlobalParameters = <|"ElectronQ" -> ElectronQ[request], "AccentColor"->"teal"|>
+    },
+
+    (* /* destructor */ *)
+
+
+    EventHandler[secret, {
+        "Load" -> Function[Null,
+            chat["Shown"] = True;
+            chat["Socket"] = Global`$Client(*`*);
+            addListeners[chat["Socket"], chat];
+            EventFire[LocalControls, "Mount", chat["Socket"]];
+        ],
+
+        "Comment" -> Function[data,
+          EventFire[chat, "Comment", data];
+        ]
+      }
+    ];
+
+
+    <html class="h-full"> 
+        <Head Title={"AI Chat"} Settings={settings}>
+            <meta charset="utf-8"/>
+            <WLJSHeader List={ExtensionsJS}/>  
+            <WLJSTransportScript TwoKernels={False} Port={$Env["ws"]}/>     
+            <WebUIInitializationScript/>
+            <ExtensionsStyles/>
+        </Head>  
+        <body class="h-full dark:linux:bg-gray-700 dark:owin:bg-gray-700 owin:border owin:border-gray-500 owin:bg-blue-100/20"> 
+        <div>
+          <Alert/>
+          <Modals ModalsPort={ModalController}/>
+          
+          <div id="frame">
+            <div class="h-full flex flex-col">          
+              <Notifications MessagePort={GlobalMessanger}/>
+              <main class="grow flex flex-col overflow-hidden">
+                <div class="divide-y divide-gray-200 flex flex-col overflow-hidden h-full bg-transparent dark:divide-gray-600">
+                  <div class="px-4 py-2 text-center text-sm font-semibold dark:text-gray-400 linux:hidden win:h-titlebar owin:h-titlebar" style="-webkit-app-region: drag">
+                    AI Assistant
+                  </div>
+                  <ChatLayout Chat={chat} Controller={LocalControls}/>               
+                  <SendForm Event={secret}/>
+                </div>           
+                <WebUIOnLoad Event={secret} Pattern={"Load"}/>
+              </main>              
+            </div> 
+          </div>
+        </div>
+        </body>
+    </html>
+];
+
+App

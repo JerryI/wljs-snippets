@@ -1,5 +1,19 @@
 
 SnippetsCreateItem[
+    "InvokeAI", 
+
+    "Template"->ImportComponent[FileNameJoin[{iTemplate, "Magic.wlx"}] ], 
+    "Title"->"Ask AI"
+];
+
+SnippetsCreateItem[
+    "InstallPackage", 
+
+    "Template"->ImportComponent[FileNameJoin[{iTemplate, "InstallPackage.wlx"}] ], 
+    "Title"->"Install package from Github"
+];
+
+SnippetsCreateItem[
     "newFile", 
 
     "Template"->ImportComponent[FileNameJoin[{iTemplate, "File.wlx"}] ], 

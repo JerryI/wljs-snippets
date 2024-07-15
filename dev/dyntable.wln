@@ -1,0 +1,152 @@
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$73], 
+   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
+/wljs_packages/wljs-snippets/library/dyntable.wln"|>, 
+ "Cells" -> {<|"Data" -> ".md\n# Create / Edit as Table\nSelect 2D list in \
+the cell to edit it as a table or select nothing and it will add dynamic \
+table widget", "Display" -> "codemirror", 
+    "Hash" -> "0bd244e1-8c16-4af5-987c-7e7df9dd11a8", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> "# Create / Edit as Table\nSelect 2D list in the cell to edit \
+it as a table or select nothing and it will add dynamic table widget", 
+    "Display" -> "markdown", "Hash" -> 
+     "88a6c39e-fb79-4871-8d49-a37d18b3efbd", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "fad16226-5267-43e9-aa8b-71faa7cf848f", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "bf9f07bc-f83b-4a62-abd0-6633c88be734", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> ".md\n__Source code__", "Display" -> "codemirror", 
+    "Hash" -> "93adefbc-139c-4f7a-8b80-5cc5baeca87d", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, <|"Data" -> "__Source code__", 
+    "Display" -> "markdown", "Hash" -> 
+     "5b07b950-e656-4168-a72e-28f018f27c90", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> ".action-once\n\nint`tableSnippet /: \
+MakeBoxes[int`tableSnippet[handler_, expr_], StandardForm] := With[{\n  uid = \
+CreateUUID[]\n},\n  EventHandler[uid, {\"Mounted\" :> Function[marker,\n    \
+With[{win = WindowObj[<|\"Socket\"->$Client|>]},\n    \n      \
+Then[FrontFetchAsync[ViewBox`InnerExpression[], MetaMarker[marker], \
+\"Window\"->win], Function[payload,\n     \n        FrontSubmit[handler[expr, \
+{payload}//Flatten//First, marker, win], MetaMarker[marker], \
+\"Window\"->win];\n      ]];\n    ]\n   ]\n  }];\n  \n  ViewBox[Null, Null, \
+\"Event\"->uid]\n]\n\nint`tableSnippethandler[expr_, \"Null\", marker_, \
+window_] := (\n  int`tableSnippethandler[Null, ToString[expr, InputForm], \
+marker, window]\n)\n\nint`tableSnippethandler[expr_, initial_String, marker_, \
+window_] := Module[{\n  list, overflow = False, symbolName, helper, table, \
+timer = Now\n},\n\n  symbolName = ToString[list];\n  list = \
+ToExpression[initial];\n  If[Length[list] > 100, overflow = True];\n\n  \
+helper = InputTable`EventHelper[list];\n  table = InputTable[list, \
+\"Width\"->Min[(Length[list//First] +1)85, 600], \"Height\"->Min[(25 \
+Length[list]), 500]];\n\n  update := If[!overflow,\n    \
+ViewBox`InnerExpression[ToString[list, InputForm]]\n  ,\n    \
+ViewBox`InnerExpression[symbolName]\n  ];\n\n  EventHandler[table, \
+Function[data, \n    helper[data];\n    If[Now - timer > Quantity[0.3, \
+\"Seconds\"] && !overflow,\n      FrontSubmit[update, MetaMarker[marker], \
+\"Window\"->window];\n    ];\n  ]];\n  \n  Beep[];\n\n  {\n    {PaneBox[], \
+table[[1, \"View\"]]} // CreateFrontEndObject, \n    update\n  }\n];\n\n", 
+    "Display" -> "codemirror", "Hash" -> 
+     "51f802cb-783e-4999-a391-3089301497e5", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> ".md\nActual widget code", "Display" -> "codemirror", 
+    "Hash" -> "afe9ec81-6681-4cd1-8bd7-8dc595429829", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> "Actual widget code", "Display" -> "markdown", 
+    "Hash" -> "557d7569-f0b9-4712-befc-6f4680c2ab10", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> ".action-evaluate\n\nModule[{list, table, input = \
+FrontFetch[FrontEditorSelected[\"Get\"]]\n},\n\n  \n  If[StringLength[input \
+// StringTrim] === 0,\n    list = Table[Null, {i,6}, {j,4}];\n  ,\n    \
+With[{test = ToExpression[input]},\n      If[!ListQ[test], \n        \
+Notify[\"Selected is not a list\", \"Topic\"->\"Warning\"];\n        \
+Return[$Failed, Module]\n      ];\n      If[Depth[test] < 3, \n        \
+Notify[\"Selected is not a 2D list\", \"Topic\"->\"Warning\"];\n        \
+Return[$Failed, Module]\n      ]; \n\n      list = test;\n    ];  \n  ];\n\n  \
+If[Length[list] >= 100,\n    Notify[\"Data is too large to be stored in the \
+cell. We will keep only the reference\", \"Topic\"->\"Warning\"];\n  ];\n\n  \
+With[{\n    expr = int`tableSnippet[int`tableSnippethandler, list]\n  },\n    \
+FrontSubmit[FrontEditorSelected[\"Set\", ToString[expr, StandardForm]]];\n  \
+];\n]; \n\n", "Display" -> "codemirror", 
+    "Hash" -> "48283ab6-3530-43ad-afaa-829e25b53b52", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> " ", "Display" -> "codemirror", 
+    "Hash" -> "f72d7d3e-d0cf-4501-be12-79d6cea83e67", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, <|"Data" -> ".md\n__icon__", 
+    "Display" -> "codemirror", "Hash" -> 
+     "03c249dd-3bd6-4111-9cbb-259463584069", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, <|"Data" -> "__icon__", 
+    "Display" -> "markdown", "Hash" -> 
+     "b36720ef-f842-4775-b4a9-d340f8ffbfe1", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Output", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>, 
+   <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
+OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
+OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
+tabindex=\"-1\" tag=\"{UTag}\" class=\"nooline rounded-sm group flex \
+cursor-default select-none items-center rounded-md px-2 py-1 \
+focus:bg-teal-500/25\"> \n<svg class=\"h-5 w-5 flex-none text-gray-900  \
+dark:text-gray-400 text-opacity-40\" viewBox=\"0 0 24 24\" \
+fill=\"none\">\n<path d=\"M3 9.5H21M3 14.5H21M8 4.5V19.5M6.2 \
+19.5H17.8C18.9201 19.5 19.4802 19.5 19.908 19.282C20.2843 19.0903 20.5903 \
+18.7843 20.782 18.408C21 17.9802 21 17.4201 21 16.3V7.7C21 6.5799 21 6.01984 \
+20.782 5.59202C20.5903 5.21569 20.2843 4.90973 19.908 4.71799C19.4802 4.5 \
+18.9201 4.5 17.8 4.5H6.2C5.0799 4.5 4.51984 4.5 4.09202 4.71799C3.71569 \
+4.90973 3.40973 5.21569 3.21799 5.59202C3 6.01984 3 6.57989 3 7.7V16.3C3 \
+17.4201 3 17.9802 3.21799 18.408C3.40973 18.7843 3.71569 19.0903 4.09202 \
+19.282C4.51984 19.5 5.07989 19.5 6.2 19.5Z\" stroke=\"currentColor\" \
+stroke-width=\"2\"/>\n</svg>\n              \n              <span \
+class=\"ml-3 flex-auto truncate\"><Title/></span><span class=\"ml-3 flex-none \
+text-xs font-semibold text-gray-500\">\n                <kbd \
+class=\"font-sans\"><Kbd/></kbd>\n                <button class=\"p-0.5 \
+rounded hover:bg-gray-100 dark:hover:bg-gray-200\" btag=\"{Btn}\">\n          \
+             <svg class=\"w-4 h-4 text-gray-400\" viewBox=\"0 0 24 24\" \
+fill=\"none\">\n                    <path fill-rule=\"evenodd\" \
+clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
+17.1086 6.89137 21.25 12 21.25C17.1086 21.25 21.25 17.1086 21.25 12C21.25 \
+6.89137 17.1086 2.75 12 2.75ZM1.25 12C1.25 6.06294 6.06294 1.25 12 \
+1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 \
+22.75C6.06294 22.75 1.25 17.9371 1.25 12ZM12 7.75C11.3787 7.75 10.875 8.25368 \
+10.875 8.875C10.875 9.28921 10.5392 9.625 10.125 9.625C9.71079 9.625 9.375 \
+9.28921 9.375 8.875C9.375 7.42525 10.5503 6.25 12 6.25C13.4497 6.25 14.625 \
+7.42525 14.625 8.875C14.625 9.83834 14.1056 10.6796 13.3353 11.1354C13.1385 \
+11.2518 12.9761 11.3789 12.8703 11.5036C12.7675 11.6246 12.75 11.7036 12.75 \
+11.75V13C12.75 13.4142 12.4142 13.75 12 13.75C11.5858 13.75 11.25 13.4142 \
+11.25 13V11.75C11.25 11.2441 11.4715 10.8336 11.7266 10.533C11.9786 10.236 \
+12.2929 10.0092 12.5715 9.84439C12.9044 9.64739 13.125 9.28655 13.125 \
+8.875C13.125 8.25368 12.6213 7.75 12 7.75ZM12 17C12.5523 17 13 16.5523 13 \
+16C13 15.4477 12.5523 15 12 15C11.4477 15 11 15.4477 11 16C11 16.5523 11.4477 \
+17 12 17Z\" fill=\"currentColor\"/>\n                  </svg>         \n      \
+          </button>\n              </span>\n    </li>    \
+\n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
+\"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
+    "Display" -> "codemirror", "Hash" -> 
+     "9fd6adf0-61a4-4b49-97cd-b7911560fb26", "Invisible" -> False, 
+    "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
+    "Type" -> "Input", "UID" -> Null, "Notebook" -> 
+     "8cf4fe12-b83e-41c7-a9e6-5fab19b89335"|>}, "serializer" -> "jsfn4"|>

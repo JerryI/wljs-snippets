@@ -1,0 +1,6 @@
+# Note on slides type of cells
+
+You can also print cells, that represents slides! It uses Reveal.JS with Markdown as a main language to describe the content of a slide.
+__Just mention "RevealJS" or "Reveal" in the language argument when you use cellPrint function__, that represents a slide.
+
+The general rule is one cell - one slide, it is better to print another cell, if you want to have two slides in the notebook.

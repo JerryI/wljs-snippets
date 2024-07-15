@@ -1,52 +1,52 @@
-<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$83], 
+<|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$42], 
    "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
-/wljs_packages/wljs-snippets/library/formatter.wln"|>, 
+/wljs_packages/wljs-snippets/library/formatter.wln", "Symbols" -> <||>|>, 
  "Cells" -> {<|"Data" -> ".md\n# Format code\nSelect the code in the editor \
 for formatting or drop a cursor to the editor, where the whole content is \
 needed to be formatted", "Display" -> "codemirror", 
-    "Hash" -> "eb88f1cc-a0ef-41b4-8c57-7c95d798589b", "Invisible" -> False, 
+    "Hash" -> "09265229-5a38-46ad-bc7e-ee3afcdd010d", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> "# Format code\nSelect the code in the editor for formatting \
 or drop a cursor to the editor, where the whole content is needed to be \
 formatted", "Display" -> "markdown", 
-    "Hash" -> "0c0bdbff-1c30-4adf-aa1d-7939aade8c22", "Invisible" -> False, 
+    "Hash" -> "cf2a1661-58a0-4336-914c-c98fbd473a7f", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "794ec11d-171d-45b2-8ae2-0674cad9b106", "Invisible" -> False, 
+    "Hash" -> "fd83d9e3-8bf0-4ad2-9222-238b3e74d9d9", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> ".md\n\n![](attachments/FormatCode%20optimizer.png)\n", 
     "Display" -> "codemirror", "Hash" -> 
-     "45a868eb-ef5d-455f-a2d4-7ea9ce0cd565", "Invisible" -> False, 
+     "f5a2edd7-81bb-43de-9f4c-aefbdfff7894", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> "\n![](attachments/FormatCode%20optimizer.png)\n", 
     "Display" -> "markdown", "Hash" -> 
-     "f915e70c-2704-4ef9-9e03-843107743e6f", "Invisible" -> False, 
+     "0c22b82e-6816-4ac9-882a-b37e90059a46", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "52e46ffe-374c-4465-811d-38127249be78", "Invisible" -> False, 
+    "Hash" -> "cdd78082-6451-49db-afd7-f491b7d9708c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> ".md\n__Source code__", "Display" -> "codemirror", 
-    "Hash" -> "50cf362e-15e2-4d62-9bd8-4c168b11bf41", "Invisible" -> False, 
+    "Hash" -> "07588974-a4a8-4c02-b10e-3eb54b91c50f", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, <|"Data" -> "__Source code__", 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, <|"Data" -> "__Source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "f2530025-5f4a-4d82-8530-b09feb2de3fc", "Invisible" -> False, 
+     "e359a2d4-5f4a-4348-a0a3-96ae4b9c1866", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> ".action-evaluate\n\nNeeds[\"CodeFormatter`\"];\n\nModule[{str\
 ing, inline},\n  If[FrontFetch[FrontEditorSelected[\"Type\"]] =!= \
 \"mathematica\", \n    Notify[\"Only formatting of Wolfram Language is \
@@ -54,29 +54,29 @@ supported\", \"Topic\"->\"Warning\"];\n    Return[Null, Module];\n  ];\n  \n  \
 inline = !MatchQ[FrontFetch[FrontEditorSelected[\"Cursor\"]], {a_, a_}];\n  \
 \n  string = If[inline,\n    FrontFetch[FrontEditorSelected[\"Get\"]]\n  ,\n  \
   FrontFetch[FrontEditorSelected[\"GetDoc\"]]\n  ];\n\n  string = \
-CodeFormat[string];\n  If[inline,\n    \
+CodeFormat[string, Airiness->0.5, \t\"LineWidth\"->45];\n  If[inline,\n    \
 FrontSubmit[FrontEditorSelected[\"Set\", string]]\n  ,\n    \
 FrontSubmit[FrontEditorSelected[\"SetDoc\", string]]\n  ];\n]", 
     "Display" -> "codemirror", "Hash" -> 
-     "9bbf7fe1-85d1-4def-989b-8e11b59117ac", "Invisible" -> False, 
+     "d7c6f1da-c98d-4f7e-97e0-641dc7a41621", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "4c78ae2d-ad19-407a-82e7-ed0029c298dd", "Invisible" -> False, 
+    "Hash" -> "34cbf6e2-91f3-4b82-b0b4-3c3ec8a44b80", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, <|"Data" -> ".md\n__icon__", 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, <|"Data" -> ".md\n__icon__", 
     "Display" -> "codemirror", "Hash" -> 
-     "e1641898-6e2d-4617-be68-d805d3f8eca7", "Invisible" -> False, 
+     "60227727-0b87-4702-b0c2-dceab6599490", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, <|"Data" -> "__icon__", 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, <|"Data" -> "__icon__", 
     "Display" -> "markdown", "Hash" -> 
-     "25ab8692-9215-4f74-856b-07640b7480c8", "Invisible" -> False, 
+     "2d09b631-28dd-43c5-bed6-de5aab06346e", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>, 
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -117,7 +117,7 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "56c39ba7-09b9-422f-850f-fbfe31b6d33f", "Invisible" -> False, 
+     "bdb649a5-facc-4af5-a189-f12ed4b4ad56", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "02ef3e5a-580b-4978-83f7-dab62f1483dd"|>}, "serializer" -> "jsfn4"|>
+     "554f3576-aa56-4435-bd02-239cb2ac1d55"|>}, "serializer" -> "jsfn4"|>
