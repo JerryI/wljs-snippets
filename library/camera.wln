@@ -1,42 +1,43 @@
 <|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$53], 
-   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
-/wljs_packages/wljs-snippets/library/camera.wln"|>, 
+   "Objects" -> <||>, "Path" -> "/Users/kirill/Github/wolfram-js-frontend-dev\
+/wljs_packages/wljs-snippets/library/camera.wln", "Symbols" -> <||>|>, 
  "Cells" -> {<|"Data" -> ".md\n# Take a picture\nCapture camera image", 
     "Display" -> "codemirror", "Hash" -> 
-     "62093350-45a9-4e49-ad37-45732585d6e3", "Invisible" -> False, 
+     "463aa671-bbf8-4f97-bb13-5f29671dad94", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> "# Take a picture\nCapture camera image", 
     "Display" -> "markdown", "Hash" -> 
-     "e72a68e7-b2aa-4919-8f4c-d78c9ef95e78", "Invisible" -> False, 
+     "36dad6c6-52b8-402d-8338-b2e502e624fb", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "602929cb-6a42-4a3d-87d9-33b3e2c93b1b", "Invisible" -> False, 
+    "Hash" -> "4209742c-f866-4746-a50a-0815f9175f89", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, <|"Data" -> "__source code__", 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "0e58630a-8fe6-463a-a72e-8c50a08d9c18", "Invisible" -> False, 
+     "6c6f5fdc-ec23-4ae8-ac5c-e7d009926cfb", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> ".action-evaluate-export\n.wlx\n\nWith[{CanvasUId = \
 CreateUUID[], cell = ResultCell[], parent = EvaluationCell[], win = \
 CurrentWindow[]},\n\nEventHandler[cell, {\"Destroy\" -> Function[Null,\n  \
 FrontSubmit[JSWebCam[\"Stop\", CanvasUId], \"Window\" -> \
-win]\n]}];\n\nEventHandler[CanvasUId, {\n  \"Capture\" -> Function[Null,\n    \
-Then[FrontFetchAsync[JSWebCam[\"Capture\", CanvasUId], \"Format\"->\"JSON\", \
-\"Window\" -> win],\n      Function[raw,\n        With[{img = \
-Partition[Take[#, 3]&/@ Partition[raw, 4], 320] // NumericArray // Image},\n  \
-        Delete[cell];\n          CellPrint[ToString[img, StandardForm], \
-\"After\"->parent, \"Type\"->\"Input\"];\n          Delete[parent];\n        \
-]\n      ]\n    ]\n  ],\n\n  \"Cancel\" -> Function[Null,\n    \
-Delete[parent];\n  ]\n}];\n\n<div class=\"flex flex-1 flex-row p-2 ring-1 \
-rounded ring-green-300\" style=\"width: fit-content\">\n      <canvas \
-id=\"{CanvasUId}\" style=\"display: inline-block\" \
+win]\n]}];\n\nEventHandler[win, {\"Closed\" -> Function[Null,\n  \
+Delete[parent];\n]}];\n\nEventHandler[CanvasUId, {\n  \"Capture\" -> \
+Function[Null,\n    Then[FrontFetchAsync[JSWebCam[\"Capture\", CanvasUId], \
+\"Format\"->\"JSON\", \"Window\" -> win],\n      Function[raw,\n        \
+With[{img = Partition[Take[#, 3]&/@ Partition[raw, 4], 320] // NumericArray \
+// Image},\n          Delete[cell];\n          CellPrint[ToString[img, \
+StandardForm], \"After\"->parent, \"Type\"->\"Input\"];\n          \
+Delete[parent];\n        ]\n      ]\n    ]\n  ],\n\n  \"Cancel\" -> \
+Function[Null,\n    Delete[parent];\n  ]\n}];\n\n<div class=\"flex flex-1 \
+flex-row p-2 ring-1 rounded ring-green-300\" style=\"width: fit-content\">\n  \
+    <canvas id=\"{CanvasUId}\" style=\"display: inline-block\" \
 class=\"rounded\"></canvas>\n      <dl class=\"ml-4 flex flex-grow flex-col \
 justify-between\">\n        <dd class=\"flex flex-col gap-y-2\">\n          \
 <button id=\"{CanvasUId}-capture\" class=\"inline-flex items-center \
@@ -80,25 +81,25 @@ interpretate(args[0], env);\n  let ctx = core.JSWebCam.cached[uid].ctx;\n  \n \
  return Array.from(ctx.getImageData(0, 0, 320, 240).data);\n}  \
 \n\ninitCamera();\n})()\n      </script>\n    </div>\n]", 
     "Display" -> "codemirror", "Hash" -> 
-     "ce795269-93f6-40dd-875a-5613db4eeb76", "Invisible" -> False, 
+     "8b6d3ac1-c254-4733-b84f-e5896b67335e", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "82472970-48b4-4f1c-9c56-738d6fa2020f", "Invisible" -> False, 
+    "Hash" -> "1ab1e4e7-aba9-4030-a802-d73b209dba44", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "348942f5-936b-4f15-a546-22ab1a6d051a", "Invisible" -> False, 
+    "Hash" -> "834c2dcc-7af7-403a-8698-9343710305ea", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, <|"Data" -> "__template__", 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, <|"Data" -> "__template__", 
     "Display" -> "markdown", "Hash" -> 
-     "c46622cd-ca1a-4b7d-ad54-7a2d4bcdf1ff", "Invisible" -> False, 
+     "38e5fb8b-1d79-4eab-bff2-3c949bbbd48e", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -143,12 +144,12 @@ clip-rule=\"evenodd\" d=\"M12 2.75C6.89137 2.75 2.75 6.89137 2.75 12C2.75 \
 \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \"Shortcut\"->\"\", \
 \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "c0b4e321-c722-4784-8ee3-927d0abae240", "Invisible" -> False, 
+     "343056df-de9f-46ac-9328-8c7f293f2ac3", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>, 
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "c4720d49-7b07-4525-9964-9ba01cabe9e5", "Invisible" -> False, 
+    "Hash" -> "71b195cb-a9c6-4d8f-a27f-59a7026c87dc", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "71681b26-d0d9-4413-b391-cffad7f52b76"|>}, "serializer" -> "jsfn4"|>
+     "ea4a2fc6-9a31-40f1-9d66-196219b482cc"|>}, "serializer" -> "jsfn4"|>

@@ -1,28 +1,29 @@
 <|"Notebook" -> <|"FocusedCell" -> CellObj[JerryI`Notebook`CellObj`$143], 
-   "Objects" -> <||>, "Path" -> "/users/kirill/Github/wolfram-js-frontend-dev\
-/Packages/wljs-snippets/library/matrix.wln"|>, 
- "Cells" -> {<|"Data" -> ".md\n# Insert matrix\nPlace matrix to the \
-selection", "Display" -> "codemirror", 
-    "Hash" -> "57964268-4701-4299-b9b4-cd81412a2dba", "Invisible" -> False, 
+   "Objects" -> <||>, "Path" -> "/Users/kirill/Github/wolfram-js-frontend-dev\
+/wljs_packages/wljs-snippets/library/matrix.wln", "Symbols" -> <||>|>, 
+ "Cells" -> 
+  {<|"Data" -> ".md\n# Insert matrix\nPlace matrix to the selection", 
+    "Display" -> "codemirror", "Hash" -> 
+     "0a476548-0bc4-4d4b-a6ac-02a715c8bd43", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> "# Insert matrix\nPlace matrix to the selection", 
     "Display" -> "markdown", "Hash" -> 
-     "51eaaacd-3523-46fd-93de-9e32f9530321", "Invisible" -> False, 
+     "f6924a26-5b1f-4009-94f9-09aa81e4a78c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> ".md\n__source code__", "Display" -> "codemirror", 
-    "Hash" -> "57860793-fac4-4109-959c-b3221baaa83c", "Invisible" -> False, 
+    "Hash" -> "b60b0735-c320-482f-b7c2-884ab8627d8c", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, <|"Data" -> "__source code__", 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, <|"Data" -> "__source code__", 
     "Display" -> "markdown", "Hash" -> 
-     "f5e9c36b-681b-4aa3-8ee2-d286f4796382", "Invisible" -> False, 
+     "19ebb6cd-8847-4ed0-86f1-3f89996451bc", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> ".action-evaluate-export\n.wlx\nModule[{matrix, Inputs, \
 Editor, InsertButton},\n  InsertButton = InputButton[\"Insert\", \
 \"Class\"->\"mt-2\"];\n\n  Inputs = InputGroup[{\n    InputRange[1,10,1,2, \
@@ -35,31 +36,33 @@ InsertButton\n  }];\n\n  EventHandler[Inputs, Function[size,\n    matrix \
 ]];\n\n  EventFire[Inputs];\n\n  With[{cell = EvaluationCell[], window = \
 CurrentWindow[]},\n    EventHandler[InsertButton // EventClone, \
 Function[Null, \n      FrontSubmit[FrontEditorSelected[\"Set\", matrix], \
-\"Window\"->window];\n      Delete[cell];\n    ]];\n  ];\n\n  Editor = \
-EditorView[matrix//Offload, \"ReadOnly\"->True] // CreateFrontEndObject;\n\n  \
-<div class=\"flex flex-row w-full gap-x-2\">\n    <div class=\"basis-1/2\">\n \
-     <Inputs/>\n    </div>\n        \n    <div class=\"basis-1/2 rounded-md \
-shadow\">\n      <div class=\"p-4 items-center \">\n        <Editor/>\n      \
-</div>\n    </div>\n  </div>\n]", "Display" -> "codemirror", 
-    "Hash" -> "9d5c9e4a-6d75-420a-8771-785237001fc6", "Invisible" -> False, 
+\"Window\"->window];\n      Delete[cell];\n    ]];\n\n    \
+EventHandler[window, {\"Closed\" -> Function[Null,\n  Delete[cell];\n]}];\n  \
+];\n\n  Editor = EditorView[matrix//Offload, \"ReadOnly\"->True] // \
+CreateFrontEndObject;\n\n  <div class=\"flex flex-row w-full gap-x-2\">\n    \
+<div class=\"basis-1/2\">\n      <Inputs/>\n    </div>\n        \n    <div \
+class=\"basis-1/2 rounded-md shadow\">\n      <div class=\"p-4 items-center \
+\">\n        <Editor/>\n      </div>\n    </div>\n  </div>\n]", 
+    "Display" -> "codemirror", "Hash" -> 
+     "ea4acdd0-02ad-4898-9912-157603347a08", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "b7d96082-4250-4c88-b4ec-9d989d083d14", "Invisible" -> False, 
+    "Hash" -> "3ec827d0-31db-47a6-b03e-0c28ab9d7854", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> ".md\n__template__", "Display" -> "codemirror", 
-    "Hash" -> "48130923-02bd-4f65-8e93-41c486e7cc16", "Invisible" -> False, 
+    "Hash" -> "5ecca426-2b57-417a-bfe2-72b69d343f56", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <|"Hidden" -> True|>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, <|"Data" -> "__template__", 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, <|"Data" -> "__template__", 
     "Display" -> "markdown", "Hash" -> 
-     "1bdfc52f-8cca-4faf-a7a0-1ca0d5b4892d", "Invisible" -> False, 
+     "8876af11-5f19-4ac8-ab83-0df8a05d8503", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Output", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> ".template\n.wlx\nComponent[OptionsPattern[]] := With[{Title = \
 OptionValue[\"Title\"], Kbd = OptionValue[\"Shortcut\"], UTag = \
 OptionValue[\"Tag\"], Btn = OptionValue[\"Button\"]},\n    <li \
@@ -101,12 +104,12 @@ h-4 text-gray-400\" viewBox=\"0 0 24 24\" fill=\"none\">\n                    \
 </span>\n    </li>    \n]\n\nOptions[Component] = {\"Title\"->\"Example\", \
 \"Shortcut\"->\"\", \"Tag\"->\"generic\", \"Button\"->Null}\n\nComponent", 
     "Display" -> "codemirror", "Hash" -> 
-     "351fbd16-940c-4fdb-b14d-2c160a82f0c7", "Invisible" -> False, 
+     "2d94330b-14ee-4a6b-aa33-ee572735cf2f", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>, 
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>, 
    <|"Data" -> " ", "Display" -> "codemirror", 
-    "Hash" -> "f44b2050-c835-4582-bebd-418396fdcbe3", "Invisible" -> False, 
+    "Hash" -> "4ff557df-4f77-4f39-9f44-8d02e3fa6612", "Invisible" -> False, 
     "MetaOnly" -> False, "Props" -> <||>, "State" -> "Idle", 
     "Type" -> "Input", "UID" -> Null, "Notebook" -> 
-     "1937637a-c68b-4c75-9986-055486799b3e"|>}, "serializer" -> "jsfn4"|>
+     "3d0ab5f0-cdea-406c-8b5d-c879576c0323"|>}, "serializer" -> "jsfn4"|>
