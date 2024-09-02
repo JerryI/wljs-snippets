@@ -1,4 +1,7 @@
-# Notes on HTML cells
+---
+title: Notes on HTML cells
+desc: Instructions on how to work with HTML cells
+---
 
 Do not use `body` or `head` tags, keep only `div` or other tags with actual content. The code will be embedded to a notebook directly. 
 You can add `script`, `styles` tags anywhere you want in the code if needed. Be aware that Tailwind css framework is available already, you can use its utility classes directly in the code if needed.

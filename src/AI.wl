@@ -50,8 +50,6 @@ AIChatRenderer = "";
 
 chatWindow = ImportComponent[FileNameJoin[{$rootDir, "template", "Chat.wlx"}] ];
 
-AppExtensions`TemplateInjection["SettingsFooter"] = ImportComponent[FileNameJoin[{$rootDir, "template", "Settings.wlx"}] ];
-
 {loadSettings, storeSettings}        = ImportComponent["Frontend/Settings.wl"];
 
 settings = <||>;
@@ -63,13 +61,55 @@ settingsKeyTable = {
     "Temperature" -> "AIAssistantTemperature"
 };
 
+SimpleYAMLParser[yaml_String] := Module[{lines, parseLine, assoc, toValue},
+  
+  (* Split YAML content into lines *)
+  lines = StringSplit[yaml, "\n"];
+  
+  (* Function to convert string to appropriate value *)
+  toValue[value_String] := Which[
+    value === "true", True,
+    value === "false", False,
+    True, value
+  ];
+  
+  (* Function to parse a single line *)
+  parseLine[line_String] := Module[{key, value},
+    (* Split the line into key and value at the first colon *)
+    {key, value} = StringTrim /@ StringSplit[line, ":", 2];
+    key -> toValue[value]
+  ];
+  
+  (* Build association from parsed lines *)
+  assoc = Association@Map[parseLine, Select[lines, StringContainsQ[":"]]];
+  
+  assoc
+]
+
+ParseFrontMatter[content_String] := Module[{ frontMatter},
+  
+  
+  (* Extract the front matter between the first and second `---` *)
+  frontMatter = StringCases[content, 
+    "---" ~~ ShortestMatch[fm__] ~~ "---" ~~ rest__ :> {fm, rest}, 1];
+  
+  (* If front matter exists, parse it into an association *)
+  Join[If[frontMatter =!= {},
+    SimpleYAMLParser[frontMatter[[1,1]]],
+    <||> (* Return an empty association if no front matter is found *)
+  ], <|"content" -> frontMatter[[1,2]]|>]
+]
+
+
+
 getParameter[key_] := With[{
         params = Join[<|
             "AIAssistantEndpoint" -> "https://api.openai.com", 
             "AIAssistantModel" -> "gpt-4o", 
             "AIAssistantMaxTokens" -> 70000, 
             "AIAssistantTemperature" -> 0.7,
-            "AIAssistantInitialPrompt" -> True
+            "AIAssistantInitialPrompt" -> True,
+            "AIAssistantLibraryStopList" -> {}
         |>, settings],
 
         skey = key /. settingsKeyTable
@@ -77,6 +117,22 @@ getParameter[key_] := With[{
 
     params[skey]
 ]
+
+library = <||>;
+With[{libItems = Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}], stopList = getParameter["AIAssistantLibraryStopList"]},
+    Map[
+        With[{hash = CreateUUID[], content = ParseFrontMatter[#]},
+            library[hash] = Join[<|
+                "hash" -> hash,
+                "words" -> ToString[WordCount[#] ],
+                "enabled" -> (!MemberQ[stopList, content["title"] ])
+            |>, content ];
+        ]&    
+    , libItems];
+];
+
+
+AppExtensions`TemplateInjection["SettingsFooter"] = (ImportComponent[FileNameJoin[{$rootDir, "template", "Settings.wlx"}] ][<|"Library" -> Hold[library] |>]);
 
 
 With[{http = AppExtensions`HTTPHandler},
@@ -270,6 +326,18 @@ basisChatFunction[_] := {
     <|
     	"type" -> "function", 
     	"function" -> <|
+    		"name" -> "getLibraryList", 
+    		"description" -> "returns a flat list of available knowledge (library item) in local library about the execution enviroment in the form [uid, title, desc]. to get actual content use getLibraryItemById", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <||>
+    		|>
+    	|>
+    |>,    
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
     		"name" -> "getFocusedCell", 
     		"description" -> "returns an information of a cell focused by a user in a form [uid, type, language, hidden]. To get actual content use getCellContentById", 
     		"parameters" -> <|
@@ -306,7 +374,26 @@ basisChatFunction[_] := {
                 |>
     		|>
     	|>
-    |>,         
+    |>,  
+
+           
+
+    <|
+    	"type" -> "function", 
+    	"function" -> <|
+    		"name" -> "getLibraryItemById", 
+    		"description" -> "returns a library item content by id in a form of a string", 
+    		"parameters" -> <|
+    			"type" -> "object", 
+    			"properties" -> <|
+                    "id" -> <|
+                        "type"-> "string",
+                        "description"-> "id of library item"
+                    |>
+                |>
+    		|>
+    	|>
+    |>, 
 
     <|
     	"type" -> "function", 
@@ -583,6 +670,12 @@ createChat[assoc_Association] := With[{
                         ], notebook["Cells"] ], "JSON"] ] ] ];
                     ,
 
+                    "getLibraryList",
+                        AppendTo[commmandQuery, Function[Null, AppendTo[toolResults, ExportString[Map[Function[item, 
+                            {item["hash"], item["title"], item["desc"]}
+                        ], Select[Values[library], Function[i, i["default"] =!= True && i["enabled"] === True ] ] ], "JSON"] ] ] ];
+                    ,
+
                     "getFocusedCell",
                         AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
                             If[!MatchQ[focused, _CellObj], "ERROR: Nothing is focused",
@@ -605,6 +698,21 @@ createChat[assoc_Association] := With[{
                             ] 
                         ]
                     ,
+
+                    "getLibraryItemById",
+                        With[{args = ImportString[ImportString[
+										call["function", "arguments"], 
+										"Text"], "RawJSON", CharacterEncoding -> "UTF-8"
+									]},
+                            With[{item = library[ removeQuotes @ args["id"] ]},
+                                AppendTo[commmandQuery, Function[Null, AppendTo[toolResults,
+                                    If[!MatchQ[item, _Association], "ERROR: Not found by given id",
+                                        trimContent[ item["content"] ]
+                                    ]
+                                ] ] ];
+                            ] 
+                        ]
+                    ,                    
 
                     "setCellContentById",
                         With[{args = ImportString[ImportString[
@@ -766,10 +874,10 @@ createChat[assoc_Association] := With[{
         ];
 
         initializeChat := (
-            systemPromt = "**The most important** You are chat bot in the notebook env (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML, Markdown, RevealJS (Slides) input cells. You can change or create all of them. If a user ask you to show examples on code, please, create a new cell with it. If a user asks to correct mistakes or edit something - apply changes directly. Print - means to print a cell to a notebook, not to a chat. You can't create and edit output cells, only read. You can create and edit any input cells. You can request a list of cells, where each item has uid field. Use it to get or change the content of a cell. Always read cells content before commenting on them. You shall only invoke the defined functions. **You should NEVER invent or use functions NOT defined or especially the multi_tool_use.parallel function. If you need to call multiple functions, you will call them one at a time **. **Use only English when creating or modifying cells**";
+            systemPromt = "**The most important** You are chat bot in the notebook env (WLJS Notebook) with cells. The main language is Wolfram Language, but there is also Javascript and HTML (Please read library item on that!), Markdown, RevealJS (Slides) (Please read library item on that!) input cells. You can change or create all of them. Check the library depending on the context of user's request. Library contains several documents on each cell type as well as short docs for some features. If a user ask you to show examples on code, please, create a new cell with it. If a user asks to correct mistakes or edit something - apply changes directly. Print - means to print a cell to a notebook, not to a chat. You can't create and edit output cells, only read. You can create and edit any input cells. You can request a list of cells, where each item has uid field. Use it to get or change the content of a cell. Always read cells content before commenting on them. You shall only invoke the defined functions. **You should NEVER invent or use functions NOT defined or especially the multi_tool_use.parallel function. If you need to call multiple functions, you will call them one at a time **. **Use only English when creating or modifying cells**";
             If[getParameter["AIAssistantInitialPrompt"],
-                systemPromt = systemPromt <> "\nNow an additional information comes from the documentation of the enveroment that you should consider while assisting the user:\n";
-                systemPromt = systemPromt <> StringRiffle[Table[Import[i, "Text"], {i, FileNames["*.txt", FileNameJoin[{$rootDir, "promts"}] ]}] ];
+                systemPromt = systemPromt <> "\nNow some additional information that you should consider while assisting the user:\n";
+                systemPromt = systemPromt <> StringRiffle[Select[Values[library], Function[i, i["default"] === True && i["enabled"] === True ] ][[All, "content"]]  ];
             ];
 
 

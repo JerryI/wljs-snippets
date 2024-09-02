@@ -1,4 +1,7 @@
-# Note on slides type of cells
+---
+title: Notes on Slide cells
+desc: Instructions on how to make presentations in a notebook
+---
 
 You can also print cells, that represents slides! It uses Reveal.JS with Markdown as a main language to describe the content of a slide.
 __Just mention "RevealJS" or "Reveal" in the language argument when you use cellPrint function__, that represents a slide.

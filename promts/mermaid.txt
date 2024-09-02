@@ -1,3 +1,6 @@
-# Note on diagrams cells 
+---
+title: Notes on Mermaid diagrams cells
+desc: 
+---
 
 You can also print Mermaid diagram cells, that uses Mermaid.js as a main language to depic diagrams. Just mention in the language name "Mermaid" when you use cellPrint function.

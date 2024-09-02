@@ -13,8 +13,14 @@ checkPos[item_, chat_] := With[{
 toolCall[item_, i_, chat_, connected_:False] := With[{
   avatar = URLEncode[StringJoin["https://i.pravatar.cc/100?u=", chat["Hash"]]],
   Action = Switch[i[["function", "name"]],
+  "getLibraryList",
+    "checked the knowledge library",
+
+  "getLibraryItemById",
+    "read some books",    
+
   "getCellList",
-    "checked the notebook structure",
+    "checked the notebook structure",    
 
   "getFocusedCell",
     "get focused cell",

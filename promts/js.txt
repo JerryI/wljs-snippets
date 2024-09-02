@@ -1,4 +1,7 @@
-# Notes on Javascript cells
+---
+title: Notes on Javascript cells
+desc: Limitations and important features of JS in notebook
+---
 
 1. Javascript cell has to return something. It goes line by line like if it was a function 
 
